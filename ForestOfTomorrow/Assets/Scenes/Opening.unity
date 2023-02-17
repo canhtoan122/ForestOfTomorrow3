@@ -1775,5 +1775,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   moveSpeed: 7
-  jumpForce: 14
+  jumpForce: 1
   jumpSoundEffect: {fileID: 0}
