@@ -12,12 +12,15 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed = 15f;   // The speed that the player after dash
     public float dashDistance = 5f;      // The distance that the player after dash
     public float dashDuration;      // The duration that the player after dash
-    private float dashTimeLeft;
+    private float dashTimeLeft; 
+    public float dashCooldown = 1f; // The cooldown of the dash
     public LayerMask groundLayer;   // The layer(s) that represent the ground
     private SpriteRenderer spriteRenderer; //The character image
-    private PolygonCollider2D coll;
+    private BoxCollider2D coll;
     private Rigidbody2D rb;
-    private Vector2 dashTarget;
+    //test
+    private float dashCooldownLeft = 0f;
+    private float horizontalInput = 0f;
 
     private bool isGrounded = false;   // Flag to indicate if the character is grounded
     private bool isMovingLeft = false;   // Flag to indicate if the character is moving left
@@ -25,17 +28,17 @@ public class PlayerController : MonoBehaviour
     private bool isJumping = false;   // Flag to indicate if the character is jumping
     private bool isStandingUp = false;   // Flag to indicate if the character is standing up
     private bool isDashing = false;   // Flag to indicate if the character is dashing
-    private bool facingRight = true;
 
     private bool jump = false;
     private bool moveLeft = false;
     private bool moveRight = false;
     private bool dash = false;
+    private bool attack = false;
     private void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        coll = GetComponent<PolygonCollider2D>();
+        coll = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();   
     }
     void Update()
@@ -52,79 +55,114 @@ public class PlayerController : MonoBehaviour
             // Apply a force to the character's rigidbody to make them jump
             GetComponent<Rigidbody2D>().AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 
+            // Set the "IsMovingRight" parameter to false to end the move right animation
+            animator.SetBool("IsMovingRight", false);
+
+            // Set the "IsMovingLeft" parameter to false to end the move left animation
+            animator.SetBool("IsMovingLeft", false);
+
             // Set the "jump" flag to false to indicate the character is no longer jumping
             jump = false;
         }
-        // Handle dashing input
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        
+        if (dash && !isDashing && dashCooldownLeft <= 0f)
         {
             isDashing = true;
             dashTimeLeft = dashDuration;
-            // Calculate target position based on dash distance
-            dashTarget = rb.position + new Vector2(dashDistance * (facingRight ? 1 : -1), 0);
-
-            // Calculate velocity to reach target position in dash duration
-            Vector2 dashVelocity = (dashTarget - rb.position) / dashDuration;
-
-            // Set player velocity to dash velocity
-            rb.velocity = dashVelocity;
-
-            // Trigger the "IsJumping" parameter to start the jump animation
             animator.SetBool("IsDashing", true);
         }
-        else if (isDashing)
-        {
-            // Calculate remaining distance to dash target
-            float remainingDistance = Mathf.Abs(rb.position.x - dashTarget.x);
 
-            if (remainingDistance < 0.1f)
+        if (dashCooldownLeft > 0f)
+        {
+            dashCooldownLeft -= Time.deltaTime;
+        }
+        if (attack)
+        {
+            animator.SetBool("IsAttacking", true);
+        }
+        else
+        {
+            animator.SetBool("IsAttacking", false);
+        }
+    }
+    void FixedUpdate()
+    {
+        if (!isDashing)
+        {
+            if (moveLeft)
             {
-                isDashing = false;
+                // Flip backward
+                spriteRenderer.flipX = true;
+                // Set the "IsMovingLeft" parameter to true to start the move left animation
+                animator.SetBool("IsMovingLeft", true);
+                // Move the character to the left
+                transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
             }
-            if (dashTimeLeft > 0)
+            else
+            {
+                // Flip backward
+                spriteRenderer.flipX = false;
+                // Set the "IsMovingLeft" parameter to false to end the move left animation
+                animator.SetBool("IsMovingLeft", false);
+            }
+            if (moveRight)
+            {
+                // Set the "IsMovingRight" parameter to true to start the move right animation
+                animator.SetBool("IsMovingRight", true);
+                // Move the character to the right
+                transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                // Set the "IsMovingRight" parameter to false to end the move right animation
+                animator.SetBool("IsMovingRight", false);
+            }
+        }
+        else
+        {
+            if (dashTimeLeft > 0f)
             {
                 dashTimeLeft -= Time.deltaTime;
+                if(moveLeft)
+                {
+                    float moveLeftSpeed = -1f;
+                    float xVelocity = moveLeftSpeed * dashSpeed;
+                    rb.velocity = new Vector2(xVelocity, rb.velocity.y);
+
+                    // Set the "IsMovingLeft" parameter to false to end the move left animation
+                    animator.SetBool("IsMovingLeft", false);
+                }
+                else if (moveRight)
+                {
+                    float moveRightSpeed = 1f;
+                    float xVelocity = moveRightSpeed * dashSpeed;
+                    rb.velocity = new Vector2(xVelocity, rb.velocity.y);
+
+                    // Set the "IsMovingRight" parameter to false to end the move right animation
+                    animator.SetBool("IsMovingRight", false);
+                }
+                else
+                {
+                    // Set the "IsDashing" parameter to false to end dashing
+                    animator.SetBool("IsDashing", false);
+                }
+
             }
             else
             {
                 isDashing = false;
-
-                // Trigger the "IsJumping" parameter to stop the jump animation
+                dashCooldownLeft = dashCooldown;
                 animator.SetBool("IsDashing", false);
             }
         }
-        // Check if the left button is pressed
-        if (moveLeft)
-        {
-            // Flip backward
-            spriteRenderer.flipX = true;
-            // Set the "IsMovingLeft" parameter to true to start the move left animation
-            animator.SetBool("IsMovingLeft", true);
 
-            // Move the character to the left
-            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        }
-        else
+        if (horizontalInput < 0f)
         {
-            // Flip backward
-            spriteRenderer.flipX = false;
-            // Set the "IsMovingLeft" parameter to false to end the move left animation
-            animator.SetBool("IsMovingLeft", false);
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
-
-        // Check if the right button is pressed
-        if (moveRight)
+        else if (horizontalInput > 0f)
         {
-            // Set the "IsMovingRight" parameter to true to start the move right animation
-            animator.SetBool("IsMovingRight", true);
-
-            // Move the character to the right
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            // Set the "IsMovingRight" parameter to false to end the move right animation
-            animator.SetBool("IsMovingRight", false);
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
     public void Jump()
@@ -139,13 +177,21 @@ public class PlayerController : MonoBehaviour
     {
         moveRight = _right;
     }
-    public void Dashing()
+    public void Dashing(bool _dash)
     {
-        dash = true;
+        dash = _dash;
+    }
+    public void Attacking()
+    {
+        attack = true;
     }
     public void IsIdle()
     {
         animator.SetBool("IsStandingUp", false);
+    }
+    public void StopAttack()
+    {
+        attack = false;
     }
     private bool IsGrounded()
     {
