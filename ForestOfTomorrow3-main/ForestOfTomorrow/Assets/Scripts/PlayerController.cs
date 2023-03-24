@@ -165,38 +165,52 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
+    // Activate when user click the jump button
     public void Jump()
     {
         jump = true;
+        TutorialManagement.isJumped = true;
     }
+    // Activate when user click the move left button
     public void MoveLeft(bool _left)
     {
         moveLeft = _left;
+        TutorialManagement.isMoved = true;
     }
+    // Activate when user click the move right button
     public void MoveRight(bool _right)
     {
         moveRight = _right;
+        TutorialManagement.isMoved = true;
     }
+    // Activate when user click the dash button
     public void Dashing(bool _dash)
     {
         dash = _dash;
+        TutorialManagement.isDashed = true;
     }
+    // Activate when user click the attack button
     public void Attacking()
     {
         attack = true;
+        TutorialManagement.isAttacked = true;
     }
+    // Activate when user finish standing up
     public void IsIdle()
     {
         animator.SetBool("IsStandingUp", false);
     }
+    // Activate when user finish attacking
     public void StopAttack()
     {
         attack = false;
     }
+    // Check if user is on the ground or not
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, groundLayer);
     }
+    // Check if user touch the ground after jumping to activate standing up
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Terrain"))

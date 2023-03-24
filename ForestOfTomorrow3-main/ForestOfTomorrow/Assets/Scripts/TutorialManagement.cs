@@ -5,8 +5,14 @@ using UnityEngine.UI;
 
 public class TutorialManagement : MonoBehaviour
 {
-    [SerializeField] private GameObject[] tutorialSteps;
-    [SerializeField] private Button[] tutorialButtons;
+    [SerializeField]
+    private GameObject[] tutorialSteps;
+    [SerializeField]
+    private Button[] tutorialButtons;
+    public static bool isMoved = false;
+    public static bool isJumped = false;
+    public static bool isDashed = false;
+    public static bool isAttacked = false;
 
     private int currentStep = 0;
 
@@ -18,15 +24,80 @@ public class TutorialManagement : MonoBehaviour
             tutorialButtons[i].interactable = false;
         }
     }
-
-    public void NextStep()
+    //Check if player is moved
+    public void MoveNextStep()
     {
         // Disable the current tutorial step
         tutorialSteps[currentStep].SetActive(false);
 
-        // Increment the step index
-        currentStep++;
+        if (isMoved)
+        {
+            if (currentStep == 0)
+            {
+                // Increment the step index
+                currentStep++;
+            }
+            isMoved = false;
+        }
 
+        NextStep();
+    }
+    //Check if player is jumped
+    public void JumpNextStep()
+    {
+        // Disable the current tutorial step
+        tutorialSteps[currentStep].SetActive(false);
+
+        if (isJumped)
+        {
+            if (currentStep == 1)
+            {
+                // Increment the step index
+                currentStep++;
+            }
+            isJumped = false;
+        }
+
+        NextStep();
+    }
+    //Check if player is dashed
+    public void DashNextStep()
+    {
+        // Disable the current tutorial step
+        tutorialSteps[currentStep].SetActive(false);
+
+        if (isDashed)
+        {
+            if (currentStep == 2)
+            {
+                // Increment the step index
+                currentStep++;
+            }
+            isDashed = false;
+        }
+
+        NextStep();
+    }
+    //Check if player is attacked
+    public void AttackNextStep()
+    {
+        // Disable the current tutorial step
+        tutorialSteps[currentStep].SetActive(false);
+
+        if (isAttacked)
+        {
+            if (currentStep == 3)
+            {
+                // Increment the step index
+                currentStep++;
+            }
+            isAttacked = false;
+        }
+
+        NextStep();
+    }
+    public void NextStep()
+    {
         if (currentStep < tutorialSteps.Length)
         {
             // Enable the next tutorial step and button
@@ -38,5 +109,4 @@ public class TutorialManagement : MonoBehaviour
             MissionManagement.mission1Complete = true;
         }
     }
-
 }

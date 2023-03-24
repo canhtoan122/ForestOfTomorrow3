@@ -10,20 +10,29 @@ public class MissionManagement : MonoBehaviour
     [SerializeField]
     private Text missionText;
 
+    [SerializeField]
+    private Mission mission1Object;
+    [SerializeField]
+    private Mission mission2Object;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        missionText.text = mission1Object.MissionTitle;
+        mission1Object.isActive = true;
     }
     private void Update()
     {
         if (mission1Complete)
         {
+            mission1Object.isActive = false;
             anim.SetBool("IsCompleted", true);
         }
     }
     public void Mission2()
     {
-        missionText.text = "Go to the door.";
+        mission2Object.isActive = true;
+        missionText.text = mission2Object.MissionTitle;
         mission1Complete = false;
         anim.SetBool("IsCompleted", false);
     }

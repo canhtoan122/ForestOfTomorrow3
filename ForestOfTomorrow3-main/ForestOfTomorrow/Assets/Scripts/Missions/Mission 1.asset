@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac13b592a068c248ade328f4a482eea, type: 3}
+  m_Name: Mission 1
+  m_EditorClassIdentifier: 
+  isActive: 0
+  MissionTitle: Complete the tutorial
+  MissionDescription: "First, in the \"Press \u2190 \u2192 to move\" you have to
+    press \u2190 \u2192 on your left at the bottom of the screen to complete the
+    quest. Then in the \"Press icon to jump\" you have to press the icon exactly
+    in the screen on your right at the bottom of the screen to continue. Then in
+    the \"Press icon to dash\" you can press combination \u2190 \u2192 + icon in
+    the screen or just click the icon in the screen in your right at the bottom of
+    the screen. Then in the \"Press icon to attack\" you can press the icon in your
+    right at the bottom of the screen to continue."
+  MissionType: Main mission
+  MissionProgress: "- Press \u2190 \u2192 to move. - Press <sprite=0> to jump. -
+    Press <sprite=1> to dash. - Press <sprite=2> to attack."
+  objectiveDescriptions: []
