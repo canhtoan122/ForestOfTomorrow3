@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac13b592a068c248ade328f4a482eea, type: 3}
   m_Name: Mission 2
   m_EditorClassIdentifier: 
-  isActive: 0
+  isActive: 1
   MissionTitle: Go to the door
   MissionDescription: After complete the mission, you can go to the door and press
     the door icon in your right at the bottom of the screen to continue.
   MissionType: Main mission
+  MissionProgress: Press <sprite=0> to open the door.
   objectiveDescriptions: []

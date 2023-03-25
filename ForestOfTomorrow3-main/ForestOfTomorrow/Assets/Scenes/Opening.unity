@@ -634,7 +634,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "- Press \u2190 \u2192 to move (0/1)\n- Press  to move (0/1)"
+  m_text: "- Press \u2190 \u2192 to move. \n- Press <sprite=0> to jump.\n- Press
+    <sprite=1> to dash. \n- Press <sprite=2> to attack."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30dcab483c8d57f4380837ea82d92eac, type: 2}
   m_sharedMaterial: {fileID: -5669676936684628001, guid: 30dcab483c8d57f4380837ea82d92eac, type: 2}
@@ -653,7 +654,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: b506d15d7a37fa54eae11b4c14f12cef, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -673,7 +674,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 80
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -927,7 +928,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 225333172}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 511172683}
+        m_TargetAssemblyTypeName: MissionUIManagement, Assembly-CSharp
+        m_MethodName: ActiveMissionDescription
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &225333172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1432,6 +1445,7 @@ GameObject:
   - component: {fileID: 511172682}
   - component: {fileID: 511172681}
   - component: {fileID: 511172680}
+  - component: {fileID: 511172683}
   m_Layer: 5
   m_Name: Mission UI
   m_TagString: Untagged
@@ -1500,6 +1514,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &511172683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511172679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23389a0b26a68d5419b47d1d161bc2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionManagement: {fileID: 2031689613}
+  missionType: {fileID: 1253293316}
+  missionTitle: {fileID: 1336995423}
+  missionTitle2: {fileID: 1301365097}
+  missionProgress: {fileID: 205112496}
+  missionDescription: {fileID: 1325905515}
+  missionDescription2: {fileID: 1379024929}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,7 +3324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 181.44, y: -25.5743}
+  m_AnchoredPosition: {x: 181.44, y: -25.57428}
   m_SizeDelta: {x: 362.89, y: 51.1485}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1253293316
@@ -3323,8 +3356,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278255584
+  m_fontColor: {r: 0.8784709, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3771,10 +3804,10 @@ RectTransform:
   m_Father: {fileID: 1379024930}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0013123, y: -165.45}
-  m_SizeDelta: {x: 1012.9, y: 389.1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.0013123, y: -525.45}
+  m_SizeDelta: {x: 1012.9, y: 389.09998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1325905515
 MonoBehaviour:
@@ -3796,17 +3829,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "First, in the \"Press \u2190 \u2192 to move\" you have to press \u2190
-    \u2192 on your left at the bottom of the screen to complete the quest. \nThen
-    in the \"Press icon to jump\" you have to press the icon exactly in the screen
-    on your right at the bottom of the screen to continue. \nThen in the \"Press
-    icon to dash\" you can press combination \u2190 \u2192 + icon in the screen or
-    just click the icon in the screen in your right at the bottom of the screen.
-    \nThen in the \"Press icon to attack\" you can press the icon in your right at
-    the bottom of the screen to continue."
+  m_text: "-First, in the \"Press \u2190 \u2192 to move\" you have to press \u2190
+    \u2192 on your left at the bottom of the screen to complete the quest. \n-Then
+    in the \"Press <sprite=0> to jump\" you have to press the icon exactly in the
+    screen on your right at the bottom of the screen to continue. \n-Then in the
+    \"Press <sprite=1> to dash\" you can press combination \u2190 \u2192 + icon in
+    the screen or just click the icon in the screen in your right at the bottom of
+    the screen. \n-Then in the \"Press <sprite=2> to attack\" you can press the icon
+    in your right at the bottom of the screen to continue."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 30dcab483c8d57f4380837ea82d92eac, type: 2}
-  m_sharedMaterial: {fileID: -5669676936684628001, guid: 30dcab483c8d57f4380837ea82d92eac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3822,7 +3855,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: 86686da114824cc469a31c6280ee0140, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -3830,8 +3863,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4165,7 +4198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1379024930
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6520,6 +6553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff09c92d37bd3194e850fe83fedee6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionList:
+  - {fileID: 11400000, guid: 7b0ec82f77961344d8eb9701a571f435, type: 2}
+  - {fileID: 11400000, guid: 008d95d6444581044ab8900ab116e408, type: 2}
+  mainMission: {fileID: 11400000, guid: 80686dd624aaacd4c8075b9e5b3d238c, type: 2}
   missionText: {fileID: 1082435413}
   mission1Object: {fileID: 11400000, guid: 7b0ec82f77961344d8eb9701a571f435, type: 2}
   mission2Object: {fileID: 11400000, guid: 008d95d6444581044ab8900ab116e408, type: 2}

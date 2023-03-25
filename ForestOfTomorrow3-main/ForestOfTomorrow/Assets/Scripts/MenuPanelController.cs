@@ -14,6 +14,7 @@ public class MenuPanelController : MonoBehaviour
     public void OpenMissionUI()
     {
         missionUI.SetActive(true);
+        anim.SetBool("IsSlidingIn", false);
     }
     public void CloseMissionUI()
     {
