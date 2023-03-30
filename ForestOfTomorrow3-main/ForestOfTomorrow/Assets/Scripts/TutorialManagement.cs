@@ -13,6 +13,7 @@ public class TutorialManagement : MonoBehaviour
     public static bool isJumped = false;
     public static bool isDashed = false;
     public static bool isAttacked = false;
+    public static bool isActivate = false;
 
     private int currentStep = 0;
 
@@ -103,10 +104,15 @@ public class TutorialManagement : MonoBehaviour
             // Enable the next tutorial step and button
             tutorialSteps[currentStep].SetActive(true);
             tutorialButtons[currentStep].interactable = true;
+            if(currentStep == 4 && !isActivate)
+            {
+                MissionManagement.mission1Complete = true;
+                isActivate = true;
+            }
         }
         else
         {
-            MissionManagement.mission1Complete = true;
+            Debug.Log("Tutorial Complete");
         }
     }
 }

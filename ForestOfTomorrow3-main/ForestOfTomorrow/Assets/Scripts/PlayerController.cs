@@ -18,9 +18,17 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer; //The character image
     private BoxCollider2D coll;
     private Rigidbody2D rb;
-    //test
     private float dashCooldownLeft = 0f;
     private float horizontalInput = 0f;
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip moveSFX;
+    [SerializeField]
+    private AudioClip jumpSFX;
+    [SerializeField]
+    private AudioClip dashSFX;
+    [SerializeField]
+    private AudioClip attackSFX;
 
     private bool isGrounded = false;   // Flag to indicate if the character is grounded
     private bool isMovingLeft = false;   // Flag to indicate if the character is moving left
@@ -34,12 +42,14 @@ public class PlayerController : MonoBehaviour
     private bool moveRight = false;
     private bool dash = false;
     private bool attack = false;
+    public static bool openDoor = false;
     private void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -170,30 +180,89 @@ public class PlayerController : MonoBehaviour
     {
         jump = true;
         TutorialManagement.isJumped = true;
+        if (jump)
+        {
+            audioSource.clip = jumpSFX;
+            audioSource.Play();
+        }
+        else
+        {
+            // Stop move sound effect loop
+            audioSource.Stop();
+        }
     }
     // Activate when user click the move left button
     public void MoveLeft(bool _left)
     {
         moveLeft = _left;
         TutorialManagement.isMoved = true;
+        if (moveLeft)
+        {
+            audioSource.clip = moveSFX;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+        else
+        {
+            // Stop move sound effect loop
+            audioSource.Stop();
+            audioSource.loop = false;
+        }
     }
     // Activate when user click the move right button
     public void MoveRight(bool _right)
     {
         moveRight = _right;
         TutorialManagement.isMoved = true;
+        if (moveRight)
+        {
+            audioSource.clip = moveSFX;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+        else
+        {
+            // Stop move sound effect loop
+            audioSource.Stop();
+            audioSource.loop = false;
+        }
     }
     // Activate when user click the dash button
     public void Dashing(bool _dash)
     {
         dash = _dash;
         TutorialManagement.isDashed = true;
+        if (dash)
+        {
+            audioSource.clip = dashSFX;
+            audioSource.Play();
+        }
+        else
+        {
+            // Stop move sound effect loop
+            audioSource.Stop();
+        }
     }
     // Activate when user click the attack button
     public void Attacking()
     {
         attack = true;
         TutorialManagement.isAttacked = true;
+        if (attack)
+        {
+            audioSource.clip = attackSFX;
+            audioSource.Play();
+        }
+        else
+        {
+            // Stop move sound effect loop
+            audioSource.Stop();
+        }
+    }
+    // Open door animation
+    public void OpenDoor()
+    {
+        openDoor = true;
     }
     // Activate when user finish standing up
     public void IsIdle()
@@ -213,6 +282,7 @@ public class PlayerController : MonoBehaviour
     // Check if user touch the ground after jumping to activate standing up
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // Ground check
         if (collision.gameObject.CompareTag("Terrain"))
         {
             isJumping = false;
@@ -222,6 +292,57 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsStandingUp", true);
             }
         }
+        // Invisible wall check
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            // Get the normal of the collision
+            Vector2 normal = collision.contacts[0].normal;
+
+            // If the collision is from the top or bottom, prevent vertical movement
+            if (Mathf.Abs(normal.y) > Mathf.Abs(normal.x))
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0f);
+            }
+            // If the collision is from the left or right, prevent horizontal movement
+            else
+            {
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
+        }
+        //Stair check
+        if(collision.gameObject.CompareTag("Stair"))
+        {
+            rb.GetComponent<Rigidbody2D>().gravityScale = 0f;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        //Stair check
+        if (collision.gameObject.CompareTag("Stair"))
+        {
+            rb.GetComponent<Rigidbody2D>().gravityScale = 3f;
+        }
+        //Wall check
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            isJumping = false;
+            animator.SetBool("IsJumping", false);
+            if (rb.velocity.y == 0)
+            {
+                animator.SetBool("IsStandingUp", true);
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Item"))
+        {
+
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
     }
 }
 

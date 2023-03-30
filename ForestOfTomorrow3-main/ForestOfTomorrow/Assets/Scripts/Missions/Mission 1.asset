@@ -12,16 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac13b592a068c248ade328f4a482eea, type: 3}
   m_Name: Mission 1
   m_EditorClassIdentifier: 
-  isActive: 1
+  isActive: 0
   MissionTitle: Complete the tutorial
-  MissionDescription: "First, in the \"Press \u2190 \u2192 to move\" you have to
-    press \u2190 \u2192 on your left at the bottom of the screen to complete the
-    quest. -Then in the \"Press <sprite=0> to jump\" you have to press the <sprite=0>
-    exactly in the screen on your right at the bottom of the screen to continue.
-    -Then in the \"Press <sprite=1> to dash\" you can press combination \u2190 \u2192
-    + <sprite=1> in the screen or just click the icon in the screen in your right
-    at the bottom of the screen. -Then in the \"Press <sprite=2> to attack\" you
-    can press the <sprite=2> in your right at the bottom of the screen to continue."
+  MissionDescription: Complete the tutorial part
   MissionType: Main mission
   MissionProgress: "Press \u2190 \u2192 to move. -Press <sprite=0> to jump. -Press
     <sprite=1> to dash. -Press <sprite=2> to attack."

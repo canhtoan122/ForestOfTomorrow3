@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a1875057ba8863042917a8e62de05d56
+guid: 9efd8a56b72de47428634afc81230b76
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,28 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Group 12_0
+      name: Group 13_0
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 308
+        width: 205
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ce78e916cffcc445872cab9590f3709
+      internalID: -372505636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Group 13_1
       rect:
         serializedVersion: 2
         x: 416
@@ -131,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f233fd71e4f9d904ca96980d02832f41
-      internalID: -281576447
+      spriteID: 551dd9a3c98b1d448b370b2cc96cccf3
+      internalID: 1568650881
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Group 12_1
+      name: Group 13_2
       rect:
         serializedVersion: 2
         x: 0
@@ -152,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 684f322c29700164e9caa588ef88d4c6
-      internalID: 1055906676
+      spriteID: 1c6e0afff781e8745a188556d9e914aa
+      internalID: 1181071742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Group 12_2
+      name: Group 13_3
       rect:
         serializedVersion: 2
         x: 332
@@ -173,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88c860608b6652e4f808af68ff8b85bd
-      internalID: -78302612
+      spriteID: d03d5a4532f769b468232f5313296002
+      internalID: 2080014597
       vertices: []
       indices: 
       edges: []
@@ -190,9 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Group 12_0: -281576447
-      Group 12_1: 1055906676
-      Group 12_2: -78302612
+      Group 13_0: -372505636
+      Group 13_1: 1568650881
+      Group 13_2: 1181071742
+      Group 13_3: 2080014597
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MissionManagement : MonoBehaviour
 {
-    public static MissionManagement instance;
+    private static MissionManagement instance;
     public static bool mission1Complete = false;
-
+    public static bool mission2Complete = false;
+    public static bool mission3Complete = false;
     public List<Mission> missionList;
     public Mission mainMission;
 
+    private string currentSceneName;
     private Animator anim;
     [SerializeField]
     private Text missionText;
@@ -20,25 +23,37 @@ public class MissionManagement : MonoBehaviour
     private Mission mission1Object;
     [SerializeField]
     private Mission mission2Object;
+    [SerializeField]
+    private Mission mission3Object;
+    [SerializeField]
+    private Mission mission4Object;
 
-    // Create a instance for other Script can use
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+
     // Main Mission active based on isActive bool is true or not
     private void Start()
     {
         anim = GetComponent<Animator>();
-        mission1Object.isActive = true;
+        currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName == "Opening")
+        {
+            mission1Object.isActive = true;
+        }
+        else if(currentSceneName == "Scene 2")
+        {
+            mission2Complete = true;
+            if(mission2Complete)
+            {
+                mission3Object.isActive = true;
+            }
+        }
+        else if(currentSceneName == "Scene 3")
+        {
+            mission3Complete = true;
+            if (mission3Complete)
+            {
+                mission4Object.isActive = true;
+            }
+        }
     }
     // Apply Main mission into the text and check if Mission 1 is Complete or not
     private void Update()
@@ -48,6 +63,16 @@ public class MissionManagement : MonoBehaviour
         if (mission1Complete)
         {
             mission1Object.isActive = false;
+            anim.SetBool("IsCompleted", true);
+        }
+        else if(mission2Complete)
+        {
+            mission2Object.isActive = false;
+            anim.SetBool("IsCompleted", true);
+        }
+        else if (mission3Complete)
+        {
+            mission3Object.isActive = false;
             anim.SetBool("IsCompleted", true);
         }
     }
@@ -68,12 +93,30 @@ public class MissionManagement : MonoBehaviour
         }
     }
     // After mission 1 is complete, mission 2 will be activate
-    public void Mission2()
+    public void NextMission()
     {
         UpdateMainMission();
-        mission2Object.isActive = true;
-        missionText.text = mainMission.MissionTitle;
-        mission1Complete = false;
-        anim.SetBool("IsCompleted", false);
+        if (mission1Complete)
+        {
+            mission2Object.isActive = true;
+            missionText.text = mainMission.MissionTitle;
+            mission1Complete = false;
+            anim.SetBool("IsCompleted", false);
+        }
+        else if (mission2Complete)
+        {
+            mission3Object.isActive = true;
+            missionText.text = mainMission.MissionTitle;
+            mission2Complete = false;
+            anim.SetBool("IsCompleted", false);
+        }
+        else if (mission3Complete)
+        {
+            mission4Object.isActive = true;
+            missionText.text = mainMission.MissionTitle;
+            mission3Complete = false;
+            anim.SetBool("IsCompleted", false);
+        }
     }
+
 }

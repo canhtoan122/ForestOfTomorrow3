@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Door
   - Terrain
+  - Wall
+  - Stair
+  - Music
+  - Item
   layers:
   - Default
   - TransparentFX

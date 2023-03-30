@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a1875057ba8863042917a8e62de05d56, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9efd8a56b72de47428634afc81230b76, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -76,7 +76,7 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  spriteSheet: {fileID: 2800000, guid: a1875057ba8863042917a8e62de05d56, type: 3}
+  spriteSheet: {fileID: 2800000, guid: 9efd8a56b72de47428634afc81230b76, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534
@@ -96,6 +96,12 @@ MonoBehaviour:
     m_Scale: 2
     m_Name: Group 12_2
     m_HashCode: 728266385
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 3
+    m_Scale: 1
+    m_Name: Group 13_0
+    m_HashCode: 728267410
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
@@ -145,5 +151,21 @@ MonoBehaviour:
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -78302612, guid: a1875057ba8863042917a8e62de05d56, type: 3}
+  - m_Index: 3
+    m_Metrics:
+      m_Width: 205
+      m_Height: 210
+      m_HorizontalBearingX: -102.5
+      m_HorizontalBearingY: 105
+      m_HorizontalAdvance: 205
+    m_GlyphRect:
+      m_X: 150
+      m_Y: 308
+      m_Width: 205
+      m_Height: 210
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: -372505636, guid: 9efd8a56b72de47428634afc81230b76, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []

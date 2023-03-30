@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuButtonManagement : MonoBehaviour
@@ -11,7 +12,10 @@ public class MenuButtonManagement : MonoBehaviour
     private GameObject menuPanel;
     [SerializeField]
     private Animator anim;
+    [SerializeField]
+    private ContinueGame data;
 
+    private string sceneName;
     private bool isActivate = false;
 
     public void MenuButton()
@@ -36,5 +40,16 @@ public class MenuButtonManagement : MonoBehaviour
     public void CloseMenu()
     {
         anim.SetBool("IsSlidingIn", false);
+    }
+    public void ExitGame()
+    {
+        sceneName = SceneManager.GetActiveScene().name;
+        data.SceneName = sceneName;
+        SceneManager.LoadScene("Main menu");
+    }
+    public void OnApplicationQuit()
+    {
+        sceneName = SceneManager.GetActiveScene().name;
+        data.SceneName = sceneName;
     }
 }

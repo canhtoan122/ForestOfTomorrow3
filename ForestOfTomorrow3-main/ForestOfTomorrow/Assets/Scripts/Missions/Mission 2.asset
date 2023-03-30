@@ -17,5 +17,5 @@ MonoBehaviour:
   MissionDescription: After complete the mission, you can go to the door and press
     the door icon in your right at the bottom of the screen to continue.
   MissionType: Main mission
-  MissionProgress: Press <sprite=0> to open the door.
+  MissionProgress: Press <sprite=4> to open the door.
   objectiveDescriptions: []
