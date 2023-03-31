@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float dashCooldownLeft = 0f;
     private float horizontalInput = 0f;
+    public float attackRange = 0.5f; // The attack range of the attack point
+    public LayerMask enemyLayers;
+
     private AudioSource audioSource;
     [SerializeField]
     private AudioClip moveSFX;
@@ -29,6 +32,8 @@ public class PlayerController : MonoBehaviour
     private AudioClip dashSFX;
     [SerializeField]
     private AudioClip attackSFX;
+    [SerializeField]
+    private Transform attackPoint;
 
     private bool isGrounded = false;   // Flag to indicate if the character is grounded
     private bool isMovingLeft = false;   // Flag to indicate if the character is moving left
@@ -88,7 +93,17 @@ public class PlayerController : MonoBehaviour
         }
         if (attack)
         {
+            // Play an attack animation
             animator.SetBool("IsAttacking", true);
+
+            //Detect enemies in range of attack
+            Collider2D[] hitEnemies =  Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+            // Damage them
+            foreach(Collider2D enemy in hitEnemies)
+            {
+                Debug.Log("We hit " +  enemy.name);
+            }
         }
         else
         {
@@ -333,16 +348,11 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnDrawGizmosSelected()
     {
-        if (collision.gameObject.CompareTag("Item"))
-        {
-
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
+        if (attackPoint == null)
+            return;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
 
