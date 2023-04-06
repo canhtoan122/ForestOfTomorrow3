@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5908242468024096921}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Attack Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,8 @@ GameObject:
   - component: {fileID: 8835465444453012690}
   - component: {fileID: 4496094435195011052}
   - component: {fileID: 5245610242458573982}
-  m_Layer: 0
+  - component: {fileID: 6823296801075865183}
+  m_Layer: 9
   m_Name: Main Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -161,10 +162,17 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  attackRange: 0.5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  attackDamage: 2
+  attackRate: 2
   moveSFX: {fileID: 0}
   jumpSFX: {fileID: 0}
   dashSFX: {fileID: 0}
   attackSFX: {fileID: 0}
+  attackPoint: {fileID: 0}
 --- !u!95 &8835465444453012690
 Animator:
   serializedVersion: 5
@@ -308,3 +316,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6823296801075865183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5957760428127058042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fa4a6027274da419709a99d6b351e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: Warior
+    sentences:
+    - OK!

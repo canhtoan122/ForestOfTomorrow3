@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput = 0f;
     public float attackRange = 0.5f; // The attack range of the attack point
     public LayerMask enemyLayers;
+    public int attackDamage = 2;
+
+    public float attackRate = 2f;
+    float nextAttackTime = 0f;
 
     private AudioSource audioSource;
     [SerializeField]
@@ -91,25 +95,9 @@ public class PlayerController : MonoBehaviour
         {
             dashCooldownLeft -= Time.deltaTime;
         }
-        if (attack)
-        {
-            // Play an attack animation
-            animator.SetBool("IsAttacking", true);
-
-            //Detect enemies in range of attack
-            Collider2D[] hitEnemies =  Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-            // Damage them
-            foreach(Collider2D enemy in hitEnemies)
-            {
-                Debug.Log("We hit " +  enemy.name);
-            }
-        }
-        else
-        {
-            animator.SetBool("IsAttacking", false);
-        }
+        
     }
+    
     void FixedUpdate()
     {
         if (!isDashing)
@@ -125,13 +113,13 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                // Flip backward
-                spriteRenderer.flipX = false;
                 // Set the "IsMovingLeft" parameter to false to end the move left animation
                 animator.SetBool("IsMovingLeft", false);
             }
             if (moveRight)
             {
+                // Flip backward
+                spriteRenderer.flipX = false;
                 // Set the "IsMovingRight" parameter to true to start the move right animation
                 animator.SetBool("IsMovingRight", true);
                 // Move the character to the right
@@ -261,17 +249,30 @@ public class PlayerController : MonoBehaviour
     // Activate when user click the attack button
     public void Attacking()
     {
-        attack = true;
-        TutorialManagement.isAttacked = true;
-        if (attack)
+        if (Time.time >= nextAttackTime)
         {
-            audioSource.clip = attackSFX;
-            audioSource.Play();
-        }
-        else
-        {
-            // Stop move sound effect loop
-            audioSource.Stop();
+            attack = true;
+            TutorialManagement.isAttacked = true;
+            if (attack)
+            {
+                // Play attack sound effect loop
+                audioSource.clip = attackSFX;
+                audioSource.Play();
+
+                // Play an attack animation
+                animator.SetBool("IsAttacking", true);
+
+                // Detect enemy in range of attack
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+                //Damage them
+                foreach (Collider2D enemy in hitEnemies)
+                {
+                    enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+                }
+                attack = false;
+            }
+            
         }
     }
     // Open door animation
@@ -288,6 +289,14 @@ public class PlayerController : MonoBehaviour
     public void StopAttack()
     {
         attack = false;
+        if (!attack)
+        {
+            // Stop move sound effect loop
+            audioSource.Stop();
+
+            // Stop an attack animation
+            animator.SetBool("IsAttacking", false);
+        }
     }
     // Check if user is on the ground or not
     private bool IsGrounded()

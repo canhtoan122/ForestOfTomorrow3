@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NPCMovementController : MonoBehaviour
 {
-    
     public float moveSpeed = 5f;
     public Transform waypoint1;
     public Transform waypoint2;
@@ -12,12 +11,12 @@ public class NPCMovementController : MonoBehaviour
     private bool moveRight = true;
     private bool moveUp = false;
     private Animator animator;
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     void Start()
     {
         transform.position = waypoint1.position;
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -42,6 +41,7 @@ public class NPCMovementController : MonoBehaviour
                 animator.SetBool("isRunning", true);
                 // Move right
                 transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+                Debug.Log(transform.position.x);
             }
             else
             {
@@ -51,7 +51,6 @@ public class NPCMovementController : MonoBehaviour
             }
         }
 
-        
 
         if (transform.position.x >= waypoint2.position.x && !moveUp)
         {
@@ -61,7 +60,7 @@ public class NPCMovementController : MonoBehaviour
         {
             moveRight = true;
         }
-        if(transform.position.x >= waypoint3.position.x && moveUp)
+        if (transform.position.x >= waypoint3.position.x && moveUp)
         {
             moveUp = false;
             moveRight = false;
