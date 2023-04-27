@@ -40,6 +40,7 @@ public class Scene2TapToContinue : MonoBehaviour
             if (NPCEndDialog && endAnimation == true)
             {
                 dialogueManagement.NPCDisplayNextSentence();
+
             }
         }
     }

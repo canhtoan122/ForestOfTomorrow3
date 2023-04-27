@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput = 0f;
     public float attackRange = 0.5f; // The attack range of the attack point
     public LayerMask enemyLayers;
-    public int attackDamage = 2;
+    private int attackDamage;
+    private PlayerStats playerStats;
 
     public float attackRate = 2f;
     float nextAttackTime = 0f;
@@ -40,18 +41,19 @@ public class PlayerController : MonoBehaviour
     private Transform attackPoint;
 
     private bool isGrounded = false;   // Flag to indicate if the character is grounded
-    private bool isMovingLeft = false;   // Flag to indicate if the character is moving left
-    private bool isMovingRight = false;   // Flag to indicate if the character is moving right
     private bool isJumping = false;   // Flag to indicate if the character is jumping
     private bool isStandingUp = false;   // Flag to indicate if the character is standing up
     private bool isDashing = false;   // Flag to indicate if the character is dashing
 
     private bool jump = false;
+    private bool standingUp = false;
     private bool moveLeft = false;
     private bool moveRight = false;
     private bool dash = false;
     private bool attack = false;
     public static bool openDoor = false;
+
+    public enum MovementState { idle, walking, jumping, standing, dash, attack}
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -59,140 +61,94 @@ public class PlayerController : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        playerStats = GetComponent<PlayerStats>();
     }
-    void Update()
+
+    // Main moving left right component
+    public void Moving()
+    {
+        if (moveLeft)
+        {
+            standingUp = false;
+            // Move the character to the left
+            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+        }
+        else if (moveRight)
+        {
+            standingUp = false;
+            // Move the character to the right
+            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+        }
+    }
+    // Main jumping component
+    public void Jumping()
     {
         // Check if the jump button is pressed and the character is grounded
         if (jump && IsGrounded())
         {
-            // Trigger the "IsJumping" parameter to start the jump animation
-            animator.SetBool("IsJumping", true);
-
             // Set the "IsJumping" flag to true to indicate the character is jumping
             isJumping = true;
 
             // Apply a force to the character's rigidbody to make them jump
             GetComponent<Rigidbody2D>().AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 
-            // Set the "IsMovingRight" parameter to false to end the move right animation
-            animator.SetBool("IsMovingRight", false);
+            // Apply audio SFX into jumping
+            audioSource.clip = jumpSFX;
+            audioSource.Play();
 
-            // Set the "IsMovingLeft" parameter to false to end the move left animation
-            animator.SetBool("IsMovingLeft", false);
+            // Set the "standingUp" flag to false to indicate the character is no longer jumping
+            standingUp = false;
 
             // Set the "jump" flag to false to indicate the character is no longer jumping
             jump = false;
         }
-        
-        if (dash && !isDashing && dashCooldownLeft <= 0f)
-        {
-            isDashing = true;
-            dashTimeLeft = dashDuration;
-            animator.SetBool("IsDashing", true);
-        }
-
-        if (dashCooldownLeft > 0f)
-        {
-            dashCooldownLeft -= Time.deltaTime;
-        }
-        
     }
-    
-    void FixedUpdate()
+    // Main attacking component
+    public void Attacking()
     {
-        if (!isDashing)
+        if (attack)
         {
-            if (moveLeft)
+            // Play attack sound effect loop
+            audioSource.clip = attackSFX;
+            audioSource.Play();
+
+            // Detect enemy in range of attack
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+            // Add Player stat to damage
+            attackDamage = playerStats.damage.GetStat();
+
+            //Damage them
+            foreach (Collider2D enemy in hitEnemies)
             {
-                // Flip backward
-                spriteRenderer.flipX = true;
-                // Set the "IsMovingLeft" parameter to true to start the move left animation
-                animator.SetBool("IsMovingLeft", true);
-                // Move the character to the left
-                transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+                enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             }
-            else
-            {
-                // Set the "IsMovingLeft" parameter to false to end the move left animation
-                animator.SetBool("IsMovingLeft", false);
-            }
-            if (moveRight)
-            {
-                // Flip backward
-                spriteRenderer.flipX = false;
-                // Set the "IsMovingRight" parameter to true to start the move right animation
-                animator.SetBool("IsMovingRight", true);
-                // Move the character to the right
-                transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-            }
-            else
-            {
-                // Set the "IsMovingRight" parameter to false to end the move right animation
-                animator.SetBool("IsMovingRight", false);
-            }
+            attack = false;
         }
-        else
+    }
+    // Main dashing component
+    public void Dashing()
+    {
+        if (dash && moveLeft)
         {
-            if (dashTimeLeft > 0f)
-            {
-                dashTimeLeft -= Time.deltaTime;
-                if(moveLeft)
-                {
-                    float moveLeftSpeed = -1f;
-                    float xVelocity = moveLeftSpeed * dashSpeed;
-                    rb.velocity = new Vector2(xVelocity, rb.velocity.y);
-
-                    // Set the "IsMovingLeft" parameter to false to end the move left animation
-                    animator.SetBool("IsMovingLeft", false);
-                }
-                else if (moveRight)
-                {
-                    float moveRightSpeed = 1f;
-                    float xVelocity = moveRightSpeed * dashSpeed;
-                    rb.velocity = new Vector2(xVelocity, rb.velocity.y);
-
-                    // Set the "IsMovingRight" parameter to false to end the move right animation
-                    animator.SetBool("IsMovingRight", false);
-                }
-                else
-                {
-                    // Set the "IsDashing" parameter to false to end dashing
-                    animator.SetBool("IsDashing", false);
-                }
-
-            }
-            else
-            {
-                isDashing = false;
-                dashCooldownLeft = dashCooldown;
-                animator.SetBool("IsDashing", false);
-            }
+            float moveDirection = -1f;
+            float xVelocity = moveDirection * dashSpeed;
+            rb.velocity = new Vector2(xVelocity, rb.velocity.y);
         }
-
-        if (horizontalInput < 0f)
+        if (dash && moveRight)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            float moveDirection = 1f;
+            float xVelocity = moveDirection * dashSpeed;
+            rb.velocity = new Vector2(xVelocity, rb.velocity.y);
         }
-        else if (horizontalInput > 0f)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
+        dash = false;
     }
     // Activate when user click the jump button
     public void Jump()
     {
         jump = true;
         TutorialManagement.isJumped = true;
-        if (jump)
-        {
-            audioSource.clip = jumpSFX;
-            audioSource.Play();
-        }
-        else
-        {
-            // Stop move sound effect loop
-            audioSource.Stop();
-        }
+        UpdateMovementAnimation();
     }
     // Activate when user click the move left button
     public void MoveLeft(bool _left)
@@ -201,6 +157,7 @@ public class PlayerController : MonoBehaviour
         TutorialManagement.isMoved = true;
         if (moveLeft)
         {
+            // Apply audio SFX into moving
             audioSource.clip = moveSFX;
             audioSource.loop = true;
             audioSource.Play();
@@ -211,6 +168,7 @@ public class PlayerController : MonoBehaviour
             audioSource.Stop();
             audioSource.loop = false;
         }
+
     }
     // Activate when user click the move right button
     public void MoveRight(bool _right)
@@ -219,6 +177,7 @@ public class PlayerController : MonoBehaviour
         TutorialManagement.isMoved = true;
         if (moveRight)
         {
+            // Apply audio SFX into moving
             audioSource.clip = moveSFX;
             audioSource.loop = true;
             audioSource.Play();
@@ -231,12 +190,13 @@ public class PlayerController : MonoBehaviour
         }
     }
     // Activate when user click the dash button
-    public void Dashing(bool _dash)
+    public void Dash()
     {
-        dash = _dash;
+        dash = true;
         TutorialManagement.isDashed = true;
-        if (dash)
+        if (dash && moveLeft || moveRight)
         {
+            // Play attack sound effect loop
             audioSource.clip = dashSFX;
             audioSource.Play();
         }
@@ -247,33 +207,14 @@ public class PlayerController : MonoBehaviour
         }
     }
     // Activate when user click the attack button
-    public void Attacking()
+    public void Attack()
     {
-        if (Time.time >= nextAttackTime)
-        {
-            attack = true;
-            TutorialManagement.isAttacked = true;
-            if (attack)
-            {
-                // Play attack sound effect loop
-                audioSource.clip = attackSFX;
-                audioSource.Play();
-
-                // Play an attack animation
-                animator.SetBool("IsAttacking", true);
-
-                // Detect enemy in range of attack
-                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-                //Damage them
-                foreach (Collider2D enemy in hitEnemies)
-                {
-                    enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-                }
-                attack = false;
-            }
-            
-        }
+        attack = true;
+        TutorialManagement.isAttacked = true;
+    }
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     // Open door animation
     public void OpenDoor()
@@ -283,25 +224,49 @@ public class PlayerController : MonoBehaviour
     // Activate when user finish standing up
     public void IsIdle()
     {
-        animator.SetBool("IsStandingUp", false);
-    }
-    // Activate when user finish attacking
-    public void StopAttack()
-    {
-        attack = false;
-        if (!attack)
-        {
-            // Stop move sound effect loop
-            audioSource.Stop();
-
-            // Stop an attack animation
-            animator.SetBool("IsAttacking", false);
-        }
+        standingUp = false;
     }
     // Check if user is on the ground or not
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, groundLayer);
+    }
+    public void UpdateMovementAnimation()
+    {
+        MovementState state;
+        if (moveLeft && !dash && !jump)
+        {
+            state = MovementState.walking;
+            // Flip backward
+            spriteRenderer.flipX = true;
+        }
+        else if (moveRight && !dash && !jump)
+        {
+            state = MovementState.walking;
+            // Flip forward
+            spriteRenderer.flipX = false;
+        }
+        else if (jump && !dash)
+        {
+            state = MovementState.jumping;
+        }
+        else if (standingUp)
+        {
+            state = MovementState.standing;
+        }
+        else if (attack)
+        {
+            state = MovementState.attack;
+        }
+        else if (dash)
+        {
+           state = MovementState.dash;
+        }
+        else
+        {
+            state = MovementState.idle;
+        }
+        animator.SetInteger("state", (int)state);
     }
     // Check if user touch the ground after jumping to activate standing up
     void OnCollisionEnter2D(Collision2D collision)
@@ -310,10 +275,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Terrain"))
         {
             isJumping = false;
-            animator.SetBool("IsJumping", false);
-            if (rb.velocity.y == 0)
+            if (!moveLeft || !moveRight)
             {
-                animator.SetBool("IsStandingUp", true);
+                if (rb.velocity.y == 0)
+                {
+                    standingUp = true;
+                }
             }
         }
         // Invisible wall check
@@ -355,6 +322,13 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("IsStandingUp", true);
             }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+
         }
     }
     private void OnDrawGizmosSelected()

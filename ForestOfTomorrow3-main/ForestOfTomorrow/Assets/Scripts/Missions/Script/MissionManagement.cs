@@ -11,6 +11,7 @@ public class MissionManagement : MonoBehaviour
     public static bool mission1Complete = false;
     public static bool mission2Complete = false;
     public static bool mission3Complete = false;
+    public static bool mission4Complete = false;
     public List<Mission> missionList;
     public Mission mainMission;
 
@@ -27,6 +28,8 @@ public class MissionManagement : MonoBehaviour
     private Mission mission3Object;
     [SerializeField]
     private Mission mission4Object;
+    [SerializeField]
+    private Mission mission5Object;
 
 
     // Main Mission active based on isActive bool is true or not
@@ -43,7 +46,9 @@ public class MissionManagement : MonoBehaviour
             mission2Complete = true;
             if(mission2Complete)
             {
+                mission1Object.isActive = false;
                 mission3Object.isActive = true;
+
             }
         }
         else if(currentSceneName == "Scene 3")
@@ -51,14 +56,16 @@ public class MissionManagement : MonoBehaviour
             mission3Complete = true;
             if (mission3Complete)
             {
+                mission1Object.isActive = false;
+                mission2Object.isActive = false;
                 mission4Object.isActive = true;
             }
         }
+        
     }
     // Apply Main mission into the text and check if Mission 1 is Complete or not
     private void Update()
     {
-        UpdateMainMission();
         missionText.text = mainMission.MissionTitle;
         if (mission1Complete)
         {
@@ -75,6 +82,12 @@ public class MissionManagement : MonoBehaviour
             mission3Object.isActive = false;
             anim.SetBool("IsCompleted", true);
         }
+        else if(mission4Complete)
+        {
+            mission4Object.isActive = false;
+            anim.SetBool("IsCompleted", true);
+        }
+        UpdateMainMission();
     }
     // Create a Main Mission as a Main Scriptable Object for all the mission
     public void UpdateMainMission()
@@ -95,7 +108,7 @@ public class MissionManagement : MonoBehaviour
     // After mission 1 is complete, mission 2 will be activate
     public void NextMission()
     {
-        UpdateMainMission();
+        
         if (mission1Complete)
         {
             mission2Object.isActive = true;
@@ -115,6 +128,13 @@ public class MissionManagement : MonoBehaviour
             mission4Object.isActive = true;
             missionText.text = mainMission.MissionTitle;
             mission3Complete = false;
+            anim.SetBool("IsCompleted", false);
+        }
+        else if(mission4Complete)
+        {
+            mission5Object.isActive = true;
+            missionText.text = mainMission.MissionTitle;
+            mission4Complete = false;
             anim.SetBool("IsCompleted", false);
         }
     }

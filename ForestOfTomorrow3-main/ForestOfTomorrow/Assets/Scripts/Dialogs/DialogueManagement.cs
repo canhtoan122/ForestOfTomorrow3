@@ -35,6 +35,8 @@ public class DialogueManagement : MonoBehaviour
     private GameObject menuButtonUI;
     [SerializeField]
     private GameObject dialoguePanel;
+    [SerializeField]
+    private GameObject gameInstructionPanel;
     void Awake()
     {
         sentences = new Queue<string>();
@@ -133,5 +135,11 @@ public class DialogueManagement : MonoBehaviour
         missionPanel.SetActive(true);
         menuButtonUI.SetActive(true);
         dialoguePanel.SetActive(false);
+        NPCMovementController.canMove = true;
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Scene 2")
+        {
+            gameInstructionPanel.SetActive(true);
+        }
     }
 }

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4496094435195011052}
   - component: {fileID: 5245610242458573982}
   - component: {fileID: 6823296801075865183}
+  - component: {fileID: 5446916777282045304}
   m_Layer: 9
   m_Name: Main Player
   m_TagString: Player
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3426f2fcf3ecca94d9e916d1fdf61fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 15
+  dashSpeed: 20
   dashDistance: 15
   dashDuration: 1
   dashCooldown: 1
@@ -332,3 +333,26 @@ MonoBehaviour:
     name: Warior
     sentences:
     - OK!
+--- !u!114 &5446916777282045304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5957760428127058042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323226e5b86c3e64981ae34443bcfb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage:
+    baseValue: 0
+  armor:
+    baseValue: 0
+  HPText: {fileID: 0}
+  AttackText: {fileID: 0}
+  DefenceText: {fileID: 0}
+  healthBar: {fileID: 0}
+  rageBar: {fileID: 0}
+  healPotion: {fileID: 0}

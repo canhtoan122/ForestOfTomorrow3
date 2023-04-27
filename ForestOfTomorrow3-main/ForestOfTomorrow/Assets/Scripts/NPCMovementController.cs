@@ -1,27 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPCMovementController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public Transform waypoint1;
-    public Transform waypoint2;
-    public Transform waypoint3;
+    public List<Transform> waypoint = new List<Transform>();
     private bool moveRight = true;
     private bool moveUp = false;
     private Animator animator;
     private Rigidbody2D rb;
+    private string sceneName;
+    public static bool canMove = false;
     void Start()
     {
-        transform.position = waypoint1.position;
+        sceneName = SceneManager.GetActiveScene().name;
+        transform.position = waypoint[0].position;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-        Move();
+        if (!canMove)
+        {
+            
+        }
+        else
+        {
+            Move();
+        }
     }
 
     void Move()
@@ -31,7 +40,7 @@ public class NPCMovementController : MonoBehaviour
             // Set move right animation
             animator.SetBool("isRunning", true);
             // Move up
-            transform.position = Vector2.MoveTowards(transform.position, waypoint3.transform.position, Time.deltaTime * moveSpeed);
+            transform.position = Vector2.MoveTowards(transform.position, waypoint[2].transform.position, Time.deltaTime * moveSpeed);
         }
         else
         {
@@ -41,31 +50,60 @@ public class NPCMovementController : MonoBehaviour
                 animator.SetBool("isRunning", true);
                 // Move right
                 transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
-                Debug.Log(transform.position.x);
             }
             else
             {
-                animator.SetBool("isRunning", false);
-                // Disappear NPC
-                this.gameObject.SetActive(false);
+                if (sceneName == "Scene 3")
+                {
+                    animator.SetBool("isRunning", false);
+                }
+                else
+                {
+                    animator.SetBool("isRunning", false);
+                    // Disappear NPC
+                    this.gameObject.SetActive(false);
+                }
             }
         }
 
 
-        if (transform.position.x >= waypoint2.position.x && !moveUp)
+        if (transform.position.x >= waypoint[1].position.x && !moveUp)
         {
             moveUp = true;
+            if(sceneName == "Scene 3")
+            {
+                if(canMove)
+                {
+                    moveUp = false;
+                    moveRight = false;
+                    string objectName = gameObject.name;
+
+                    canMove = false;
+                }
+            }
         }
-        else if (transform.position.x <= waypoint1.position.x)
+        else if (transform.position.x <= waypoint[0].position.x)
         {
             moveRight = true;
         }
-        if (transform.position.x >= waypoint3.position.x && moveUp)
+        if(sceneName == "Scene 3")
         {
             moveUp = false;
             moveRight = false;
+            if (canMove)
+            {
+                moveRight = true;
+            }
         }
-    }
+        else
+        {
+            if (transform.position.x >= waypoint[2].position.x && moveUp)
+            {
+                moveUp = false;
+                moveRight = false;
+            }
+        }
+    }    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Stair check
