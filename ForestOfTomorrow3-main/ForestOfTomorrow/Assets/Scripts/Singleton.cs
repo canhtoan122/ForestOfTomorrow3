@@ -39,10 +39,13 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         var instances = FindObjectsOfType<T>();
         if (instances.Length > 1)
         {
-            for (int i = 1; i < instances.Length; i++)
+            for (int i = 0; i < instances.Length; i++)
             {
-                Debug.Log("<color=red>Already another " + this.name + " object, will destroy this </color>" + instances[i].GetInstanceID());
-                Destroy(instances[i].gameObject);
+                if (instances[i].GetInstanceID() != m_instance.GetInstanceID())
+                {
+                    Debug.Log("<color=red>Already another " + this.name + " object, will destroy this </color>" + instances[i].GetInstanceID());
+                    Destroy(instances[i].gameObject);
+                }    
             }
         }
         if (m_IsPersistent)

@@ -30,7 +30,6 @@ public class DoorScene2Controller : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Debug.LogError("Trigger");
             ControllerUI.Instance.ActiveAttackButton( false);
             ControllerUI.Instance.ActiveOpenDoorButton( true);
         }
@@ -39,7 +38,6 @@ public class DoorScene2Controller : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Debug.LogError("EE");
             ControllerUI.Instance.ActiveAttackButton(true);
             ControllerUI.Instance.ActiveOpenDoorButton(false);
         }

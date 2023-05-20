@@ -126,6 +126,10 @@ public class PlayerController : MonoBehaviour
     // Main attacking component
     public void Attacking()
     {
+        if(animator.GetBool("isAttacking"))
+        {
+            return;
+        }    
         animator.SetBool("isAttacking", true);
         // Play attack sound effect loop
         audioSource.clip = attackSFX;

@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class DoorController : MonoBehaviour
 {
-    public Button attack;
-    public Button exit;
-
     private Animator animator;
     private bool openAnimation = false;
 
@@ -34,22 +31,23 @@ public class DoorController : MonoBehaviour
     // Next scene
     public void NextScene()
     {
+        ControllerUI.Instance.ActiveMovementUI(false);
         SceneLoader.instance.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            attack.gameObject.SetActive(false);
-            exit.gameObject.SetActive(true);
+            ControllerUI.Instance.ActiveAttackButton(false);
+            ControllerUI.Instance.ActiveOpenDoorButton(true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            attack.gameObject.SetActive(true);
-            exit.gameObject.SetActive(false);
+            ControllerUI.Instance.ActiveAttackButton(true);
+            ControllerUI.Instance.ActiveOpenDoorButton(false);
         }
     }
 }
