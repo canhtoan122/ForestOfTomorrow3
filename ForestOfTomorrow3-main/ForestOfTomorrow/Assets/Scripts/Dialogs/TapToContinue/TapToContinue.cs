@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TapToContinue : MonoBehaviour
 {
-    public GameObject movementUI;
     public GameObject missionPanel;
     public GameObject menuButtonUI;
     public GameObject dialoguePanel;
@@ -20,7 +19,7 @@ public class TapToContinue : MonoBehaviour
     private void Start()
     {
         dialogueTrigger.TriggerMasterDialogue();
-        movementUI.SetActive(false);
+        ControllerUI.Instance.ActiveMovementUI(false);
         missionPanel.SetActive(false);
         menuButtonUI.SetActive(false);
         dialoguePanel.SetActive(true);
@@ -47,7 +46,7 @@ public class TapToContinue : MonoBehaviour
     public void EndBossDialogue()
     {
         masterEndBossDialogueTrigger.TriggerMasterEndBossDialogue();
-        movementUI.SetActive(false);
+        ControllerUI.Instance.ActiveMovementUI(false);
         missionPanel.SetActive(false);
         menuButtonUI.SetActive(false);
         playerDialog.SetActive(false);

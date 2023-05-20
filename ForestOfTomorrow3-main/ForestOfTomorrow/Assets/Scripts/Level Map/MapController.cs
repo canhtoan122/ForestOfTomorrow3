@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class MapController : MonoBehaviour
 {
-    public GameObject pickUpButton;
-    public GameObject attackButton;
     public GameObject gameInstruction;
     public GameObject playerPosition;
     public GameObject mapUI;
@@ -15,6 +13,17 @@ public class MapController : MonoBehaviour
     public Sprite currentLevelButton;
 
     private bool gameInstructionFinish = false;
+
+    private void OnEnable()
+    {
+        ControllerUI.Instance.OnInteractTriggered += ActivateMap;
+    }
+
+    private void OnDisable()
+    {
+        ControllerUI.Instance.OnInteractTriggered -= ActivateMap;
+    }
+
     private void Start()
     {
         string sceneName = SceneManager.GetActiveScene().name;
@@ -36,18 +45,26 @@ public class MapController : MonoBehaviour
             }
         }
     }
-    public void ActivatePickUpButton()
-    {
-        pickUpButton.SetActive(true);
-        attackButton.SetActive(false);
-    }
-    public void DeactivatePickUpButton()
-    {
-        pickUpButton.SetActive(false);
-        attackButton.SetActive(true);
-    }
     public void ActivateMap()
     {
+        ControllerUI.Instance.ActiveAttackButton(false);
+        ControllerUI.Instance.SetInteractState(EInteractState.ACTIVEMAP);
+        ControllerUI.Instance.ActiveInteractButton(true);
+    }
+    public void DeactivateMap()
+    {
+        ControllerUI.Instance.ActiveMovementUI(true);
+        ControllerUI.Instance.ActiveAttackButton(true);
+        ControllerUI.Instance.SetInteractState(EInteractState.NONE);
+        ControllerUI.Instance.ActiveInteractButton(false);
+    }
+    public void ActivateMap(EInteractState interactState)
+    {
+        if(interactState != EInteractState.ACTIVEMAP)
+        {
+            return;
+        }
+        ControllerUI.Instance.ActiveMovementUI(false);
         mapUI.SetActive(true);
     }
     public void DeActivateMap()

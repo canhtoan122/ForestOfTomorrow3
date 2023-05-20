@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Scene2TapToContinue : MonoBehaviour
 {
-    public GameObject movementUI;
     public GameObject missionPanel;
     public GameObject menuButtonUI;
     public GameObject dialoguePanel;
@@ -21,7 +20,7 @@ public class Scene2TapToContinue : MonoBehaviour
     private void Start()
     {
         playerDialogueTrigger.TriggerPlayerDialogue();
-        movementUI.SetActive(false);
+        ControllerUI.Instance.ActiveMovementUI(false);
         missionPanel.SetActive(false);
         menuButtonUI.SetActive(false);
         dialoguePanel.SetActive(true);

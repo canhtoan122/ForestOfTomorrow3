@@ -9,7 +9,6 @@ public class HouseController : MonoBehaviour
     public void NextScene()
     {
         SceneLoader.instance.LoadLevel(3);
-        PlayerController.openDoor = false;
         MissionManagement.mission3Complete = true;
     }
 }

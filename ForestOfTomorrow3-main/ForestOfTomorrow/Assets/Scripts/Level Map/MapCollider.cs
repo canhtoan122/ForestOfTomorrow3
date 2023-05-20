@@ -10,14 +10,14 @@ public class MapCollider : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            mapController.ActivatePickUpButton();
+            mapController.ActivateMap();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            mapController.ActivatePickUpButton();
+            mapController.ActivateMap();
         }
     }
 }

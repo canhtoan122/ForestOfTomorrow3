@@ -13,11 +13,13 @@ public class MenuPanelController : MonoBehaviour
     }
     public void OpenMissionUI()
     {
+        ControllerUI.Instance.ActiveMovementUI(false);
         missionUI.SetActive(true);
         anim.SetBool("IsSlidingIn", false);
     }
     public void CloseMissionUI()
     {
+        ControllerUI.Instance.ActiveMovementUI(true);
         missionUI.SetActive(false);
     }
     public void Menu()

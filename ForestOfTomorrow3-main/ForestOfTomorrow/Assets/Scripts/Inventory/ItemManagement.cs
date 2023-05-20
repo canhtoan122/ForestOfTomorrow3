@@ -24,8 +24,22 @@ public class ItemManagement : MonoBehaviour
 
     [SerializeField]
     private Animator anim;
-    public void PickUpItem()
+
+    private void OnEnable()
     {
+        ControllerUI.Instance.OnInteractTriggered += PickUpItem;
+    }
+    private void OnDisable()
+    {
+        ControllerUI.Instance.OnInteractTriggered -= PickUpItem;
+    }
+    public void PickUpItem(EInteractState interactState)
+    {
+        if(interactState != EInteractState.PICKUP)
+        {
+            return;
+        }
+
         InventoryManagement.instance.Add(healPotion);
         bool wasPickedUp = InventoryManagement.instance.Add(sword);
         if(wasPickedUp)
@@ -38,6 +52,7 @@ public class ItemManagement : MonoBehaviour
     }
     public void OpenInventory()
     {
+        ControllerUI.Instance.ActiveMovementUI(false);
         inventoryUI.SetActive(true);
         anim.SetBool("IsSlidingIn", false);
         string sceneName = SceneManager.GetActiveScene().name;
@@ -48,6 +63,7 @@ public class ItemManagement : MonoBehaviour
     }
     public void CloseInventory()
     {
+        ControllerUI.Instance.ActiveMovementUI(true);
         inventoryUI.SetActive(false);
     }
 }

@@ -26,7 +26,6 @@ public class EquipmentManager : MonoBehaviour
     InventoryManagement inventory;
     public Image swordImage;
     public Image healPotionImage;
-    public Image healPotionButton;
     public Image ringImage;
     public Image helmetImage;
     public Image shoeImage;
@@ -95,9 +94,10 @@ public class EquipmentManager : MonoBehaviour
         else if (slotIndex == 2)
         {
             healPotionImage.sprite = newItem.icon;
-            healPotionButton.sprite = newItem.icon;
             healPotionImage.gameObject.SetActive(true);
-            healPotionButton.gameObject.SetActive(true);
+
+            ControllerUI.Instance.SetImageHealButton(newItem.icon);
+            ControllerUI.Instance.ActiveHealButton(true);
 
         }
         else if (slotIndex == 3)
@@ -148,9 +148,10 @@ public class EquipmentManager : MonoBehaviour
             else if (slotIndex == 2)
             {
                 healPotionImage.sprite = null;
-                healPotionButton.sprite = null;
                 healPotionImage.gameObject.SetActive(false);
-                healPotionButton.gameObject.SetActive(false);
+
+                ControllerUI.Instance.SetImageHealButton(null);
+                ControllerUI.Instance.ActiveHealButton(false);
             }
             else if (slotIndex == 3)
             {
@@ -197,9 +198,10 @@ public class EquipmentManager : MonoBehaviour
         if(slotIndex == 2)
         {
             healPotionImage.sprite = null;
-            healPotionButton.sprite = null;
             healPotionImage.gameObject.SetActive(false);
-            healPotionButton.gameObject.SetActive(false);
+
+            ControllerUI.Instance.SetImageHealButton(null);
+            ControllerUI.Instance.ActiveHealButton(false);
         }
     }
     public void PlayerDeadInScene3()

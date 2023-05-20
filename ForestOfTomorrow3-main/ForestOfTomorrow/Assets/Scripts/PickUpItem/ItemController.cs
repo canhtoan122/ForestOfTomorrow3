@@ -6,10 +6,6 @@ using UnityEngine.UI;
 public class ItemController : MonoBehaviour
 {
     [SerializeField]
-    private Button attackButton;
-    [SerializeField]
-    private Button pickUpItemButton;
-    [SerializeField]
     private GameObject step6;
     [SerializeField]
     private GameObject step7;
@@ -17,8 +13,9 @@ public class ItemController : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            attackButton.gameObject.SetActive(false);
-            pickUpItemButton.gameObject.SetActive(true);
+            ControllerUI.Instance.ActiveAttackButton(false);
+            ControllerUI.Instance.SetInteractState(EInteractState.PICKUP);
+            ControllerUI.Instance.ActiveInteractButton(true);
             step6.SetActive(false);
             step7.SetActive(true);
         }
@@ -27,8 +24,9 @@ public class ItemController : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            attackButton.gameObject.SetActive(true);
-            pickUpItemButton.gameObject.SetActive(false);
+            ControllerUI.Instance.ActiveAttackButton(true);
+            ControllerUI.Instance.SetInteractState(EInteractState.NONE);
+            ControllerUI.Instance.ActiveInteractButton(false);
         }
     }
 }

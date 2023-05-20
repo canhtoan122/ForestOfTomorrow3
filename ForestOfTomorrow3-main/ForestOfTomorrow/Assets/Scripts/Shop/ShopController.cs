@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class ShopController : MonoBehaviour
 {
-    public GameObject pickUpButton;
-    public GameObject attackButton;
     public GameObject shopUI;
     public GameObject buyUI;
     public GameObject optionUI;
@@ -25,18 +23,36 @@ public class ShopController : MonoBehaviour
     public static bool buyItem = false;
 
     public List<Item> items = new List<Item>();
+
+    private void OnEnable()
+    {
+        ControllerUI.Instance.OnInteractTriggered += OpenShopUI;
+    }
+
+    private void OnDisable()
+    {
+        ControllerUI.Instance.OnInteractTriggered -= OpenShopUI;
+    }
+
     public void ActivatePickUpButton()
     {
-        pickUpButton.SetActive(true);
-        attackButton.SetActive(false);
+        ControllerUI.Instance.ActiveAttackButton(false);
+        ControllerUI.Instance.SetInteractState(EInteractState.OPEN);
+        ControllerUI.Instance.ActiveInteractButton(true);
     }
     public void DeActivatePickUpButton()
     {
-        pickUpButton.SetActive(false);
-        attackButton.SetActive(true);
+        ControllerUI.Instance.ActiveAttackButton(true);
+        ControllerUI.Instance.SetInteractState(EInteractState.NONE);
+        ControllerUI.Instance.ActiveInteractButton(false);
     }
-    public void OpenShopUI()
+    public void OpenShopUI(EInteractState interactState)
     {
+        if(interactState != EInteractState.OPEN)
+        {
+            return;
+        }
+        ControllerUI.Instance.ActiveMovementUI(false);
         shopUI.SetActive(true);
     }
     public void CloseShopUI()
@@ -44,6 +60,7 @@ public class ShopController : MonoBehaviour
         buyUI.SetActive(false);
         shopUI.SetActive(false);
         optionUI.SetActive(true);
+        ControllerUI.Instance.ActiveMovementUI(true);
     }
     public void OpenBuyUI()
     {

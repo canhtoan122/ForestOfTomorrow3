@@ -38,8 +38,6 @@ public class DialogueManagement : MonoBehaviour
     private Animator animator;
 
     [SerializeField]
-    private GameObject movementUI;
-    [SerializeField]
     private GameObject missionPanel;
     [SerializeField]
     private GameObject menuButtonUI;
@@ -211,7 +209,7 @@ public class DialogueManagement : MonoBehaviour
     }
     public void EndBossDialogue()
     {
-        movementUI.SetActive(true);
+        ControllerUI.Instance.ActiveMovementUI(true);
         missionPanel.SetActive(true);
         menuButtonUI.SetActive(true);
         dialoguePanel.SetActive(false);
@@ -236,7 +234,7 @@ public class DialogueManagement : MonoBehaviour
         {
             dialogEnd = true;
         }
-        movementUI.SetActive(true);
+        ControllerUI.Instance.ActiveMovementUI(true);
         missionPanel.SetActive(true);
         menuButtonUI.SetActive(true);
         dialoguePanel.SetActive(false);

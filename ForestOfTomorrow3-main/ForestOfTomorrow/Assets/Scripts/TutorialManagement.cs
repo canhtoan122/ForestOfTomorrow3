@@ -9,13 +9,30 @@ public class TutorialManagement : MonoBehaviour
     private GameObject[] tutorialSteps;
     [SerializeField]
     private Button[] tutorialButtons;
-    public static bool isMoved = false;
-    public static bool isJumped = false;
-    public static bool isDashed = false;
-    public static bool isAttacked = false;
-    public static bool isActivate = false;
+    public bool isMoved = false;
+    public bool isJumped = false;
+    public bool isDashed = false;
+    public bool isAttacked = false;
+    public bool isActivate = false;
 
     private int currentStep = 0;
+
+    private void OnEnable()
+    {
+        ControllerUI.Instance.OnAttackTriggered += CheckAttack;
+        ControllerUI.Instance.OnJumpTriggered += CheckJump;
+        ControllerUI.Instance.OnDashTriggered += CheckDash;
+        ControllerUI.Instance.OnMoveLeftTriggered += CheckMove;
+        ControllerUI.Instance.OnMoveRightTriggered += CheckMove;
+    }
+    private void OnDisable()
+    {
+        ControllerUI.Instance.OnAttackTriggered -= CheckAttack;
+        ControllerUI.Instance.OnJumpTriggered -= CheckJump;
+        ControllerUI.Instance.OnDashTriggered -= CheckDash;
+        ControllerUI.Instance.OnMoveLeftTriggered -= CheckMove;
+        ControllerUI.Instance.OnMoveRightTriggered -= CheckMove;
+    }
 
     private void Start()
     {
@@ -25,6 +42,31 @@ public class TutorialManagement : MonoBehaviour
             tutorialButtons[i].interactable = false;
         }
     }
+
+    private void CheckAttack()
+    {
+        isAttacked = true;
+        AttackNextStep();
+    }    
+
+    private void CheckJump()
+    {
+        isJumped = true;
+        JumpNextStep();
+    }    
+
+    private void CheckDash()
+    {
+        isDashed = true;
+        DashNextStep();
+    }
+
+    private void CheckMove(bool isMove)
+    {
+        isMoved = isMove;
+        MoveNextStep();
+    }
+
     //Check if player is moved
     public void MoveNextStep()
     {

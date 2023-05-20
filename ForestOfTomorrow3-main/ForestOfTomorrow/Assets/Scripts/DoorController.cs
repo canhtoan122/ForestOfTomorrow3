@@ -11,28 +11,30 @@ public class DoorController : MonoBehaviour
 
     private Animator animator;
     private bool openAnimation = false;
+
+    private void OnEnable()
+    {
+        ControllerUI.Instance.OnOpenDoor += OpenDoor;
+    }
+    private void OnDisable()
+    {
+        ControllerUI.Instance.OnOpenDoor -= OpenDoor;
+    }
     private void Start()
     {
         animator = GetComponent<Animator>();
+        animator.SetBool("isOpened", false);
     }
-    private void Update()
+
+    private void OpenDoor()
     {
-        openAnimation = PlayerController.openDoor;
-        if (openAnimation)
-        {
-            animator.SetBool("isOpened", true);
-            openAnimation = false;
-        }
-        else
-        {
-            animator.SetBool("isOpened", false);
-        }
-    }
+        animator.SetBool("isOpened", true);
+        openAnimation = false;
+    }    
     // Next scene
     public void NextScene()
     {
         SceneLoader.instance.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
-        PlayerController.openDoor = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
