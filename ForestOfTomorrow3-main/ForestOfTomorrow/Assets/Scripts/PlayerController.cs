@@ -65,34 +65,6 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        //if (Input.GetKey(KeyCode.D))
-        //{
-        //    MoveRight(true);
-        //}
-        //else
-        //{
-        //    MoveRight(false);
-        //}
-        //if (Input.GetKey(KeyCode.A))
-        //{
-        //    MoveLeft(true);
-        //}
-        //else
-        //{
-        //    MoveLeft(false);
-        //}
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    Dash();
-        //}
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-        //    Jump();
-        //}
-        //if (Input.GetKey(KeyCode.E))
-        //{
-        //    Attack();
-        //}
         UpdateMovementAnimation();
     }
     // Main moving left right component

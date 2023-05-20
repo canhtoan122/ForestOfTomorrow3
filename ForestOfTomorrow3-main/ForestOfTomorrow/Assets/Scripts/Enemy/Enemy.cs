@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
     public GameObject npc;  // The NPC of the game after defeat the boss
     public GameObject door;     //  The door to the next level after defeat the boss
     public TapToContinue tapToContinue;
-    public Item money;    // The currency after defeat the boss
+    public Equipment money;    // The currency after defeat the boss
 
     private Animator animator;
     public int maxHealth = 100;
@@ -333,8 +333,7 @@ public class Enemy : MonoBehaviour
         door.SetActive(true);
 
         //  Add some money into player inventory
-        InventoryManagement.instance.Add(money);
-        money.quantity = 15;
+        InventoryManagement.instance.AddMoney(money);
 
         //  Update mission
         MissionManagement.mission5Complete = true;

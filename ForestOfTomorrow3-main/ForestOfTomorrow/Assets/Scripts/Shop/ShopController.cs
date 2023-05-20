@@ -22,7 +22,7 @@ public class ShopController : MonoBehaviour
     public GameObject itemPrice;
 
     private string tempCategory;
-    private bool buyItem = false;
+    public static bool buyItem = false;
 
     public List<Item> items = new List<Item>();
     public void ActivatePickUpButton()
@@ -59,6 +59,7 @@ public class ShopController : MonoBehaviour
                 itemImage.GetComponent<Image>().sprite = item.icon;
                 itemName.GetComponent<TMP_Text>().text = item.itemName;
                 itemPrice.GetComponent<TMP_Text>().text = item.itemPrice.ToString();
+                InventoryManagement.instance.CheckItemInInventory(item);
                 if (buyItem)
                 {
                     InventoryManagement.instance.Add(item);

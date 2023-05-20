@@ -36,7 +36,6 @@ public class InventoryManagement : MonoBehaviour
                 return false;
             }
             items.Add(item);
-            item.quantity += 1;
             if (inventoryData.items.Contains(item))
             {
                 Debug.Log(item + " exist.");
@@ -55,12 +54,46 @@ public class InventoryManagement : MonoBehaviour
     public void Remove(Item item)
     {
         items.Remove(item);
-        item.quantity = 0;
         inventoryData.RemoveEquipment(item);
 
         if (onItemChangedCallBack != null)
         {
             onItemChangedCallBack.Invoke();
         }
+    }
+    public void CheckItemInInventory(Equipment item)
+    {
+        if(items.Count == 0)
+        {
+            ShopController.buyItem = false;
+        }
+        if(!ShopController.buyItem)
+        {
+            return;
+        }
+        foreach (Equipment equipment in items)
+        {
+            if (equipment.equipSlot.ToString().Contains("Currency"))
+            {
+                if(equipment.quantity >= item.itemPrice)
+                {
+                    equipment.quantity -= item.itemPrice;
+                }
+                if(equipment.quantity <= 0)
+                {
+                    Remove(equipment);
+                }
+            }
+            else
+            {
+                ShopController.buyItem = false;
+            }
+        }
+    }
+    public void AddMoney(Equipment equipment)
+    {
+        equipment.quantity = 15;
+        InventorySlot.isMoney = true;
+        Add(equipment);
     }
 }

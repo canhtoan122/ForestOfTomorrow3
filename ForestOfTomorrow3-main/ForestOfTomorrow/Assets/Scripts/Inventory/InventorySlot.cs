@@ -13,6 +13,8 @@ public class InventorySlot : MonoBehaviour
     public Animator playerAnimator;
 
     Item item;
+
+    public static bool isMoney = false;
     public void AddItem(Item newItem)
     {
         item = newItem;
@@ -22,7 +24,11 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = item.icon;
         icon.gameObject.SetActive(true);
         removeButton.SetActive(true);
-        quantityNumber.SetActive(true);
+        if(isMoney)
+        {
+            quantityNumber.SetActive(true);
+            isMoney = false;
+        }
     }
 
     public void ClearSlot()
