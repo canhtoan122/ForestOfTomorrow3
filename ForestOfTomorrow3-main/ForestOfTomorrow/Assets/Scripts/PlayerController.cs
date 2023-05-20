@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isMovingLeft)
         {
+            spriteRenderer.flipX = true;
             _moveDirection = -1;
             // Move the character to the left
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (isMovingRight)
         {
+            spriteRenderer.flipX = false;
             _moveDirection = 1;
             // Move the character to the right
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
