@@ -31,7 +31,7 @@ public class DoorController : MonoBehaviour
     // Next scene
     public void NextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneLoader.instance.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
         PlayerController.openDoor = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)

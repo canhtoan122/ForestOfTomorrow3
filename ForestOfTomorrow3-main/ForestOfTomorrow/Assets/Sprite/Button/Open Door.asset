@@ -81,7 +81,7 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 0
-    m_Scale: 3
+    m_Scale: 4
     m_Name: Open Door
     m_HashCode: 749531842
   m_SpriteGlyphTable:
@@ -89,9 +89,9 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 205
       m_Height: 210
-      m_HorizontalBearingX: -129.4
+      m_HorizontalBearingX: -14.6
       m_HorizontalBearingY: 142.7
-      m_HorizontalAdvance: 32.5
+      m_HorizontalAdvance: 206.5
     m_GlyphRect:
       m_X: 0
       m_Y: 0

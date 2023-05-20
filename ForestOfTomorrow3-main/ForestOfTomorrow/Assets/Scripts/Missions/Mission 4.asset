@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Mission 4
   m_EditorClassIdentifier: 
   isActive: 0
-  MissionTitle: Complete the inventory tutorial
-  MissionDescription: After going into the master house, the master order you to
-    equip the sword from the shelf and compete with other student.
-  MissionType: Main mission
-  MissionProgress: Equip the sword
+  MissionTitle: "Ho\xE0n th\xE0nh h\u01B0\u1EDBng d\u1EABn kho \u0111\u1ED3 n\xE0o."
+  MissionDescription: "Sau khi \u0111i v\xE0o v\xF5 \u0111\u01B0\u1EDDng s\u01B0
+    ph\u1EE5 y\xEAu c\u1EA7u b\u1EA1n trang b\u1ECB v\u0169 kh\xED v\xE0 chi\u1EBFn
+    \u0111\u1EA5u v\u1EDBi nh\u1EEFng v\xF5 sinh kh\xE1c."
+  MissionType: "Nhi\u1EC7m v\u1EE5 ch\xEDnh"
+  MissionProgress: "Trang b\u1ECB ki\u1EBFm."
   objectiveDescriptions: []

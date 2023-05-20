@@ -16,6 +16,7 @@ public class PlayerStats : CharacterStat
     public RageBar rageBar;
     public GameObject healPotion;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class PlayerStats : CharacterStat
         DefenceText.text = armor.GetValue().ToString();
 
         healthBar.SetMaxHealth(maxHealth);
+        
     }
     void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
     {
@@ -39,8 +41,14 @@ public class PlayerStats : CharacterStat
             }
             else
             {
-                DefenceText.text = armor.GetValue().ToString();
-                AttackText.text = damage.GetValue().ToString();
+                if (checkItem == "Armor")
+                {
+                    DefenceText.text = armor.GetValue().ToString();
+                }
+                else if (checkItem == "Weapon")
+                {
+                    AttackText.text = damage.GetValue().ToString();
+                }
             }
         }
         if(oldItem != null)
@@ -54,8 +62,14 @@ public class PlayerStats : CharacterStat
             }
             else
             {
-                DefenceText.text = armor.RemoveValue().ToString();
-                AttackText.text = damage.RemoveValue().ToString();
+                if (checkItem == "Armor")
+                {
+                    DefenceText.text = armor.RemoveValue().ToString();
+                }
+                else if (checkItem == "Weapon")
+                {
+                    AttackText.text = damage.RemoveValue().ToString();
+                }
             }
         }
     }
@@ -65,6 +79,8 @@ public class PlayerStats : CharacterStat
         {
             Heal();
             healPotion.SetActive(false);
+            UpdateHealthBar();
+            EquipmentManager.instance.DeleteHealPotion();
         }
     }
     private void Update()

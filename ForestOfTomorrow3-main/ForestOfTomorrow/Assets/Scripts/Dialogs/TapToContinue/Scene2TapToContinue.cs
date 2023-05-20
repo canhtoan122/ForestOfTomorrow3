@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Scene2TapToContinue : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Scene2TapToContinue : MonoBehaviour
     public GameObject dialoguePanel;
     public GameObject masterDialog;
     public GameObject NPCDialog;
+    private bool scene2Dialog = false;
 
     public PlayerDialogueTrigger playerDialogueTrigger;
     public DialogueManagement dialogueManagement;
@@ -33,14 +35,26 @@ public class Scene2TapToContinue : MonoBehaviour
         //{
         //    dialogueManagement.DisplayNextSentence();
         //}
-        if (Input.GetMouseButtonDown(0))
+        string sceneName = SceneManager.GetActiveScene().name;
+        if(sceneName == "Scene 2")
         {
-            dialogueManagement.PlayerDisplayNextSentence();
-            bool endAnimation = EndAnimation.endAnimation;
-            if (NPCEndDialog && endAnimation == true)
+            scene2Dialog = true;
+        }
+        if(!scene2Dialog)
+        {
+            return;
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                dialogueManagement.NPCDisplayNextSentence();
+                dialogueManagement.PlayerDisplayNextSentence();
+                bool endAnimation = EndAnimation.endAnimation;
+                if (NPCEndDialog && endAnimation == true)
+                {
+                    dialogueManagement.NPCDisplayNextSentence();
 
+                }
             }
         }
     }

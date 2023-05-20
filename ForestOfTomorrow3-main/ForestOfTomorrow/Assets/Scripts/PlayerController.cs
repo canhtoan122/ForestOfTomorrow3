@@ -63,7 +63,38 @@ public class PlayerController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         playerStats = GetComponent<PlayerStats>();
     }
-
+    private void Update()
+    {
+        //if (Input.GetKey(KeyCode.D))
+        //{
+        //    MoveRight(true);
+        //}
+        //else
+        //{
+        //    MoveRight(false);
+        //}
+        //if (Input.GetKey(KeyCode.A))
+        //{
+        //    MoveLeft(true);
+        //}
+        //else
+        //{
+        //    MoveLeft(false);
+        //}
+        //if (Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    Dash();
+        //}
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    Jump();
+        //}
+        //if (Input.GetKey(KeyCode.E))
+        //{
+        //    Attack();
+        //}
+        UpdateMovementAnimation();
+    }
     // Main moving left right component
     public void Moving()
     {
@@ -194,7 +225,7 @@ public class PlayerController : MonoBehaviour
     {
         dash = true;
         TutorialManagement.isDashed = true;
-        if (dash && moveLeft || moveRight)
+        if (dash && !moveLeft && !moveRight)
         {
             // Play attack sound effect loop
             audioSource.clip = dashSFX;
@@ -214,7 +245,9 @@ public class PlayerController : MonoBehaviour
     }
     public void ResetScene()
     {
+        DialogueManagement.dialogEnd = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        EquipmentManager.instance.PlayerDeadInScene3();
     }
     // Open door animation
     public void OpenDoor()
@@ -246,7 +279,7 @@ public class PlayerController : MonoBehaviour
             // Flip forward
             spriteRenderer.flipX = false;
         }
-        else if (jump && !dash)
+        else if (moveLeft && jump && !dash || moveRight && jump && !dash || jump && !dash)
         {
             state = MovementState.jumping;
         }
@@ -254,11 +287,11 @@ public class PlayerController : MonoBehaviour
         {
             state = MovementState.standing;
         }
-        else if (attack)
+        else if (moveLeft && attack || moveRight && attack || attack)
         {
             state = MovementState.attack;
         }
-        else if (dash)
+        else if (moveLeft && dash || moveRight && dash)
         {
            state = MovementState.dash;
         }
@@ -324,13 +357,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Projectile"))
-        {
-
-        }
-    }
+    
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

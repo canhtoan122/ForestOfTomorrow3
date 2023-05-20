@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Mission 3
   m_EditorClassIdentifier: 
   isActive: 1
-  MissionTitle: Go to the dojo
-  MissionDescription: After go outside, you follow others to go to the dojo.
-  MissionType: Main mission
-  MissionProgress: Go to the dojo
+  MissionTitle: "\u0110i \u0111\u1EBFn v\xF5 \u0111\u01B0\u1EDDng n\xE0o."
+  MissionDescription: "Sau khi \u0111i ra ngo\xE0i, b\u1EA1n \u0111i theo NPC kh\xE1c
+    \u0111\u1EBFn v\xF5 \u0111\u01B0\u1EDDng."
+  MissionType: "Nhi\u1EC7m v\u1EE5 ch\xEDnh"
+  MissionProgress: "\u0110i \u0111\u1EBFn v\xF5 \u0111\u01B0\u1EDDng n\xE0o."
   objectiveDescriptions: []

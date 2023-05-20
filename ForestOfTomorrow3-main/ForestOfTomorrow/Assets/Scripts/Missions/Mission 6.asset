@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac13b592a068c248ade328f4a482eea, type: 3}
+  m_Name: Mission 6
+  m_EditorClassIdentifier: 
+  isActive: 0
+  MissionTitle: "\u0110i \u0111\u1EBFn NPC map."
+  MissionDescription: "Sau khi \u0111\xE1nh b\u1EA1i v\xF5 sinh kh\xE1c, s\u01B0
+    ph\u1EE5 y\xEAu c\u1EA7u b\u1EA1n ti\xEAu di\u1EC7t qu\xE1i v\u1EADt \u0111ang
+    x\xE2m l\u01B0\u1EE3c v\xF5 \u0111\u01B0\u1EDDng."
+  MissionType: "Nhi\u1EC7m v\u1EE5 ch\xEDnh"
+  MissionProgress: "\u0110i \u0111\u1EBFn NPC map."
+  objectiveDescriptions: []

@@ -12,6 +12,7 @@ public class MissionManagement : MonoBehaviour
     public static bool mission2Complete = false;
     public static bool mission3Complete = false;
     public static bool mission4Complete = false;
+    public static bool mission5Complete = false;
     public List<Mission> missionList;
     public Mission mainMission;
 
@@ -30,6 +31,8 @@ public class MissionManagement : MonoBehaviour
     private Mission mission4Object;
     [SerializeField]
     private Mission mission5Object;
+    [SerializeField]
+    private Mission mission6Object;
 
 
     // Main Mission active based on isActive bool is true or not
@@ -87,6 +90,11 @@ public class MissionManagement : MonoBehaviour
             mission4Object.isActive = false;
             anim.SetBool("IsCompleted", true);
         }
+        else if(mission5Complete)
+        {
+            mission5Object.isActive = false;
+            anim.SetBool("IsCompleted", true);
+        }
         UpdateMainMission();
     }
     // Create a Main Mission as a Main Scriptable Object for all the mission
@@ -135,6 +143,13 @@ public class MissionManagement : MonoBehaviour
             mission5Object.isActive = true;
             missionText.text = mainMission.MissionTitle;
             mission4Complete = false;
+            anim.SetBool("IsCompleted", false);
+        }
+        else if(mission5Complete)
+        {
+            mission6Object.isActive = true;
+            missionText.text = mainMission.MissionTitle;
+            mission5Complete = false;
             anim.SetBool("IsCompleted", false);
         }
     }

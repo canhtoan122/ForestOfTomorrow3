@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    #region Singleton
+    public static Enemy instance;
+    void Awake()
+    {
+        instance = this;
+    }
+    #endregion
     [SerializeField] 
     private LayerMask playerLayer;  // The layer that the player is on
     [SerializeField] 
@@ -35,6 +42,11 @@ public class Enemy : MonoBehaviour
     public GameObject slash;    // The slash projectile
     public float slashSpeed;    // The slash projectile speed
     public Animator notification;   // The slash projectile notification
+    public float finalAttackRange;  // The attack range of the final attack
+    public GameObject npc;  // The NPC of the game after defeat the boss
+    public GameObject door;     //  The door to the next level after defeat the boss
+    public TapToContinue tapToContinue;
+    public Item money;    // The currency after defeat the boss
 
     private Animator animator;
     public int maxHealth = 100;
@@ -45,6 +57,9 @@ public class Enemy : MonoBehaviour
     private bool nearPlayer = false;
     private bool playerDead = false;
     private bool longRangeAttack = false;
+    public bool isInvulnerable = false;
+    private bool finalAttack = false;
+    public static bool bossDied = false;
 
     public enum MovementState { idle, running, attacking, dashingAway, rangeSlash}
     // Start is called before the first frame update
@@ -143,15 +158,20 @@ public class Enemy : MonoBehaviour
     // Draw the detection range gizmo in the editor for debugging purposes
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
         if (attackPoint == null)
             return;
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, finalAttackRange);
     }
     public void TakeDamage(int damage)
     {
+        if (isInvulnerable)
+            return;
         currentHealth -= damage;
 
         // Update enemy health
@@ -162,7 +182,16 @@ public class Enemy : MonoBehaviour
 
         // Boss is not attacking, so check if it should dash
         float dashawayProbability = 0.2f;
-        if(Random.value < dashawayProbability)
+        if (Random.value < dashawayProbability)
+        {
+            if (currentHealth <= 25)
+            {
+                animator.SetTrigger("FinalAttack");
+                notification.SetTrigger("FinalAttack");
+                finalAttack = true;
+            }
+        }
+        if (Random.value < dashawayProbability && !finalAttack)
         {
             isDashingAway = true;
             float teleportDistance = 30f;
@@ -172,7 +201,6 @@ public class Enemy : MonoBehaviour
 
             // Update the boss's position during the dash away
             transform.position = randomPosition;
-
             if (currentHealth <= 75)
             {
                 animator.SetTrigger("LongRangeAttack");
@@ -201,21 +229,61 @@ public class Enemy : MonoBehaviour
         bulletRigidbody.velocity = direction * slashSpeed;
 
     }
+    public void FinalAttack()
+    {
+        // Detect enemy in range of attack
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, finalAttackRange, playerLayer);
+
+        //Damage them
+        foreach (Collider2D player in hitPlayer)
+        {
+            player.GetComponent<PlayerStats>().TakeDamage(100);
+        }
+        // Update health bar
+        playerStats.UpdateHealthBar();
+        if (playerStats.currentHealth <= 0)
+        {
+            PlayerDie();
+        }
+        finalAttack = false;
+    }
+    public void ApplyDamage()
+    {
+        bool isSlash = ProjectileManagement.isSlash;
+        if (isSlash)
+        {
+            //  Play animation hurt
+            playerAnimation.SetTrigger("Hurt");
+            //Damage them
+            player.GetComponent<PlayerStats>().TakeDamage(50);
+            // Update health bar
+            playerStats.UpdateHealthBar();
+            if (playerStats.currentHealth <= 0)
+            {
+                PlayerDie();
+            }
+            ProjectileManagement.isSlash = false;
+        }
+        else
+        {
+            DamagePlayer(attackDamage);
+        }
+    }
     public void DamagePlayer(int Damage)
     {
+        
         if (!playerDead)
         {
-            //  Play player hurt animation
-            //playerAnimation.SetTrigger("Hurt");
             // Detect enemy in range of attack
             Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
 
-            Damage = attackDamage;
+            
             //Damage them
             foreach (Collider2D player in hitPlayer)
             {
                 player.GetComponent<PlayerStats>().TakeDamage(Damage);
             }
+            
             // Update health bar
             playerStats.UpdateHealthBar();
             if (playerStats.currentHealth <= 0)
@@ -251,15 +319,53 @@ public class Enemy : MonoBehaviour
     }
     public void Die()
     {
-        Debug.Log("Enemy died!");
-
         // Die animation
         animator.SetTrigger("IsDead");
 
         // Disable the enemy
-        this.enabled = false;   
+        //this.enabled = false;   
         GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        bossDied = true;
+
+        // Enable the NPC and door
+        npc.SetActive(true);
+        door.SetActive(true);
+
+        //  Add some money into player inventory
+        InventoryManagement.instance.Add(money);
+        money.quantity = 15;
+
+        //  Update mission
+        MissionManagement.mission5Complete = true;
+    }
+    public void TriggerEndBossDialogue()
+    {
+        tapToContinue.EndBossDialogue();
+    }
+    public void TriggerPlayerDialogue()
+    {
+        tapToContinue.ActivePlayerDialog();
+    }
+    public void TriggerNPCDialogue()
+    {
+        tapToContinue.NPCDialogTrigger();
+    }
+    public void TriggerMasterDialog()
+    {
+        tapToContinue.TriggerMasterDialog();
+    }
+    public void MasterNextSentence()
+    {
+        tapToContinue.MasterNextSentence();
+    }
+    public void PlayerNextSentence()
+    {
+        tapToContinue.PlayerNextSentence();
+    }
+    public void EndDialogue()
+    {
+        tapToContinue.EndDialogue();
     }
     public void UpdateMovementAnimation()
     {

@@ -8,6 +8,8 @@ public class Item : ScriptableObject
     public string itemName; // Name of the item
     public Sprite icon;     //Item icon
     public bool isDefaultItem = false;  // Is the item default wear?
+    public int itemPrice;   // The price of the item on shop
+    public int quantity;    // The quantity of the item
 
     public virtual void Use()
     {

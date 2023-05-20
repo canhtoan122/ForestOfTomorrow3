@@ -9,9 +9,14 @@ public class Equipment : Item
 
     public int armorModifier;
     public int damageModifier;
+    
 
     public override void Use()
     {
+        if(equipSlot.ToString() == "Currency")
+        {
+            return;
+        }
         base.Use();
         // Equip the item
         EquipmentManager.instance.Equip(this);
@@ -20,4 +25,4 @@ public class Equipment : Item
     }
 }
 
-public enum EquipmentSlot { Helmet, Armor, HealPotion, Weapon, Ring, Shoe, Glove}
+public enum EquipmentSlot { Helmet, Armor, HealPotion, Weapon, Ring, Shoe, Glove, Currency}

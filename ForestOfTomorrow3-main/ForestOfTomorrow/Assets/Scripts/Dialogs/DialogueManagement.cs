@@ -22,7 +22,17 @@ public class DialogueManagement : MonoBehaviour
     [SerializeField]
     private PlayerDialogueTrigger playerDialogueTrigger;
     [SerializeField]
+    private PlayerEndBossDialogueTrigger playerEndBossDialogueTrigger;
+    [SerializeField]
+    private MasterEndBossDialogueTrigger masterEndBossDialogueTrigger;
+    [SerializeField]
     private NPCDialogueTrigger NPCDialogueTrigger;
+    [SerializeField]
+    private GameObject tutorialPanel;
+    [SerializeField]
+    private GameObject step1;
+    [SerializeField]
+    private GameObject step6;
     private Queue<string> sentences;
     [SerializeField]
     private Animator animator;
@@ -37,6 +47,10 @@ public class DialogueManagement : MonoBehaviour
     private GameObject dialoguePanel;
     [SerializeField]
     private GameObject gameInstructionPanel;
+    [SerializeField]
+    private Transform playerPosition;
+
+    public static bool dialogEnd = false;
     void Awake()
     {
         sentences = new Queue<string>();
@@ -129,14 +143,110 @@ public class DialogueManagement : MonoBehaviour
         string sentence = sentences.Dequeue();
         NPCDialog.text = sentence;
     }
-    void EndDialogue()
+    public void StartMasterEndBossDialogue(Dialogue dialogue)
+    {
+        MasterDialog.text = dialogue.name;
+
+        sentences.Clear();
+
+        foreach (string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+        MasterEndBossDisplayNextSentence();
+    }
+    public void MasterEndBossDisplayNextSentence()
+    {
+        if (sentences.Count == 0)
+        {
+            return;
+        }
+        string sentence = sentences.Dequeue();
+        MasterDialog.text = sentence;
+    }
+    public void StartPlayerEndBossDialogue(Dialogue dialogue)
+    {
+        PlayerDialog.text = dialogue.name;
+
+        sentences.Clear();
+
+        foreach (string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+        PlayerEndBossDisplayNextSentence();
+    }
+    public void PlayerEndBossDisplayNextSentence()
+    {
+        if (sentences.Count == 0)
+        {
+            return;
+        }
+
+        string sentence = sentences.Dequeue();
+        PlayerDialog.text = sentence;
+    }
+    public void StartNPCEndBossDialogue(Dialogue dialogue)
+    {
+        animator.SetBool("Scene3IsSliding", true);
+        NPCName.text = dialogue.name;
+
+        sentences.Clear();
+
+        foreach (string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+        NPCEndBossDisplayNextSentence();
+    }
+    public void NPCEndBossDisplayNextSentence()
+    {
+        if (sentences.Count == 0)
+        {
+            return;
+        }
+
+        string sentence = sentences.Dequeue();
+        NPCDialog.text = sentence;
+    }
+    public void EndBossDialogue()
     {
         movementUI.SetActive(true);
         missionPanel.SetActive(true);
         menuButtonUI.SetActive(true);
         dialoguePanel.SetActive(false);
-        NPCMovementController.canMove = true;
         string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Scene 3")
+        {
+            Vector2 gameInstructionDisappearposition = new Vector2(-4, playerPosition.position.y);
+            if (playerPosition.position.x <= gameInstructionDisappearposition.x)
+            {
+                gameInstructionPanel.SetActive(false);
+            }
+            else
+            {
+                gameInstructionPanel.SetActive(true);
+            }
+        }
+    }
+    void EndDialogue()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Scene 3")
+        {
+            dialogEnd = true;
+        }
+        movementUI.SetActive(true);
+        missionPanel.SetActive(true);
+        menuButtonUI.SetActive(true);
+        dialoguePanel.SetActive(false);
+        if (sceneName == "Scene 3")
+        {
+            tutorialPanel.SetActive(true);
+            step1.SetActive(false);
+            step6.SetActive(true);
+        }
+        NPCMovementController.canMove = true;
         if (sceneName == "Scene 2")
         {
             gameInstructionPanel.SetActive(true);

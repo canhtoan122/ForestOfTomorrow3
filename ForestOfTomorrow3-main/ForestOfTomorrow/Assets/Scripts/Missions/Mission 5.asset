@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Mission 5
   m_EditorClassIdentifier: 
   isActive: 0
-  MissionTitle: Defeat other wariors
-  MissionDescription: Once you equiped your weapon, you can go forward and fight
-    with other warior.
-  MissionType: Main mission
-  MissionProgress: Defeat the warior
+  MissionTitle: "\u0110\xE1nh b\u1EA1i v\xF5 sinh kh\xE1c."
+  MissionDescription: "Sau khi trang b\u1ECB v\u0169 kh\xED, b\u1EA1n l\xEAn tr\u01B0\u1EDBc
+    v\xE0 chi\u1EBFn \u0111\u1EA5u v\u1EDBi v\xF5 sinh kh\xE1c."
+  MissionType: "Nhi\u1EC7m v\u1EE5 ch\xEDnh"
+  MissionProgress: "\u0110\xE1nh b\u1EA1i v\xF5 sinh kh\xE1c."
   objectiveDescriptions: []
