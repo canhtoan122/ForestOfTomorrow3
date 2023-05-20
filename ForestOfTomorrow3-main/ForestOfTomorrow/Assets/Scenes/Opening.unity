@@ -1010,8 +1010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ab6bf04b381bb48bf526a2f0f8f106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: 0}
-  exit: {fileID: 0}
 --- !u!114 &1168185888 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5957760428127058045, guid: f3f27feeff918d94ba893cd275ac9cb4, type: 3}
@@ -1538,7 +1536,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe003f3e95a82a842a5e1ad21f75138e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementUI: {fileID: 0}
   missionPanel: {fileID: 8959684014362678783}
   menuButtonUI: {fileID: 8959684014362678782}
   dialoguePanel: {fileID: 8959684014362678781}
@@ -5966,7 +5963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8959684012247495137, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: m_MatchWidthOrHeight
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8959684012247495137, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: m_ReferenceResolution.x
