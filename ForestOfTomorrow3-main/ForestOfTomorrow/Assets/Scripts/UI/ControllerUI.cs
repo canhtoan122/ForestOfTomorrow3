@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ControllerUI : Singleton<ControllerUI>
@@ -25,6 +26,22 @@ public class ControllerUI : Singleton<ControllerUI>
     [SerializeField] private Image _imgHeal;
 
     private EInteractState _interactState = EInteractState.NONE;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += ResetUIOnloadScene;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= ResetUIOnloadScene;
+    }
+
+    private void ResetUIOnloadScene(Scene scene, LoadSceneMode mode)
+    {
+        ActiveOpenDoorButton(false);
+        ActiveAttackButton(true);
+    }    
+
     public void Attack()
     {
         OnAttackTriggered?.Invoke();
