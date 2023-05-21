@@ -182,9 +182,9 @@ public class Enemy : MonoBehaviour
 
         // Boss is not attacking, so check if it should dash
         float dashawayProbability = 0.2f;
-        if (Random.value < dashawayProbability)
+        if (Random.value < dashawayProbability && !bossDied)
         {
-            if (currentHealth <= 25)
+            if (currentHealth <= 35)
             {
                 animator.SetTrigger("FinalAttack");
                 notification.SetTrigger("FinalAttack");
