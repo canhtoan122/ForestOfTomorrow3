@@ -38,6 +38,10 @@ public class ControllerUI : Singleton<ControllerUI>
 
     private void ResetUIOnloadScene(Scene scene, LoadSceneMode mode)
     {
+        if(scene.name.Contains("AP"))
+        {
+            _movementUI.SetActive(true);
+        }    
         ActiveOpenDoorButton(false);
         ActiveAttackButton(true);
     }    
