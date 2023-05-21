@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
     // Main attacking component
     public void Attacking()
     {
-        if(animator.GetBool("isAttacking"))
+        if(animator.GetBool("isAttacking") || isJumping || isDashing)
         {
             return;
         }    
