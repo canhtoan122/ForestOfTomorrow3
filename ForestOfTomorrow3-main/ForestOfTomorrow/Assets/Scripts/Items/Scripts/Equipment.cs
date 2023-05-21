@@ -17,6 +17,10 @@ public class Equipment : Item
         {
             return;
         }
+        if(equipSlot.ToString() == "Weapon")
+        {
+            EquipmentManager.instance.EquipWeaponLayer();
+        }
         base.Use();
         // Equip the item
         EquipmentManager.instance.Equip(this);

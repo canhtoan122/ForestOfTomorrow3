@@ -367,10 +367,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Demo \u0111\u1EBFn \u0111\xE2y l\xE0 h\u1EBFt. Th\u1EDDi gian release
-    ti\u1EBFp theo d\u1EF1 ki\u1EBFn l\xE0 26/05/2023. "
+    ti\u1EBFp theo d\u1EF1 ki\u1EBFn l\xE0 26/05/2023. \nN\u1EBFu b\u1EA1n mu\u1ED1n
+    c\xF3 th\xF4ng b\xE1o c\u1EADp nh\u1EADt m\u1EDBi nh\u1EA5t th\xEC b\u1EA1n c\xF3
+    th\u1EC3 truy c\u1EADp v\xE0o group facebook Fortress of tomorrow: https://www.facebook.com/groups/3064380337199680"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
+  m_sharedMaterial: {fileID: 7251522843833804115, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

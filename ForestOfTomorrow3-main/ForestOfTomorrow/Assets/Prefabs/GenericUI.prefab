@@ -1508,7 +1508,7 @@ MonoBehaviour:
   _btnMove: {fileID: 4277211519801668774}
   _btnOpenDoor: {fileID: 312545385538933269}
   _btnInteract: {fileID: 312545384941187716}
-  _imgHeal: {fileID: 312545386331707132}
+  _imgHeal: {fileID: 312545385673813701}
 --- !u!1 &4277211519801668774
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,4 +19,4 @@ MonoBehaviour:
   quantity: 0
   equipSlot: 3
   armorModifier: 0
-  damageModifier: 100
+  damageModifier: 5

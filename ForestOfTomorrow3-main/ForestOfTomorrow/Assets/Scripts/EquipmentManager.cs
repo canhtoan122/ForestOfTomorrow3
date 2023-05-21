@@ -157,7 +157,7 @@ public class EquipmentManager : MonoBehaviour
             {
                 swordImage.sprite = null;
                 swordImage.gameObject.SetActive(false);
-                playerAnimator.SetBool("EquipSword", false);
+                UnequipWeaponLayer();
             }
             else if (slotIndex == 4)
             {
@@ -217,8 +217,22 @@ public class EquipmentManager : MonoBehaviour
         }
         foreach (Equipment newItem in inventoryData.items)
         {
-            newItem.quantity -= 1;
+            if(newItem.equipSlot.ToString() == "Currency")
+            {
+                InventorySlot.isMoney = true;
+            }
             InventoryManagement.instance.Add(newItem);
         }
     } 
+    public void EquipWeaponLayer()
+    {
+        playerAnimator.SetLayerWeight(0, 0);
+        playerAnimator.SetLayerWeight(1, 1);
+    }
+    public void UnequipWeaponLayer()
+    {
+        playerAnimator.SetLayerWeight(0, 1);
+        playerAnimator.SetLayerWeight(1, 0);
+    }
+
 }

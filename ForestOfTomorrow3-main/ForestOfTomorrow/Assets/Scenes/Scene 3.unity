@@ -375,17 +375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7232ba71301bd5743a4d5ddbf214217b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &260278299 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8959684013035039436, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
-  m_PrefabInstance: {fileID: 570032758}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &264628770 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8934434395815084070, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
@@ -441,7 +430,6 @@ MonoBehaviour:
   step1: {fileID: 1278582989}
   step6: {fileID: 461804287}
   animator: {fileID: 365081935}
-  movementUI: {fileID: 1810405776}
   missionPanel: {fileID: 666458193}
   menuButtonUI: {fileID: 1667135539}
   dialoguePanel: {fileID: 365081931}
@@ -474,7 +462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c87211e58fad24a83665cdfaaa6be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementUI: {fileID: 1810405776}
   missionPanel: {fileID: 666458193}
   menuButtonUI: {fileID: 1667135539}
   dialoguePanel: {fileID: 365081931}
@@ -698,6 +685,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 312545386331707133, guid: 5cb10c75cff707c43b0febfe7543ca79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1823493812}
+    - target: {fileID: 312545386331707133, guid: 5cb10c75cff707c43b0febfe7543ca79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UsePotion
+      objectReference: {fileID: 0}
+    - target: {fileID: 312545386331707133, guid: 5cb10c75cff707c43b0febfe7543ca79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerStats, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 312545386449243892, guid: 5cb10c75cff707c43b0febfe7543ca79, type: 3}
+      propertyPath: _imgHeal
+      value: 
+      objectReference: {fileID: 1954610949}
     - target: {fileID: 312545386449243893, guid: 5cb10c75cff707c43b0febfe7543ca79, type: 3}
       propertyPath: m_Name
       value: GenericUI
@@ -854,8 +857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ab6bf04b381bb48bf526a2f0f8f106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: 529506565}
-  exit: {fileID: 260278299}
 --- !u!95 &500369660
 Animator:
   serializedVersion: 5
@@ -1156,17 +1157,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1125950526}
   smoothTime: 0.3
---- !u!114 &529506565 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8959684012252575185, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
-  m_PrefabInstance: {fileID: 570032758}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &536552492 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1651002591067594586, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
@@ -2617,7 +2607,7 @@ PrefabInstance:
     - target: {fileID: 3873177162319357191, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: movementUI
       value: 
-      objectReference: {fileID: 1810405776}
+      objectReference: {fileID: 0}
     - target: {fileID: 3873177162319357191, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: menuButtonUI
       value: 
@@ -4811,17 +4801,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &608633077 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 969889207293416769, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
-  m_PrefabInstance: {fileID: 570032758}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &619394800
@@ -13303,6 +13282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   space: 25
   inventoryData: {fileID: 11400000, guid: 947b533edcb53c449853d98dea98239f, type: 2}
+  playerAnimator: {fileID: 1823493816}
   items: []
 --- !u!4 &1189349450
 Transform:
@@ -13369,7 +13349,6 @@ MonoBehaviour:
   inventoryData: {fileID: 11400000, guid: 947b533edcb53c449853d98dea98239f, type: 2}
   swordImage: {fileID: 577091614}
   healPotionImage: {fileID: 633288561}
-  healPotionButton: {fileID: 2129487026}
   ringImage: {fileID: 30112431}
   helmetImage: {fileID: 1847187054}
   shoeImage: {fileID: 46104961}
@@ -13967,8 +13946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d496a569895873b4a927f3909fd5b789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackButton: {fileID: 529506565}
-  pickUpItemButton: {fileID: 608633077}
   step6: {fileID: 461804287}
   step7: {fileID: 203652530}
 --- !u!114 &1572545309 stripped
@@ -14181,7 +14158,7 @@ PrefabInstance:
     - target: {fileID: 5446916777282045304, guid: f3f27feeff918d94ba893cd275ac9cb4, type: 3}
       propertyPath: healPotion
       value: 
-      objectReference: {fileID: 2129487024}
+      objectReference: {fileID: 1954610947}
     - target: {fileID: 5446916777282045304, guid: f3f27feeff918d94ba893cd275ac9cb4, type: 3}
       propertyPath: DefenceText
       value: 
@@ -14370,11 +14347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1810405776 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8959684013685915079, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
-  m_PrefabInstance: {fileID: 570032758}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1823493811 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6823296801075865183, guid: f3f27feeff918d94ba893cd275ac9cb4, type: 3}
@@ -14544,6 +14516,22 @@ Transform:
   m_Father: {fileID: 753639557}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1954610947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 312545385673813703, guid: 5cb10c75cff707c43b0febfe7543ca79, type: 3}
+  m_PrefabInstance: {fileID: 463484488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1954610949 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 312545385673813701, guid: 5cb10c75cff707c43b0febfe7543ca79, type: 3}
+  m_PrefabInstance: {fileID: 463484488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954610947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1955311385 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7129971353253998237, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
@@ -14677,22 +14665,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 570032758}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &2129487024 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6472017007574845209, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
-  m_PrefabInstance: {fileID: 570032758}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2129487026 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6639942086776781676, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
-  m_PrefabInstance: {fileID: 570032758}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129487024}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}

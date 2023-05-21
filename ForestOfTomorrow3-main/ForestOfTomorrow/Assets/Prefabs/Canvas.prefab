@@ -725,7 +725,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0110i \u0111\u1EBFn <sprite=0> \u0111\u1EC3 trang b\u1ECB v\u0169 kh\xED."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -789,7 +789,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &344767610005377871
@@ -997,7 +997,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hello master, I want to see you to study? I heard you are very good.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &369885027788606403
@@ -1214,7 +1214,6 @@ MonoBehaviour:
   removeButton: {fileID: 1412487311975447535}
   quantityNumber: {fileID: 1765975022857666577}
   icon: {fileID: 4453984455221522962}
-  playerAnimator: {fileID: 0}
 --- !u!1 &392466639529956742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,7 +1812,6 @@ MonoBehaviour:
   removeButton: {fileID: 1651002591067594586}
   quantityNumber: {fileID: 1514493011821698671}
   icon: {fileID: 8824890815744724030}
-  playerAnimator: {fileID: 0}
 --- !u!1 &567051688253141413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +2017,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Nh\u1EA5n  <sprite=0> \u0111\u1EC3 nh\u1EB7t \u0111\u1ED3."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2083,7 +2081,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &601954144746340427
@@ -2236,7 +2234,6 @@ MonoBehaviour:
   removeButton: {fileID: 5600131408217621347}
   quantityNumber: {fileID: 9150304306257926236}
   icon: {fileID: 5572778951866508962}
-  playerAnimator: {fileID: 0}
 --- !u!1 &634871080780458116
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,8 +3029,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -71.145, y: 0}
-  m_SizeDelta: {x: -574.25, y: -0.82}
+  m_AnchoredPosition: {x: -45.747414, y: 0}
+  m_SizeDelta: {x: -523.6329, y: -0.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1002009916921498777
 CanvasRenderer:
@@ -3063,7 +3060,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2192"
+  m_text: =>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3093,12 +3090,12 @@ MonoBehaviour:
   m_fontSize: 200
   m_fontSizeBase: 200
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 1024
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3200,7 +3197,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: I'm so glad you come here! Follow me to meet my gurus and try to practice.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3264,7 +3261,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &859004175340114504
@@ -3496,7 +3493,6 @@ MonoBehaviour:
   removeButton: {fileID: 3068361718163726289}
   quantityNumber: {fileID: 2229809765151874598}
   icon: {fileID: 3301854034552085542}
-  playerAnimator: {fileID: 0}
 --- !u!1 &924210813833481764
 GameObject:
   m_ObjectHideFlags: 0
@@ -7286,7 +7282,6 @@ MonoBehaviour:
   removeButton: {fileID: 8156798594120575851}
   quantityNumber: {fileID: 567051688253141413}
   icon: {fileID: 2025864487856319677}
-  playerAnimator: {fileID: 0}
 --- !u!1 &1765369998514277270
 GameObject:
   m_ObjectHideFlags: 0
@@ -9512,7 +9507,6 @@ MonoBehaviour:
   removeButton: {fileID: 7414665457509366522}
   quantityNumber: {fileID: 2816950661793403974}
   icon: {fileID: 5826841302046064747}
-  playerAnimator: {fileID: 0}
 --- !u!1 &2223549549116258072
 GameObject:
   m_ObjectHideFlags: 0
@@ -10057,7 +10051,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Warior
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -10121,7 +10115,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2409472340924904178
@@ -10350,7 +10344,6 @@ MonoBehaviour:
   removeButton: {fileID: 770573466705956967}
   quantityNumber: {fileID: 2747395451414258976}
   icon: {fileID: 6705178889218654822}
-  playerAnimator: {fileID: 0}
 --- !u!1 &2423973143900559269
 GameObject:
   m_ObjectHideFlags: 0
@@ -11515,7 +11508,6 @@ MonoBehaviour:
   removeButton: {fileID: 924210813833481764}
   quantityNumber: {fileID: 2738358502939743948}
   icon: {fileID: 6590826991769877998}
-  playerAnimator: {fileID: 0}
 --- !u!1 &2738358502939743948
 GameObject:
   m_ObjectHideFlags: 0
@@ -12944,7 +12936,6 @@ MonoBehaviour:
   removeButton: {fileID: 8194948185963470883}
   quantityNumber: {fileID: 4314500991159734009}
   icon: {fileID: 1534289029574423392}
-  playerAnimator: {fileID: 0}
 --- !u!1 &3313516775752843336
 GameObject:
   m_ObjectHideFlags: 0
@@ -13219,9 +13210,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8959684014292449960}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuPanelController, Assembly-CSharp
-        m_MethodName: CloseMissionUI
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13992,7 +13983,6 @@ MonoBehaviour:
   removeButton: {fileID: 4570445634080701083}
   quantityNumber: {fileID: 961547634748330972}
   icon: {fileID: 4672378200179276774}
-  playerAnimator: {fileID: 0}
 --- !u!1 &3667964112816673485
 GameObject:
   m_ObjectHideFlags: 0
@@ -14352,7 +14342,6 @@ MonoBehaviour:
   removeButton: {fileID: 4957874600303688459}
   quantityNumber: {fileID: 655944353794255157}
   icon: {fileID: 45917078712784095}
-  playerAnimator: {fileID: 0}
 --- !u!1 &3854546500940455028
 GameObject:
   m_ObjectHideFlags: 0
@@ -14575,7 +14564,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Master
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14639,7 +14628,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3895961261271073218
@@ -16439,7 +16428,6 @@ MonoBehaviour:
   removeButton: {fileID: 1905801271572179207}
   quantityNumber: {fileID: 5441965790027892275}
   icon: {fileID: 1826234667724431093}
-  playerAnimator: {fileID: 0}
 --- !u!1 &4622950911476607341
 GameObject:
   m_ObjectHideFlags: 0
@@ -16738,7 +16726,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "M\u1EE5c Ti\xEAu:"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -16802,7 +16790,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4835146725621773338
@@ -17813,7 +17801,6 @@ MonoBehaviour:
   removeButton: {fileID: 1258536692922783394}
   quantityNumber: {fileID: 344767610005377871}
   icon: {fileID: 5429260967250865655}
-  playerAnimator: {fileID: 0}
 --- !u!1 &5099642780314870823
 GameObject:
   m_ObjectHideFlags: 0
@@ -18099,7 +18086,6 @@ MonoBehaviour:
   removeButton: {fileID: 8625838185929931993}
   quantityNumber: {fileID: 8442717307199821384}
   icon: {fileID: 3331123288370240576}
-  playerAnimator: {fileID: 0}
 --- !u!1 &5161610844269524129
 GameObject:
   m_ObjectHideFlags: 0
@@ -18807,7 +18793,6 @@ MonoBehaviour:
   removeButton: {fileID: 4990204919158892360}
   quantityNumber: {fileID: 6489408102816653080}
   icon: {fileID: 6456292719013133177}
-  playerAnimator: {fileID: 0}
 --- !u!1 &5406731188378022457
 GameObject:
   m_ObjectHideFlags: 0
@@ -19037,7 +19022,6 @@ MonoBehaviour:
   removeButton: {fileID: 153543705551009948}
   quantityNumber: {fileID: 7305893952310187346}
   icon: {fileID: 828330739439578638}
-  playerAnimator: {fileID: 0}
 --- !u!1 &5441965790027892275
 GameObject:
   m_ObjectHideFlags: 0
@@ -20543,7 +20527,6 @@ MonoBehaviour:
   removeButton: {fileID: 5236698147794901530}
   quantityNumber: {fileID: 7279476789234509929}
   icon: {fileID: 7225525950587041621}
-  playerAnimator: {fileID: 0}
 --- !u!1 &6051288582770539990
 GameObject:
   m_ObjectHideFlags: 0
@@ -21188,7 +21171,6 @@ MonoBehaviour:
   removeButton: {fileID: 3638874879071398885}
   quantityNumber: {fileID: 2287105116360390823}
   icon: {fileID: 5735899694702768359}
-  playerAnimator: {fileID: 0}
 --- !u!1 &6445809222729101683
 GameObject:
   m_ObjectHideFlags: 0
@@ -22502,7 +22484,6 @@ MonoBehaviour:
   removeButton: {fileID: 9123466098674886824}
   quantityNumber: {fileID: 1972135612127385015}
   icon: {fileID: 6110303427677540796}
-  playerAnimator: {fileID: 0}
 --- !u!1 &7004301051854970889
 GameObject:
   m_ObjectHideFlags: 0
@@ -22781,7 +22762,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: I'm so glad you come here! Follow me to meet my gurus and try to practice.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -22845,7 +22826,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7106929860587133448
@@ -23075,7 +23056,6 @@ MonoBehaviour:
   removeButton: {fileID: 4509451283504077241}
   quantityNumber: {fileID: 6597821020599784430}
   icon: {fileID: 2592103021017463903}
-  playerAnimator: {fileID: 0}
 --- !u!1 &7230380344381061259
 GameObject:
   m_ObjectHideFlags: 0
@@ -23302,7 +23282,6 @@ MonoBehaviour:
   removeButton: {fileID: 2157652081000315005}
   quantityNumber: {fileID: 98442593876760927}
   icon: {fileID: 6614641853720308918}
-  playerAnimator: {fileID: 0}
 --- !u!1 &7279476789234509929
 GameObject:
   m_ObjectHideFlags: 0
@@ -23508,7 +23487,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Nh\u1EA5n  <sprite=0> + <sprite=1> \u0111\u1EC3 m\u1EDF kho \u0111\u1ED3."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -23572,7 +23551,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7300678390094567566
@@ -24147,7 +24126,6 @@ MonoBehaviour:
   removeButton: {fileID: 1540415003728332518}
   quantityNumber: {fileID: 8688214915309273588}
   icon: {fileID: 7033108781825935705}
-  playerAnimator: {fileID: 0}
 --- !u!1 &7479639479604292679
 GameObject:
   m_ObjectHideFlags: 0
@@ -25635,7 +25613,6 @@ MonoBehaviour:
   removeButton: {fileID: 1026402931319299735}
   quantityNumber: {fileID: 4573278780121846814}
   icon: {fileID: 2830166024165452353}
-  playerAnimator: {fileID: 0}
 --- !u!1 &8176245101476083798
 GameObject:
   m_ObjectHideFlags: 0
@@ -28041,7 +28018,6 @@ MonoBehaviour:
   removeButton: {fileID: 6866022664217277978}
   quantityNumber: {fileID: 1246918912532125419}
   icon: {fileID: 4985406081802170751}
-  playerAnimator: {fileID: 0}
 --- !u!1 &8872615881060124852
 GameObject:
   m_ObjectHideFlags: 0
@@ -28192,7 +28168,6 @@ MonoBehaviour:
   removeButton: {fileID: 1769954598119107197}
   quantityNumber: {fileID: 6569087230232547418}
   icon: {fileID: 2287509398020659706}
-  playerAnimator: {fileID: 0}
 --- !u!1 &8943625625648003683
 GameObject:
   m_ObjectHideFlags: 0
@@ -29034,7 +29009,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Complete the tutorial
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -29098,7 +29073,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8959684013037118357
@@ -29176,7 +29151,7 @@ MonoBehaviour:
     the screen. \n-Then in the \"Press <sprite=2> to attack\" you can press the icon
     in your right at the bottom of the screen to continue."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -29240,7 +29215,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8959684013042146535
@@ -29388,7 +29363,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Complete the tutorial
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -29452,7 +29427,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8959684013091687196
@@ -30676,7 +30651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionManagement: {fileID: 8651618445039145356}
-  missionType: {fileID: 0}
+  missionType: {fileID: 6516394964162968490}
   missionTitle: {fileID: 8959684013029964707}
   missionTitle2: {fileID: 8959684013061313685}
   missionProgress: {fileID: 8959684014162874700}
@@ -31095,7 +31070,7 @@ MonoBehaviour:
   m_text: "- Press \u2190 \u2192 to move. \n- Press <sprite=0> to jump.\n- Press
     <sprite=1> to dash. \n- Press <sprite=2> to attack."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -31159,7 +31134,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8959684014182337217
@@ -31605,7 +31580,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Warior
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -31669,7 +31644,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &9021174019070312090
@@ -31740,7 +31715,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Mission
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -31804,7 +31779,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &9051044310762766637

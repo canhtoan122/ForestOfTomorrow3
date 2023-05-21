@@ -16,7 +16,7 @@ MonoBehaviour:
   MissionTitle: "Ho\xE0n th\xE0nh h\u01B0\u1EDBng d\u1EABn \u0111i n\xE0o."
   MissionDescription: "Ho\xE0n th\xE0nh h\u01B0\u1EDBng d\u1EABn \u0111i n\xE0o."
   MissionType: "Nhi\u1EC7m v\u1EE5 ch\xEDnh"
-  MissionProgress: "Nh\u1EA5n \u2190 \u2192 \u0111\u1EC3 di chuy\u1EC3n. -Nh\u1EA5n
-    <sprite=0> \u0111\u1EC3 nh\u1EA3y. -Nh\u1EA5n <sprite=1> \u0111\u1EC3 l\u01B0\u1EDBt.
-    -Nh\u1EA5n <sprite=2> \u0111\u1EC3 t\u1EA5n c\xF4ng."
+  MissionProgress: "Nh\u1EA5n <- -> \u0111\u1EC3 di chuy\u1EC3n. -Nh\u1EA5n <sprite=0>
+    \u0111\u1EC3 nh\u1EA3y. -Nh\u1EA5n <sprite=1> \u0111\u1EC3 l\u01B0\u1EDBt. -Nh\u1EA5n
+    <sprite=2> \u0111\u1EC3 t\u1EA5n c\xF4ng."
   objectiveDescriptions: []

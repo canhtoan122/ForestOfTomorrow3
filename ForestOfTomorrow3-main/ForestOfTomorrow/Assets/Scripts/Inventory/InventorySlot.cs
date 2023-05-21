@@ -10,7 +10,6 @@ public class InventorySlot : MonoBehaviour
     public GameObject removeButton;
     public GameObject quantityNumber;
     public Image icon;
-    public Animator playerAnimator;
 
     Item item;
 
@@ -50,7 +49,6 @@ public class InventorySlot : MonoBehaviour
         {
             item.Use();
             MissionManagement.mission4Complete = true;
-            playerAnimator.SetBool("EquipSword", true);
         }
     }
 }

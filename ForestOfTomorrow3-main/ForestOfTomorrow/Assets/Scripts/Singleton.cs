@@ -43,7 +43,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             {
                 if (instances[i].GetInstanceID() != m_instance.GetInstanceID())
                 {
-                    Debug.Log("<color=red>Already another " + this.name + " object, will destroy this </color>" + instances[i].GetInstanceID());
+                    Debug.Log("<color=blue>Already another " + this.name + " object, will destroy this </color>" + instances[i].GetInstanceID());
                     Destroy(instances[i].gameObject);
                 }    
             }
