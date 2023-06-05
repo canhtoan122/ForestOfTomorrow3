@@ -146,6 +146,18 @@ public class PlayerController : MonoBehaviour
         //Damage them
         foreach (Collider2D enemy in hitEnemies)
         {
+            if (enemy.GetComponent<Enemy>() == null)
+            {
+                if(enemy.GetComponent<DinoponeraAntsStats>() == null)
+                {
+                    enemy.GetComponent<SpittingAntsStats>().TakeDamage(attackDamage);
+                    enemy.GetComponent<SpittingAntsStats>().UpdateHealthBar();
+                    return;
+                }
+                enemy.GetComponent<DinoponeraAntsStats>().TakeDamage(attackDamage);
+                enemy.GetComponent<DinoponeraAntsStats>().UpdateHealthBar();
+                return;
+            }
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
     }
@@ -204,11 +216,24 @@ public class PlayerController : MonoBehaviour
             audioSource.loop = false;
         }
     }
+    public void ResetScene3()
+    {
+        DialogueManagement.dialogEnd = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        TapToContinue.playerDie = true;
+    }
     public void ResetScene()
     {
         DialogueManagement.dialogEnd = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        EquipmentManager.instance.PlayerDeadInScene3();
+    }
+    public void OnStair()
+    {
+        rb.GetComponent<Rigidbody2D>().gravityScale = 0f;
+    }
+    public void OffStair()
+    {
+        rb.GetComponent<Rigidbody2D>().gravityScale = 3f;
     }
     // Check if user is on the ground or not
     private bool IsGrounded()
@@ -245,19 +270,9 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(0f, rb.velocity.y);
             }
         }
-        //Stair check
-        if(collision.gameObject.CompareTag("Stair"))
-        {
-            rb.GetComponent<Rigidbody2D>().gravityScale = 0f;
-        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        //Stair check
-        if (collision.gameObject.CompareTag("Stair"))
-        {
-            rb.GetComponent<Rigidbody2D>().gravityScale = 3f;
-        }
         //Wall check
         if (collision.gameObject.CompareTag("Wall"))
         {

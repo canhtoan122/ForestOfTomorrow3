@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 5fc213cdf68117d4c8109a99c4300aa9, type: 3}
   isDefaultItem: 0
   itemPrice: 5
-  quantity: 1
+  quantity: 0
   equipSlot: 2
   armorModifier: 0
   damageModifier: 0

@@ -92,8 +92,26 @@ public class InventoryManagement : MonoBehaviour
     }
     public void AddMoney(Equipment equipment)
     {
-        equipment.quantity = 15;
+        equipment.quantity += 1;
         InventorySlot.isMoney = true;
+        if (items.Contains(equipment))
+        {
+            if (onItemChangedCallBack != null)
+            {
+                onItemChangedCallBack.Invoke();
+            }
+            return;
+        }
         Add(equipment);
+    }
+    public void CheckKey()
+    {
+        foreach (Item item in items)
+        {
+            if(item.itemName.ToString() == "Key")
+            {
+                Level1Controller.haveKey = true;
+            }
+        }
     }
 }

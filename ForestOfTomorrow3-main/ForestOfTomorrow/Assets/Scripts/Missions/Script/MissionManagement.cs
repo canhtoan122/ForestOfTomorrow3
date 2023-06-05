@@ -64,6 +64,19 @@ public class MissionManagement : MonoBehaviour
                 mission4Object.isActive = true;
             }
         }
+        else if(currentSceneName == "AP_Scene 4")
+        {
+            mission5Complete = true;
+            if (mission5Complete)
+            {
+                mission1Object.isActive = false;
+                mission2Object.isActive = false;
+                mission3Object.isActive = false;
+                mission4Object.isActive = false;
+                mission5Object.isActive = false;
+                mission6Object.isActive = true;
+            }
+        }
         
     }
     // Apply Main mission into the text and check if Mission 1 is Complete or not

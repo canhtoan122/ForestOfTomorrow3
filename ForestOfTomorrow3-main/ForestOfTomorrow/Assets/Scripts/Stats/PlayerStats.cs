@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStat
 {
+    #region Singleton
+    public static PlayerStats instance;
+    void Awake()
+    {
+        instance = this;
+
+    }
+    #endregion
+
     [SerializeField]
     private TMP_Text HPText;
     [SerializeField]
@@ -15,11 +24,14 @@ public class PlayerStats : CharacterStat
     public HealthBar healthBar;
     public RageBar rageBar;
     public GameObject healPotion;
+    private Animator animator;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+        currentHealth = maxHealth;
         EquipmentManager.instance.onEquipmentChanged += OnEquipmentChanged;
         HPText.text = currentHealth.ToString();
         AttackText.text = damage.GetValue().ToString();
@@ -82,6 +94,10 @@ public class PlayerStats : CharacterStat
             UpdateHealthBar();
             EquipmentManager.instance.DeleteHealPotion();
         }
+    }
+    public override void Die()
+    {
+        
     }
     private void Update()
     {

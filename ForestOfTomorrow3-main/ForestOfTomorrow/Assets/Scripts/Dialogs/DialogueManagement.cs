@@ -227,7 +227,7 @@ public class DialogueManagement : MonoBehaviour
             }
         }
     }
-    void EndDialogue()
+    public void EndDialogue()
     {
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == "Scene 3")

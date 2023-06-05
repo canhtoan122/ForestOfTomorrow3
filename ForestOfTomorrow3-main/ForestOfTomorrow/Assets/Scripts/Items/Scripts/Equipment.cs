@@ -13,7 +13,7 @@ public class Equipment : Item
 
     public override void Use()
     {
-        if(equipSlot.ToString() == "Currency")
+        if(equipSlot.ToString() == "Currency" || equipSlot.ToString() == "UseableItem")
         {
             return;
         }
@@ -29,4 +29,4 @@ public class Equipment : Item
     }
 }
 
-public enum EquipmentSlot { Helmet, Armor, HealPotion, Weapon, Ring, Shoe, Glove, Currency}
+public enum EquipmentSlot { Helmet, Armor, HealPotion, Weapon, Ring, Shoe, Glove, Currency, UseableItem}

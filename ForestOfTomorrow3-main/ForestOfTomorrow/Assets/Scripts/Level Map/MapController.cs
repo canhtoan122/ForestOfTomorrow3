@@ -70,6 +70,7 @@ public class MapController : MonoBehaviour
     public void DeActivateMap()
     {
         mapUI.SetActive(true);
+        ControllerUI.Instance.ActiveMovementUI(true);
     }
     public void Level1()
     {
@@ -77,6 +78,8 @@ public class MapController : MonoBehaviour
     }
     public void LoadLevel1()
     {
-        SceneManager.LoadScene("End of the Demo");
+        ControllerUI.Instance.ActiveAttackButton(true);
+        ControllerUI.Instance.ActiveInteractButton(false);
+        SceneManager.LoadScene("AP_Level 1");
     }
 }

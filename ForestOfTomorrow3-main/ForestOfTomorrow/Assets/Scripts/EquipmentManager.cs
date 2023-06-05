@@ -47,11 +47,12 @@ public class EquipmentManager : MonoBehaviour
     {
         if (!isUpdated)
         {
-            string sceneName = SceneManager.GetActiveScene().name;
-            if (sceneName == "Scene 3" || sceneName == "Scene 4")
-            {
-                UpdateInventory();
-            }
+            //string sceneName = SceneManager.GetActiveScene().name;
+            //if (sceneName == "Scene 3" || sceneName == "AP_Scene 4")
+            //{
+            //    UpdateInventory();
+            //}
+            UpdateInventory();
             isUpdated = true;
         }
     }
@@ -228,11 +229,13 @@ public class EquipmentManager : MonoBehaviour
     {
         playerAnimator.SetLayerWeight(0, 0);
         playerAnimator.SetLayerWeight(1, 1);
+        playerAnimator.SetBool("EquipSword", true);
     }
     public void UnequipWeaponLayer()
     {
         playerAnimator.SetLayerWeight(0, 1);
         playerAnimator.SetLayerWeight(1, 0);
+        playerAnimator.SetBool("EquipSword", false);
     }
 
 }

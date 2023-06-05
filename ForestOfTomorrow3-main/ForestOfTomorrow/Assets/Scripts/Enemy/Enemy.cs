@@ -46,7 +46,6 @@ public class Enemy : MonoBehaviour
     public GameObject npc;  // The NPC of the game after defeat the boss
     public GameObject door;     //  The door to the next level after defeat the boss
     public TapToContinue tapToContinue;
-    public Equipment money;    // The currency after defeat the boss
 
     private Animator animator;
     public int maxHealth = 100;
@@ -55,11 +54,12 @@ public class Enemy : MonoBehaviour
     private bool isPassable = false;
     private bool isDashingAway = false;
     private bool nearPlayer = false;
-    private bool playerDead = false;
     private bool longRangeAttack = false;
     public bool isInvulnerable = false;
     private bool finalAttack = false;
+    public static bool playerDead = false;
     public static bool bossDied = false;
+    public GameObject[] itemDrops;
 
     public enum MovementState { idle, running, attacking, dashingAway, rangeSlash}
     // Start is called before the first frame update
@@ -178,7 +178,16 @@ public class Enemy : MonoBehaviour
         bossHP.text = currentHealth.ToString();
         bossHPFill.SetHealth(currentHealth);
         //Play hurt animation
-        animator.SetTrigger("Hurt");
+        //animator.SetTrigger("Hurt");
+
+        // Check if boss is dead
+        if (currentHealth <= 0)
+        {
+            Die();
+            bossHP.gameObject.SetActive(false);
+            bossHPBar.SetActive(false);
+            menuButton.SetActive(true);
+        }
 
         // Boss is not attacking, so check if it should dash
         float dashawayProbability = 0.2f;
@@ -207,14 +216,6 @@ public class Enemy : MonoBehaviour
                 notification.SetTrigger("LongRangeAttack");
             }
         }
-
-        if (currentHealth <= 0)
-        {
-            Die();
-            bossHP.gameObject.SetActive(false);
-            bossHPBar.SetActive(false);
-            menuButton.SetActive(true);
-        }
     }
     public void Slash()
     {
@@ -228,6 +229,15 @@ public class Enemy : MonoBehaviour
         Rigidbody2D bulletRigidbody = clone.GetComponent<Rigidbody2D>();
         bulletRigidbody.velocity = direction * slashSpeed;
 
+        // Projectile face player
+        Vector2 playerDirection = Vector2.left;
+        float facingThreshold = 0.9f;
+        float dotProduct = Vector2.Dot(playerDirection, direction);
+        clone.GetComponent<Transform>().transform.Rotate(0f, 0f, -90f, Space.Self);
+        if (dotProduct >= facingThreshold)
+        {
+            clone.GetComponent<SpriteRenderer>().flipY = true;
+        }
     }
     public void FinalAttack()
     {
@@ -240,7 +250,7 @@ public class Enemy : MonoBehaviour
             player.GetComponent<PlayerStats>().TakeDamage(100);
         }
         // Update health bar
-        playerStats.UpdateHealthBar();
+        PlayerStats.instance.UpdateHealthBar();
         if (playerStats.currentHealth <= 0)
         {
             PlayerDie();
@@ -257,7 +267,7 @@ public class Enemy : MonoBehaviour
             //Damage them
             player.GetComponent<PlayerStats>().TakeDamage(50);
             // Update health bar
-            playerStats.UpdateHealthBar();
+            PlayerStats.instance.UpdateHealthBar();
             if (playerStats.currentHealth <= 0)
             {
                 PlayerDie();
@@ -271,7 +281,6 @@ public class Enemy : MonoBehaviour
     }
     public void DamagePlayer(int Damage)
     {
-        
         if (!playerDead)
         {
             // Detect enemy in range of attack
@@ -283,9 +292,9 @@ public class Enemy : MonoBehaviour
             {
                 player.GetComponent<PlayerStats>().TakeDamage(Damage);
             }
-            
+
             // Update health bar
-            playerStats.UpdateHealthBar();
+            PlayerStats.instance.UpdateHealthBar();
             if (playerStats.currentHealth <= 0)
             {
                 PlayerDie();
@@ -308,10 +317,11 @@ public class Enemy : MonoBehaviour
         }
 
         // Disable the player
-        player.GetComponent<Collider2D>().enabled = false;
-        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         playerDead = true;
     }
+    
     public void EndDashAway()
     {
         isDashingAway = false;
@@ -333,10 +343,18 @@ public class Enemy : MonoBehaviour
         door.SetActive(true);
 
         //  Add some money into player inventory
-        InventoryManagement.instance.AddMoney(money);
+        StartCoroutine(itemDrop());
 
         //  Update mission
         MissionManagement.mission5Complete = true;
+    }
+    IEnumerator itemDrop()
+    {
+        for (int i = 0; i < itemDrops.Length; i++)
+        {
+            Instantiate(itemDrops[i], transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            yield return new WaitForSeconds(0.3f);
+        }
     }
     public void TriggerEndBossDialogue()
     {

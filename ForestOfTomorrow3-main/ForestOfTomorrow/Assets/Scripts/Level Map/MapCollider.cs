@@ -17,7 +17,7 @@ public class MapCollider : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            mapController.ActivateMap();
+            mapController.DeactivateMap();
         }
     }
 }

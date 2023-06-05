@@ -17,7 +17,7 @@ public class NPCIdle : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (sceneName == "Scene 4")
+        if (sceneName == "AP_Scene 4")
         {
             return;
         }
