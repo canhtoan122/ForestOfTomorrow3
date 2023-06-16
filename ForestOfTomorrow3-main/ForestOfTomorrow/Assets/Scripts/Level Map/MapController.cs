@@ -9,8 +9,10 @@ public class MapController : MonoBehaviour
     public GameObject gameInstruction;
     public GameObject playerPosition;
     public GameObject mapUI;
+    public GameObject homeButton;
     public GameObject level1Button;
     public Sprite currentLevelButton;
+    public Sprite homeLevelButton;
 
     private bool gameInstructionFinish = false;
 
@@ -27,7 +29,7 @@ public class MapController : MonoBehaviour
     private void Start()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        if(sceneName == "Scene 4")
+        if(sceneName == "AP_Scene 4")
         {
             gameInstruction.SetActive(true);
         }
@@ -72,9 +74,19 @@ public class MapController : MonoBehaviour
         mapUI.SetActive(true);
         ControllerUI.Instance.ActiveMovementUI(true);
     }
+    public void LoadHome()
+    {
+        TapToContinue.playerDie = false;
+        ControllerUI.Instance.ActiveAttackButton(true);
+        ControllerUI.Instance.ActiveInteractButton(false);
+        SceneManager.LoadScene("AP_Scene 4");
+    }
     public void Level1()
     {
+        homeButton.GetComponent<Image>().sprite = homeLevelButton;
+        homeButton.GetComponent<Button>().interactable = true;
         level1Button.GetComponent<Image>().sprite = currentLevelButton;
+        level1Button.GetComponent<Button>().interactable = true;
     }
     public void LoadLevel1()
     {

@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.3
+  m_fontSize: 32.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1193,10 +1193,10 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 33.07196, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &369885027788606403
@@ -4023,7 +4023,7 @@ GameObject:
   - component: {fileID: 1336908001143465825}
   - component: {fileID: 3341671767273215171}
   m_Layer: 5
-  m_Name: Level 3
+  m_Name: Level 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4126,7 +4126,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1336908001143465825}
   m_OnClick:
     m_PersistentCalls:
@@ -7485,7 +7485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10480,7 +10480,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 33.07184, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 1
@@ -11530,7 +11530,7 @@ GameObject:
   - component: {fileID: 4445782351785049532}
   - component: {fileID: 3289556484176848608}
   m_Layer: 5
-  m_Name: Level 5
+  m_Name: Level 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11633,7 +11633,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4445782351785049532}
   m_OnClick:
     m_PersistentCalls:
@@ -14593,7 +14593,7 @@ GameObject:
   - component: {fileID: 8174315459032782806}
   - component: {fileID: 7200067123073662586}
   m_Layer: 5
-  m_Name: Level 2
+  m_Name: Level 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14696,7 +14696,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 8174315459032782806}
   m_OnClick:
     m_PersistentCalls:
@@ -15907,7 +15907,7 @@ GameObject:
   - component: {fileID: 3862431125576408791}
   - component: {fileID: 8629705288514387872}
   m_Layer: 5
-  m_Name: Level 4
+  m_Name: Level 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16010,7 +16010,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 3862431125576408791}
   m_OnClick:
     m_PersistentCalls:
@@ -16732,7 +16732,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -16796,7 +16796,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4570445634080701083
@@ -21185,7 +21185,7 @@ GameObject:
   - component: {fileID: 2895440144167794967}
   - component: {fileID: 1848608744174488034}
   m_Layer: 5
-  m_Name: Level 1
+  m_Name: Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21288,7 +21288,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2895440144167794967}
   m_OnClick:
     m_PersistentCalls:
@@ -21628,7 +21628,7 @@ GameObject:
   - component: {fileID: 5766114146306054855}
   - component: {fileID: 1607906125993809960}
   m_Layer: 5
-  m_Name: Level 6
+  m_Name: Level 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21731,7 +21731,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 5766114146306054855}
   m_OnClick:
     m_PersistentCalls:
@@ -23770,13 +23770,13 @@ MonoBehaviour:
   m_text: I'm so glad you come here! Follow me to meet my gurus and try to practice.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 7251522843833804115, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 0
   m_fontColor: {r: 0, g: 0, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -23794,7 +23794,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.25
+  m_fontSize: 30.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -25521,7 +25521,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2594926350249464358}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Level1Controller, Assembly-CSharp
+        m_MethodName: AcceptSideQuest1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7784461698852470748
 GameObject:
   m_ObjectHideFlags: 0
@@ -30011,7 +30023,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4d7300075948c9e4185819ae9301a896, type: 2}
   - {fileID: 11400000, guid: 7295157869edcbd40aa5f219758edb57, type: 2}
   - {fileID: 11400000, guid: caff9bdf82122ac418875de79bb1b552, type: 2}
+  - {fileID: 11400000, guid: f16d1053cad356c499cd9bf27f331b23, type: 2}
+  sideQuestList:
+  - {fileID: 11400000, guid: e0e86360520721f44982f5091ef432b5, type: 2}
   mainMission: {fileID: 11400000, guid: 80686dd624aaacd4c8075b9e5b3d238c, type: 2}
+  sideQuest: {fileID: 11400000, guid: e9f71c63078d76d4e82aab4f1f9ebba4, type: 2}
   missionText: {fileID: 8959684013280326313}
   mission1Object: {fileID: 11400000, guid: 7b0ec82f77961344d8eb9701a571f435, type: 2}
   mission2Object: {fileID: 11400000, guid: 008d95d6444581044ab8900ab116e408, type: 2}
@@ -30019,6 +30035,7 @@ MonoBehaviour:
   mission4Object: {fileID: 11400000, guid: 4d7300075948c9e4185819ae9301a896, type: 2}
   mission5Object: {fileID: 11400000, guid: 7295157869edcbd40aa5f219758edb57, type: 2}
   mission6Object: {fileID: 11400000, guid: caff9bdf82122ac418875de79bb1b552, type: 2}
+  mission7Object: {fileID: 11400000, guid: f16d1053cad356c499cd9bf27f331b23, type: 2}
 --- !u!95 &4865622404211565532
 Animator:
   serializedVersion: 5
@@ -32880,13 +32897,13 @@ MonoBehaviour:
   m_text: Warior
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 7251522843833804115, guid: 09fdec852698b7040afe5680786d5f5e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 255
   m_fontColor: {r: 1, g: 0, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -32904,7 +32921,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 30.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

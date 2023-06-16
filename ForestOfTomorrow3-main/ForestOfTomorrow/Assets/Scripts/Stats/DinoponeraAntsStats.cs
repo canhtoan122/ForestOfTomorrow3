@@ -17,18 +17,24 @@ public class DinoponeraAntsStats : AntStats
     {
         base.Die();
         // Disable the enemy
-        this.GetComponent<Animator>().SetBool("isDead", true);
+        this.GetComponent<Animator>().SetTrigger("isDead");
         this.GetComponent<Collider2D>().enabled = false;
         this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        this.GetComponentInChildren<Canvas>().enabled = false;
 
         //  Add some money into player inventory
         StartCoroutine(itemDrop());
     }
     IEnumerator itemDrop()
     {
-        for (int i = 0; i < itemDrops.Length; i++)
+        int minItems = 1; // Minimum number of items to drop
+        int maxItems = 5; // Maximum number of items to drop
+        int numItems = Random.Range(minItems, maxItems + 1); // Randomly determine the number of items to drop
+
+        for (int i = 0; i < numItems; i++)
         {
-            Instantiate(itemDrops[i], transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            int randomIndex = Random.Range(0, itemDrops.Length); // Randomly select an index from the itemDrops array
+            Instantiate(itemDrops[randomIndex], transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             yield return new WaitForSeconds(0.3f);
         }
     }

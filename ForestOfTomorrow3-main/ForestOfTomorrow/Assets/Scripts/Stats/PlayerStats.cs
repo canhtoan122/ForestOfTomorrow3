@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : CharacterStat
 {
@@ -38,7 +39,11 @@ public class PlayerStats : CharacterStat
         DefenceText.text = armor.GetValue().ToString();
 
         healthBar.SetMaxHealth(maxHealth);
-        
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "AP_Level 1")
+        {
+            //transform.position = Level1Controller.lastCheckPointPosition;
+        }
     }
     void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
     {
@@ -97,7 +102,7 @@ public class PlayerStats : CharacterStat
     }
     public override void Die()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     private void Update()
     {

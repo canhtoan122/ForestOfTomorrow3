@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
     public static bool bossDied = false;
     public GameObject[] itemDrops;
 
-    public enum MovementState { idle, running, attacking, dashingAway, rangeSlash}
+    public enum MovementState { idle, running, attacking, dashingAway}
     // Start is called before the first frame update
     void Start()
     {
@@ -303,7 +303,6 @@ public class Enemy : MonoBehaviour
     }
     public void PlayerDie()
     {
-        Debug.Log("Player died!");
 
         // Die animation
         bool isEquipSword = playerAnimation.GetBool("EquipSword");

@@ -14,10 +14,10 @@ public class SpittingAntsMove : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        spittingAntsController.Patrol();
         spittingAntsController.DetectPlayer();
         spittingAntsController.KeepDistance();
         spittingAntsController.AttackingPlayer();
-        spittingAntsController.Patrol();
         spittingAntsController.UpdateMovementAnimation();
     }
 }

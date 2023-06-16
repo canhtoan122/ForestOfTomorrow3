@@ -17,7 +17,19 @@ public class MenuButtonManagement : MonoBehaviour
 
     private string sceneName;
     private bool isActivate = false;
+    private bool isPaused = false;
 
+
+    private void OnEnable()
+    {
+        // Subscribe to the application pause event
+        Application.focusChanged += OnApplicationFocus;
+    }
+    private void OnDisable()
+    {
+        // Unsubscribe from the application pause event
+        Application.focusChanged -= OnApplicationFocus;
+    }
     public void MenuButton()
     {
         if (!isActivate)
@@ -47,9 +59,36 @@ public class MenuButtonManagement : MonoBehaviour
         data.SceneName = sceneName;
         SceneManager.LoadScene("Main menu");
     }
-    public void OnApplicationQuit()
+    private void OnApplicationFocus(bool hasFocus)
     {
+        if (!hasFocus)
+        {
+            // The game is being paused
+            PauseGame();
+        }
+        else
+        {
+            // The game is being resumed
+            ResumeGame();
+        }
+    }
+
+    private void PauseGame()
+    {
+        // Pause game logic
+        Time.timeScale = 0f;
+        isPaused = true;
         sceneName = SceneManager.GetActiveScene().name;
         data.SceneName = sceneName;
+    }
+
+    private void ResumeGame()
+    {
+        if (isPaused)
+        {
+            // Resume game logic
+            Time.timeScale = 1f;
+            isPaused = false;
+        }
     }
 }

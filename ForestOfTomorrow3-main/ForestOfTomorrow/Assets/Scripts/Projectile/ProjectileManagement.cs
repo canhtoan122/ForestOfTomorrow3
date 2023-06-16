@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileManagement : MonoBehaviour
 {
-    public int slashDamage;
+    
     public static bool isSlash = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {

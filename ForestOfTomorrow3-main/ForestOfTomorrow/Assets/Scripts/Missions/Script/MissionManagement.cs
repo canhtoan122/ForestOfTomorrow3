@@ -7,14 +7,23 @@ using UnityEngine.UI;
 
 public class MissionManagement : MonoBehaviour
 {
-    private static MissionManagement instance;
+    #region Singleton
+    public static MissionManagement instance;
+    public void Awake()
+    {
+        instance = this;
+    }
+    #endregion
     public static bool mission1Complete = false;
     public static bool mission2Complete = false;
     public static bool mission3Complete = false;
     public static bool mission4Complete = false;
     public static bool mission5Complete = false;
+    public static bool mission6Complete = false;
     public List<Mission> missionList;
+    public List<Mission> sideQuestList;
     public Mission mainMission;
+    public Mission sideQuest;
 
     private string currentSceneName;
     private Animator anim;
@@ -32,8 +41,11 @@ public class MissionManagement : MonoBehaviour
     [SerializeField]
     private Mission mission5Object;
     [SerializeField]
-    private Mission mission6Object;
+    private Mission mission6Object; 
+    [SerializeField]
+    private Mission mission7Object;
 
+    private bool sideQuestIsActive = false; 
 
     // Main Mission active based on isActive bool is true or not
     private void Start()
@@ -77,18 +89,38 @@ public class MissionManagement : MonoBehaviour
                 mission6Object.isActive = true;
             }
         }
-        
+        else if (currentSceneName == "AP_Level 1")
+        {
+            mission6Complete = true;
+            if (mission5Complete)
+            {
+                mission1Object.isActive = false;
+                mission2Object.isActive = false;
+                mission3Object.isActive = false;
+                mission4Object.isActive = false;
+                mission5Object.isActive = false;
+                mission6Object.isActive = false;
+                mission7Object.isActive = true;
+            }
+        }
+
     }
     // Apply Main mission into the text and check if Mission 1 is Complete or not
     private void Update()
     {
+        if(sideQuestIsActive)
+        {
+            missionText.text = sideQuest.MissionTitle;
+            UpdateSideQuest();
+            return;
+        }
         missionText.text = mainMission.MissionTitle;
         if (mission1Complete)
         {
             mission1Object.isActive = false;
             anim.SetBool("IsCompleted", true);
         }
-        else if(mission2Complete)
+        else if (mission2Complete)
         {
             mission2Object.isActive = false;
             anim.SetBool("IsCompleted", true);
@@ -98,14 +130,19 @@ public class MissionManagement : MonoBehaviour
             mission3Object.isActive = false;
             anim.SetBool("IsCompleted", true);
         }
-        else if(mission4Complete)
+        else if (mission4Complete)
         {
             mission4Object.isActive = false;
             anim.SetBool("IsCompleted", true);
         }
-        else if(mission5Complete)
+        else if (mission5Complete)
         {
             mission5Object.isActive = false;
+            anim.SetBool("IsCompleted", true);
+        }
+        else if (mission6Complete)
+        {
+            mission6Object.isActive = false;
             anim.SetBool("IsCompleted", true);
         }
         UpdateMainMission();
@@ -121,6 +158,22 @@ public class MissionManagement : MonoBehaviour
                 mainMission.MissionDescription = mission.MissionDescription;
                 mainMission.MissionType = mission.MissionType;
                 mainMission.MissionProgress = mission.MissionProgress;
+                // add any other information you want to transfer here
+                break;
+            }
+        }
+    }
+    // Create a Side Quest that override Main Mission for all the mission
+    public void UpdateSideQuest()
+    {
+        foreach (Mission mission in sideQuestList)
+        {
+            if (mission.isActive)
+            {
+                sideQuest.MissionTitle = mission.MissionTitle;
+                sideQuest.MissionDescription = mission.MissionDescription;
+                sideQuest.MissionType = mission.MissionType;
+                sideQuest.MissionProgress = mission.MissionProgress;
                 // add any other information you want to transfer here
                 break;
             }
@@ -165,6 +218,16 @@ public class MissionManagement : MonoBehaviour
             mission5Complete = false;
             anim.SetBool("IsCompleted", false);
         }
+        else if (mission6Complete)
+        {
+            mission7Object.isActive = true;
+            missionText.text = mainMission.MissionTitle;
+            mission6Complete = false;
+            anim.SetBool("IsCompleted", false);
+        }
     }
-
+    public void ActivateSideQuest()
+    {
+        sideQuestIsActive = true;
+    }
 }

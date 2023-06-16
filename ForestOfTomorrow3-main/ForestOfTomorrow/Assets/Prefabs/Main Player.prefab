@@ -64,8 +64,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5957760428127058042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.99, y: -1.85, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 44.36, y: -1.85, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5908242468024096921}
@@ -112,10 +112,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 5829df16fe1889f418f0c12121b46fb7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.8475, y: 4.315}
@@ -160,20 +160,25 @@ MonoBehaviour:
   dashSpeed: 20
   dashDistance: 15
   dashDuration: 1
-  dashCooldown: 1
+  flashCount: 3
+  flashDuration: 0.5
+  flashAlpha: 0
+  playerSpinSprite: {fileID: 21300000, guid: 4d85d804498aab940a51ef977b65b5ea, type: 3}
+  spinSpeed: 500
+  targetRotation: 360
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  attackRange: 0.5
+  attackRange: 1
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
   attackRate: 2
-  moveSFX: {fileID: 0}
-  jumpSFX: {fileID: 0}
-  dashSFX: {fileID: 0}
-  attackSFX: {fileID: 0}
-  attackPoint: {fileID: 0}
+  moveSFX: {fileID: 8300000, guid: 3f3042193b3f9634bbc63f865f697525, type: 3}
+  jumpSFX: {fileID: 8300000, guid: 8b398098c725c3d48b13de16bcd4ffec, type: 3}
+  dashSFX: {fileID: 8300000, guid: 4766f444b5d537b4dbc34ca6d015adc7, type: 3}
+  attackSFX: {fileID: 8300000, guid: 3656ee59a7269d2489d71fd43f41edd7, type: 3}
+  attackPoint: {fileID: 5908242468024096921}
 --- !u!95 &8835465444453012690
 Animator:
   serializedVersion: 5
@@ -208,7 +213,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0068444908, y: -0.027392507}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -219,7 +224,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7076923, y: 3.2307692}
+  m_Size: {x: 1.2968142, y: 3.1348975}
   m_EdgeRadius: 0
 --- !u!82 &5245610242458573982
 AudioSource:
@@ -332,7 +337,8 @@ MonoBehaviour:
   dialogue:
     name: Warior
     sentences:
-    - OK!
+    - Let's go to the dojo!
+    - I'm late for the training!
 --- !u!114 &5446916777282045304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,8 +375,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: 
-    sentences: []
+    name: "B\u1EA1n"
+    sentences:
+    - "Tu\xE2n l\u1EC7nh!"
   dialogue2:
     name: 
     sentences: []

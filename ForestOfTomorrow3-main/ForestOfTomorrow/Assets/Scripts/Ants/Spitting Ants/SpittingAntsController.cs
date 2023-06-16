@@ -12,12 +12,14 @@ public class SpittingAntsController : MonoBehaviour
     public float moveSpeed = 5f;    // The move speed of the enemy
     public PlayerStats playerStats; //  Get the player stat to apply curent damage
     public LayerMask playerLayer;  // The layer that the player is on
+    public LineRenderer lineRenderer;
+
     public List<Transform> patrolPoints = new List<Transform>();    // The patrol point when enemy patrol
     private Animator animator;   // The animation of Dinoponera Ants
     private SpittingAntsStats spittingAntsStats;    // Get The Dinoponera Ants Stats like damage, armor,...
 
 
-    public static bool playerDetected = false;  // Whether the player is detected or not
+    private bool playerDetected = false;  // Whether the player is detected or not
     private bool nearPlayer = false; // Whether the player is in the attack range or not
     private int currentPatrolIndex = 0; // The current patrol point
 
@@ -118,10 +120,10 @@ public class SpittingAntsController : MonoBehaviour
             {
                 nearPlayer = true;
             }
-            else
-            {
-                nearPlayer = false;
-            }
+        }
+        else
+        {
+            nearPlayer = false;
         }
     }
     // Draw the detection range gizmo in the editor for debugging purposes
@@ -134,7 +136,7 @@ public class SpittingAntsController : MonoBehaviour
         if (attackPoint == null)
             return;
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
     public void FaceTarget()
     {
@@ -149,11 +151,44 @@ public class SpittingAntsController : MonoBehaviour
         if (dotProduct >= facingThreshold)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+            transform.Rotate(0f, 0f, 0f);
         }
         else
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<SpriteRenderer>().flipX = true;
+            transform.Rotate(0f, 180f, 0f);
         }
+    }
+    public void ShootLaze()
+    {
+        StartCoroutine(Shoot());
+    }
+    IEnumerator Shoot()
+    {
+        RaycastHit2D hitInfo = Physics2D.Raycast(attackPoint.position, attackPoint.right);
+
+        if (hitInfo)
+        {
+            PlayerStats player = hitInfo.transform.GetComponent<PlayerStats>();
+            if(player != null)
+            {
+                yield return new WaitForSeconds(1f);
+                DamagePlayer();
+            }
+            lineRenderer.SetPosition(0, attackPoint.position);
+            lineRenderer.SetPosition(1, hitInfo.point);
+        }
+        else
+        {
+            lineRenderer.SetPosition(0, attackPoint.position);
+            lineRenderer.SetPosition(1, attackPoint.position + attackPoint.right * 100);
+        }
+        lineRenderer.enabled = true;
+
+        // wait one frame
+        yield return new WaitForSeconds(0.2f);
+
+        lineRenderer.enabled = false;
     }
     public void DamagePlayer()
     {
@@ -169,6 +204,11 @@ public class SpittingAntsController : MonoBehaviour
 
         // Update health bar
         PlayerStats.instance.UpdateHealthBar();
+
+        if (playerStats.currentHealth <= 0)
+        {
+            playerStats.Die();
+        }
     }
     public void UpdateMovementAnimation()
     {

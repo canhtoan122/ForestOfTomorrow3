@@ -13,12 +13,18 @@ public class MenuPanelController : MonoBehaviour
     }
     public void OpenMissionUI()
     {
+        // Pause game logic
+        Time.timeScale = 0f;
+
         ControllerUI.Instance.ActiveMovementUI(false);
         missionUI.SetActive(true);
         anim.SetBool("IsSlidingIn", false);
     }
     public void CloseMissionUI()
     {
+        // Pause game logic
+        Time.timeScale = 1f;
+
         ControllerUI.Instance.ActiveMovementUI(true);
         missionUI.SetActive(false);
     }

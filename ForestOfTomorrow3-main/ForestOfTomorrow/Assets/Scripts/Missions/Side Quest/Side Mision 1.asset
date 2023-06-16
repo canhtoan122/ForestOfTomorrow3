@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac13b592a068c248ade328f4a482eea, type: 3}
+  m_Name: Side Mision 1
+  m_EditorClassIdentifier: 
+  isActive: 1
+  MissionTitle: "Gi\u1EA3i c\u1EE9u c\xF4 g\xE1i b\u1ECB n\u1EA1n"
+  MissionDescription: "Khi b\u1EA1n \u0111ang \u0111i s\xE2u h\u01A1n v\xE0o hang
+    \u1EDF c\u1EE7a qu\xE1i v\u1EADt th\xEC b\u1EA1n g\u1EB7p 1 con qu\xE1i v\u1EADt
+    r\u1EA5t m\u1EA1nh \u0111ang t\u1EA5n c\xF4ng 1 c\xF4 g\xE1i. B\u1EA1n quy\u1EBFt
+    \u0111\u1ECBnh c\xF3 c\u1EE9u c\xF4 g\xE1i \u0111\xF3 ko?"
+  MissionType: "Nhi\u1EC7m v\u1EE5 ph\u1EE5"
+  MissionProgress: "Gi\u1EA3i c\u1EE9u c\xF4 g\xE1i b\u1ECB n\u1EA1n"
+  objectiveDescriptions: []

@@ -141,10 +141,15 @@ public class DinoponeraAntsController : MonoBehaviour
     }
     public void DamagePlayer()
     {
+        StartCoroutine(Damage());
+    }
+    IEnumerator Damage()
+    {
         // Detect enemy in range of attack
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
 
         int damage = dinoponeraAntsStats.damage.GetStat();
+        yield return new WaitForSeconds(1f);
         //Damage them
         foreach (Collider2D player in hitPlayer)
         {
@@ -153,6 +158,10 @@ public class DinoponeraAntsController : MonoBehaviour
 
         // Update health bar
         PlayerStats.instance.UpdateHealthBar();
+        if (playerStats.currentHealth <= 0)
+        {
+            playerStats.Die();
+        }
     }
     public void UpdateMovementAnimation()
     {

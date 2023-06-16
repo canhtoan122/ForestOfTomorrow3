@@ -52,6 +52,9 @@ public class ItemManagement : MonoBehaviour
     }
     public void OpenInventory()
     {
+        // Pause game logic
+        Time.timeScale = 0f;
+
         ControllerUI.Instance.ActiveMovementUI(false);
         inventoryUI.SetActive(true);
         anim.SetBool("IsSlidingIn", false);
@@ -63,6 +66,9 @@ public class ItemManagement : MonoBehaviour
     }
     public void CloseInventory()
     {
+        // Pause game logic
+        Time.timeScale = 1f;
+
         ControllerUI.Instance.ActiveMovementUI(true);
         inventoryUI.SetActive(false);
     }

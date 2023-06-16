@@ -31,11 +31,6 @@ public class CharacterStat : MonoBehaviour
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
         currentHealth -= damage;
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
     }
     public virtual void Die()
     {

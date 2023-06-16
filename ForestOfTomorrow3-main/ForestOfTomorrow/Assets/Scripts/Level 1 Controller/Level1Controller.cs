@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Level1Controller : MonoBehaviour
@@ -13,18 +15,30 @@ public class Level1Controller : MonoBehaviour
     public Equipment key;
     public GameObject behindDoorbG;
     public GameObject player;
-    public float moveSpeed = 5f;
+    public GameObject mapUI;
+    public GameObject homeButton;
+    public GameObject level1Button;
+    public Sprite currentLevelButton;
+    public Sprite homeLevelButton;
+    public GameObject sideQuestUI;
+    public GameObject sideQuestText;
+    public Mission sideQuest;
+    public Mission sideQuest1;
 
     public static bool haveKey = false;
-
+    public static Vector2 lastCheckPointPosition;
     private void OnEnable()
     {
         ControllerUI.Instance.OnInteractTriggered += PickUpKey;
+        ControllerUI.Instance.OnInteractTriggered += OpenDoor;
+        ControllerUI.Instance.OnInteractTriggered += ActivateMap;
     }
 
     private void OnDisable()
     {
         ControllerUI.Instance.OnInteractTriggered -= PickUpKey;
+        ControllerUI.Instance.OnInteractTriggered -= OpenDoor;
+        ControllerUI.Instance.OnInteractTriggered -= ActivateMap;
     }
     public void PickUpKey()
     {
@@ -35,8 +49,16 @@ public class Level1Controller : MonoBehaviour
     public void OpenDoor()
     {
         ControllerUI.Instance.ActiveAttackButton(false);
-        ControllerUI.Instance.SetInteractState(EInteractState.OPENLEVEL1);
+        ControllerUI.Instance.SetInteractState(EInteractState.OPEN);
         ControllerUI.Instance.ActiveInteractButton(true);
+    }
+
+    public void OpenTeleportPortal()
+    {
+        ControllerUI.Instance.ActiveAttackButton(false);
+        ControllerUI.Instance.SetInteractState(EInteractState.ACTIVEMAP);
+        ControllerUI.Instance.ActiveInteractButton(true);
+        LoadLevel();
     }
     public void PickUpKey(EInteractState interactState)
     {
@@ -45,7 +67,10 @@ public class Level1Controller : MonoBehaviour
             InventoryManagement.instance.Add(key);
             keyGameObject.SetActive(false);
         }
-        else if(interactState == EInteractState.OPENLEVEL1)
+    }
+    public void OpenDoor(EInteractState interactState)
+    {
+        if (interactState == EInteractState.OPEN)
         {
             InventoryManagement.instance.CheckKey();
             if (haveKey)
@@ -58,6 +83,27 @@ public class Level1Controller : MonoBehaviour
                 haveKey = false;
             }
         }
+    }
+    public void ActivateMap(EInteractState interactState)
+    {
+        if(interactState != EInteractState.ACTIVEMAP)
+        {
+            return;
+        }
+        ControllerUI.Instance.ActiveMovementUI(false);
+        mapUI.SetActive(true);
+    }
+    public void DeActiveMap()
+    {
+        ControllerUI.Instance.ActiveMovementUI(true);
+        mapUI.SetActive(false);
+    }
+    public void CloseTeleportPortal()
+    {
+        ControllerUI.Instance.ActiveMovementUI(true);
+        ControllerUI.Instance.ActiveAttackButton(true);
+        ControllerUI.Instance.SetInteractState(EInteractState.NONE);
+        ControllerUI.Instance.ActiveInteractButton(false);
     }
     public void NotPickUpKey()
     {
@@ -73,5 +119,45 @@ public class Level1Controller : MonoBehaviour
         ControllerUI.Instance.SetInteractState(EInteractState.NONE);
         ControllerUI.Instance.ActiveInteractButton(false);
     }
-    
+    public void LoadLevel()
+    {
+        homeButton.GetComponent<Image>().sprite = homeLevelButton;
+        homeButton.GetComponent<Button>().interactable = true;
+        level1Button.GetComponent<Image>().sprite = currentLevelButton;
+        level1Button.GetComponent<Button>().interactable = true;
+    }
+    public void Level1()
+    {
+        ControllerUI.Instance.ActiveAttackButton(true);
+        ControllerUI.Instance.ActiveInteractButton(false);
+        SceneManager.LoadScene("AP_Level 1");
+    }
+    public void Home()
+    {
+        TapToContinue.playerDie = false;
+        ControllerUI.Instance.ActiveAttackButton(true);
+        ControllerUI.Instance.ActiveInteractButton(false);
+        SceneManager.LoadScene("AP_Scene 4");
+    }
+    public void ActivateSideQuest1()
+    {
+        Time.timeScale = 0f;
+        sideQuestUI.SetActive(true);
+        sideQuest1.isActive = true;
+        sideQuest.MissionTitle = sideQuest1.MissionTitle;
+        sideQuest.MissionDescription = sideQuest1.MissionDescription;
+        sideQuest.MissionType = sideQuest1.MissionType;
+        sideQuest.MissionProgress = sideQuest1.MissionProgress;
+        sideQuestText.GetComponent<TMP_Text>().text = sideQuest.MissionTitle;
+    }
+    public void AcceptSideQuest1()
+    {
+        Time.timeScale = 1f;
+        sideQuestUI.SetActive(false);
+    }
+    public void DeclineSideQuest1()
+    {
+        Time.timeScale = 1f;
+        sideQuestUI.SetActive(false);
+    }
 }
