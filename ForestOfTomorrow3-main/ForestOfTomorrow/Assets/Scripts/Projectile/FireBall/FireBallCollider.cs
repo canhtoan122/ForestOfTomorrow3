@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FireBallCollider : MonoBehaviour
 {
+    public float attackRange;
+    public LayerMask player;
     private Rigidbody2D rb;
     private Animator animator;
     private void Start()
@@ -17,6 +19,7 @@ public class FireBallCollider : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             StartCoroutine(Explode());
+            CarpenterAntsStat.instance.DamagePlayer(this.transform, attackRange, player);
         }
         if (collision.gameObject.tag == "Terrain")
         {
@@ -34,5 +37,9 @@ public class FireBallCollider : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
         Destroy(this.gameObject);
     }
-
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
 }

@@ -387,6 +387,8 @@ MonoBehaviour:
     baseValue: 5
   healthBar: {fileID: 4719963984092946541}
   itemDrops:
+  - {fileID: 6601154419367433606, guid: 4b93c4a8215b0ea4582bddc1afa1fe02, type: 3}
+  moneyDrops:
   - {fileID: 6271586779104007996, guid: a4266edee9e9ac2498698f6445bbcc8b, type: 3}
 --- !u!1 &4719963983691338899
 GameObject:

@@ -20,6 +20,10 @@ public class DialogueManagement : MonoBehaviour
     [SerializeField]
     private TMP_Text NPCDialog;
     [SerializeField]
+    private TMP_Text HienName;
+    [SerializeField]
+    private TMP_Text HienDialog;
+    [SerializeField]
     private PlayerDialogueTrigger playerDialogueTrigger;
     [SerializeField]
     private PlayerEndBossDialogueTrigger playerEndBossDialogueTrigger;
@@ -27,6 +31,8 @@ public class DialogueManagement : MonoBehaviour
     private MasterEndBossDialogueTrigger masterEndBossDialogueTrigger;
     [SerializeField]
     private NPCDialogueTrigger NPCDialogueTrigger;
+    [SerializeField]
+    private HienDialogTrigger HienDialogueTrigger;
     [SerializeField]
     private GameObject tutorialPanel;
     [SerializeField]
@@ -206,6 +212,28 @@ public class DialogueManagement : MonoBehaviour
 
         string sentence = sentences.Dequeue();
         NPCDialog.text = sentence;
+    }
+    public void StartHienDialogue(Dialogue dialogue)
+    {
+        HienDialog.text = dialogue.name;
+
+        sentences.Clear();
+
+        foreach (string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+        HienDisplayNextSentence();
+    }
+    public void HienDisplayNextSentence()
+    {
+        if (sentences.Count == 0)
+        {
+            return;
+        }
+
+        string sentence = sentences.Dequeue();
+        HienDialog.text = sentence;
     }
     public void EndBossDialogue()
     {

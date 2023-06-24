@@ -238,6 +238,7 @@ public class Enemy : MonoBehaviour
         {
             clone.GetComponent<SpriteRenderer>().flipY = true;
         }
+        PlayerController.isVulnerable = false;
     }
     public void FinalAttack()
     {
@@ -256,14 +257,13 @@ public class Enemy : MonoBehaviour
             PlayerDie();
         }
         finalAttack = false;
+        PlayerController.isVulnerable = true;
     }
     public void ApplyDamage()
     {
         bool isSlash = ProjectileManagement.isSlash;
         if (isSlash)
         {
-            //  Play animation hurt
-            playerAnimation.SetTrigger("Hurt");
             //Damage them
             player.GetComponent<PlayerStats>().TakeDamage(50);
             // Update health bar

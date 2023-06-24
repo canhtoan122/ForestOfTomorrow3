@@ -24,14 +24,24 @@ public class Level1Controller : MonoBehaviour
     public GameObject sideQuestText;
     public Mission sideQuest;
     public Mission sideQuest1;
+    public HienDialogTrigger hienDialogTrigger;
+    public GameObject dialogPanel;
+    public GameObject masterDialog;
+    public GameObject playerDialog;
+    public AudioSource playerAudio;
+    public GameObject[] bushDrops;
+    public GameObject[] rockDrops;
 
+    private Transform tempPosition; 
+    private GameObject tempgameObject;
     public static bool haveKey = false;
     public static Vector2 lastCheckPointPosition;
     private void OnEnable()
     {
         ControllerUI.Instance.OnInteractTriggered += PickUpKey;
         ControllerUI.Instance.OnInteractTriggered += OpenDoor;
-        ControllerUI.Instance.OnInteractTriggered += ActivateMap;
+        ControllerUI.Instance.OnInteractTriggered += ActivateMap; 
+        ControllerUI.Instance.OnInteractTriggered += PickUpItem;
     }
 
     private void OnDisable()
@@ -39,6 +49,7 @@ public class Level1Controller : MonoBehaviour
         ControllerUI.Instance.OnInteractTriggered -= PickUpKey;
         ControllerUI.Instance.OnInteractTriggered -= OpenDoor;
         ControllerUI.Instance.OnInteractTriggered -= ActivateMap;
+        ControllerUI.Instance.OnInteractTriggered -= PickUpItem;
     }
     public void PickUpKey()
     {
@@ -96,6 +107,7 @@ public class Level1Controller : MonoBehaviour
     public void DeActiveMap()
     {
         ControllerUI.Instance.ActiveMovementUI(true);
+        ControllerUI.Instance.SetInteractState(EInteractState.NONE);
         mapUI.SetActive(false);
     }
     public void CloseTeleportPortal()
@@ -142,6 +154,25 @@ public class Level1Controller : MonoBehaviour
     public void ActivateSideQuest1()
     {
         Time.timeScale = 0f;
+        dialogPanel.SetActive(true);
+        masterDialog.SetActive(false);
+        playerDialog.SetActive(false);
+        ControllerUI.Instance.ActiveMovementUI(false);
+        ControllerUI.Instance.MoveLeftUp();
+        ControllerUI.Instance.MoveRightUp();
+        hienDialogTrigger.TriggerHienDialogue();
+    }
+    public void EndDialogue()
+    {
+        Time.timeScale = 1f;
+        dialogPanel.SetActive(false);
+        masterDialog.SetActive(true);
+        playerDialog.SetActive(true);
+        ControllerUI.Instance.ActiveMovementUI(true);
+        playerAudio.enabled = true;
+    }
+    public void StartQuest()
+    {
         sideQuestUI.SetActive(true);
         sideQuest1.isActive = true;
         sideQuest.MissionTitle = sideQuest1.MissionTitle;
@@ -159,5 +190,70 @@ public class Level1Controller : MonoBehaviour
     {
         Time.timeScale = 1f;
         sideQuestUI.SetActive(false);
+    }
+    public void PickUpItem(Transform transform, GameObject gameObject)
+    {
+        ControllerUI.Instance.ActiveAttackButton(false);
+        ControllerUI.Instance.SetInteractState(EInteractState.PICKUPITEM);
+        ControllerUI.Instance.ActiveInteractButton(true);
+        tempPosition = transform;
+        tempgameObject = gameObject;
+    }
+    public void PickUpItem(EInteractState interactState)
+    {
+        if (interactState != EInteractState.PICKUPITEM)
+        {
+            return;
+        }
+        if (BushCollider.isBush)
+        {
+            if (interactState == EInteractState.PICKUPITEM)
+            {
+                StartCoroutine(bushDrop(tempPosition));
+            }
+        }
+        else if (RockCollider.isRock)
+        {
+            if (interactState == EInteractState.PICKUPITEM)
+            {
+                StartCoroutine(rockDrop(tempPosition));
+            }
+        }
+    }
+    IEnumerator bushDrop(Transform tempPosition)
+    {
+        int minItems = 1; // Minimum number of items to drop
+        int maxItems = 2; // Maximum number of items to drop
+        int numItems = UnityEngine.Random.Range(minItems, maxItems + 1); // Randomly determine the number of items to drop
+
+        for (int i = 0; i < numItems; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, bushDrops.Length); // Randomly select an index from the itemDrops array
+            Instantiate(bushDrops[randomIndex], tempPosition.position + new Vector3(0, 1, 0), Quaternion.identity);
+            yield return new WaitForSeconds(0.3f);
+        }
+        Destroy(tempgameObject);
+    }
+    IEnumerator rockDrop(Transform tempPosition)
+    {
+        int minItems = 1; // Minimum number of items to drop
+        int maxItems = 2; // Maximum number of items to drop
+        int numItems = UnityEngine.Random.Range(minItems, maxItems + 1); // Randomly determine the number of items to drop
+
+        for (int i = 0; i < numItems; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, rockDrops.Length); // Randomly select an index from the itemDrops array
+            Instantiate(rockDrops[randomIndex], tempPosition.position + new Vector3(0, 1, 0), Quaternion.identity);
+            yield return new WaitForSeconds(0.3f);
+        }
+        Destroy(tempgameObject);
+    }
+    public void NotPickUpItem()
+    {
+        ControllerUI.Instance.ActiveMovementUI(true);
+        ControllerUI.Instance.ActiveAttackButton(true);
+        ControllerUI.Instance.SetInteractState(EInteractState.NONE);
+        ControllerUI.Instance.ActiveInteractButton(false);
+        tempPosition = null;
     }
 }

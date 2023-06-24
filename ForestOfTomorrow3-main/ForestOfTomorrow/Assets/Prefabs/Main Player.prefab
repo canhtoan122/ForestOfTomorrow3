@@ -163,9 +163,6 @@ MonoBehaviour:
   flashCount: 3
   flashDuration: 0.5
   flashAlpha: 0
-  playerSpinSprite: {fileID: 21300000, guid: 4d85d804498aab940a51ef977b65b5ea, type: 3}
-  spinSpeed: 500
-  targetRotation: 360
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -377,7 +374,7 @@ MonoBehaviour:
   dialogue:
     name: "B\u1EA1n"
     sentences:
-    - "Tu\xE2n l\u1EC7nh!"
+    - OK!
   dialogue2:
     name: 
     sentences: []

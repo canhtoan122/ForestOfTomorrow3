@@ -138,5 +138,6 @@ public enum EInteractState
     PICKUP = 1,
     OPEN = 2,
     ACTIVEMAP = 3,
-    PICKUPKEY
+    PICKUPKEY = 4,
+    PICKUPITEM
 }

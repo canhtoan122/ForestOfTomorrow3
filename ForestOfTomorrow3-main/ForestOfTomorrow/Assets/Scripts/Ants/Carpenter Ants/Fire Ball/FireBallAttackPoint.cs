@@ -7,6 +7,7 @@ public class FireBallAttackPoint : MonoBehaviour
     public GameObject fireBall;  // Carpenter Ants Attack prefabs
     public float fireBallSpeed;    // The move speed of the fire ball
     public Transform playerTransform;  // The transform of the detected player
+    public CarpenterAntsStat carpenterAnts; // Apply the boss stat into the projectile damage
     private Animator animator;
 
     private void Start()
@@ -19,7 +20,7 @@ public class FireBallAttackPoint : MonoBehaviour
         // Set the direction of the bullet to the right (default)
         Vector2 direction = (playerTransform.position - transform.position).normalized;
 
-        // Spawn a new instance of the bullet prefab at the position of the player
+        // Spawn a new instance of the fireball prefab at the position of the player
         GameObject clone = Instantiate(fireBall, transform.position, Quaternion.identity);
 
         // Rotate the fireball towards the player
@@ -30,6 +31,5 @@ public class FireBallAttackPoint : MonoBehaviour
         // Set the velocity of the bullet based on the direction and speed
         Rigidbody2D bulletRigidbody = clone.GetComponent<Rigidbody2D>();
         bulletRigidbody.velocity = direction * fireBallSpeed;
-
     }
 }

@@ -17,15 +17,12 @@ public class PlayerController : MonoBehaviour
     public float dashDuration;      // The duration that the player after dash
     public int flashCount = 3;  // The number of time enemy get flash when get hit by player
     public float flashDuration = 0.5f;  // When the enemy get hit bu player, the enemy will flash
-    public float flashAlpha = 0f;   // Flash color
-    public Sprite playerSpinSprite;
-    public float spinSpeed;
-    public float targetRotation = 360f;
     public LayerMask groundLayer;   // The layer(s) that represent the ground
     private SpriteRenderer spriteRenderer; //The character image
     private BoxCollider2D coll;     // Player collider
     private Rigidbody2D rb;     // Player Rigidbody
     public float attackRange = 0.5f; // The attack range of the attack point
+    public float midAirAttackRange = 2f;    // The mid air attack range of the attack point
     public LayerMask enemyLayers;   // Detect enemy layer
     private int attackDamage;       // Player Damage
     private PlayerStats playerStats;        // Player Stat
@@ -49,9 +46,9 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;   // Flag to indicate if the character is dashing
     private bool isMovingLeft = false;
     private bool isMovingRight = false;
-    private bool isSpinning = false;
-    private float currentRotation = 0f;
 
+
+    public static bool isVulnerable = false;
     public enum MovementState { idle, walking, jumping, standing, dash, attack}
 
     private void Start()
@@ -62,6 +59,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         playerStats = GetComponent<PlayerStats>();
+    }
+    private void Update()
+    {
+        Moving();
     }
     private void OnEnable()
     {
@@ -79,15 +80,6 @@ public class PlayerController : MonoBehaviour
         ControllerUI.Instance.OnDashTriggered -= Dashing;
         ControllerUI.Instance.OnMoveLeftTriggered -= MoveLeft;
         ControllerUI.Instance.OnMoveRightTriggered -= MoveRight;
-    }
-    private void Update()
-    {
-        Moving();
-        if(isSpinning)
-        {
-            currentRotation = 0f; // Reset currentRotation to 0
-            StartCoroutine(SpinAttack());
-        }
     }
     // Main moving left right component
     public void Moving()
@@ -147,8 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isJumping)
         {
-            isSpinning = true;
-            yield break;
+            StartCoroutine(SpinAttack());
         }
         if (animator.GetBool("isAttacking") || isJumping || isDashing)
         {
@@ -165,6 +156,34 @@ public class PlayerController : MonoBehaviour
         // Add Player stat to damage
         attackDamage = playerStats.damage.GetStat();
 
+        StartCoroutine(DamageThem(hitEnemies));
+
+        yield return new WaitForSeconds(0.5f);
+
+        animator.SetBool("isAttacking", false);
+    }
+    IEnumerator SpinAttack()
+    {
+
+        animator.SetBool("isSpinning", true);
+
+        // Play attack sound effect loop
+        audioSource.clip = attackSFX;
+        audioSource.Play();
+
+        // Detect enemy in range of attack
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, midAirAttackRange, enemyLayers);
+
+        // Add Player stat to damage
+        attackDamage = playerStats.damage.GetStat();
+
+        StartCoroutine(DamageThem(hitEnemies));
+
+        yield return new WaitForSeconds(0.4f);
+        animator.SetBool("isSpinning", false);
+    }
+    IEnumerator DamageThem(Collider2D[] hitEnemies)
+    {
         //Damage them
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -173,7 +192,9 @@ public class PlayerController : MonoBehaviour
                 for (int i = 0; i < flashCount; i++)
                 {
                     SpriteRenderer spriteRenderer = enemy.GetComponent<SpriteRenderer>();
-                    Color originalColor = spriteRenderer.color;
+                    Color newColor = spriteRenderer.color;
+                    newColor.a = 1f;
+                    Color originalColor = newColor;
                     yield return StartCoroutine(FlashAlpha(originalColor, spriteRenderer));
                 }
             }
@@ -182,6 +203,13 @@ public class PlayerController : MonoBehaviour
             {
                 if (enemy.GetComponent<DinoponeraAntsStats>() == null)
                 {
+                    if(enemy.GetComponent<SpittingAntsStats>() == null)
+                    {
+                        enemy.GetComponent<CarpenterAntsStat>().TakeDamage(attackDamage);
+                        enemy.GetComponent<CarpenterAntsStat>().UpdateHealthBar();
+                        animator.SetBool("isAttacking", false);
+                        yield break;
+                    }
                     enemy.GetComponent<SpittingAntsStats>().TakeDamage(attackDamage);
                     enemy.GetComponent<SpittingAntsStats>().UpdateHealthBar();
                     animator.SetBool("isAttacking", false);
@@ -194,50 +222,35 @@ public class PlayerController : MonoBehaviour
             }
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
-
-        yield return new WaitForSeconds(0.5f);
-
-        animator.SetBool("isAttacking", false);
-    }
-    IEnumerator SpinAttack()
-    {
-        animator.enabled = false;
-        spriteRenderer.sprite = playerSpinSprite;
-        rb.bodyType = RigidbodyType2D.Static;
-
-        // Spin Player
-        float startRotation = transform.rotation.eulerAngles.z;
-        float endRotation = startRotation + targetRotation;
-
-        while (currentRotation < endRotation)
-        {
-            currentRotation += spinSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(0f, 0f, currentRotation);
-            yield return null;
-        }
-
-        // Reset the Z rotation to 0
-        transform.rotation = Quaternion.Euler(0f, 0f, endRotation);
-
-        yield return new WaitForSeconds(0.5f);
-        animator.enabled = true;
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        isSpinning = false;
     }
     IEnumerator FlashAlpha(Color originalColor, SpriteRenderer spriteRenderer)
     {
+        isVulnerable = true;
         float startTime = Time.time;
-        Color flashColor = new Color(originalColor.r, originalColor.g, originalColor.b, flashAlpha);
+        float elapsedTime = 0f;
+        float flashAlpha = 0.5f; // Adjust this value as needed
 
-        while (Time.time - startTime < flashDuration)
+        Color flashColor = originalColor;
+        flashColor.a = flashAlpha;
+
+        while (elapsedTime < flashDuration)
         {
-            spriteRenderer.color = flashColor;
+            float t = elapsedTime / flashDuration;
+            float currentAlpha = Mathf.Lerp(originalColor.a, flashColor.a, t);
+
+            Color currentColor = originalColor;
+            currentColor.a = currentAlpha;
+
+            spriteRenderer.color = currentColor;
+
+            elapsedTime = Time.time - startTime;
             yield return null;
         }
 
         spriteRenderer.color = originalColor;
 
-        yield return null;
+        yield return new WaitForSeconds(0.03f);
+        isVulnerable = false;
     }
     // Main dashing component
     public void Dashing()
@@ -293,6 +306,21 @@ public class PlayerController : MonoBehaviour
             audioSource.Stop();
             audioSource.loop = false;
         }
+    }
+    public void Die()
+    {
+        StartCoroutine(Died());
+    }
+    IEnumerator Died()
+    {
+        yield return new WaitForSeconds(0.5f);
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Scene 3")
+        {
+            ResetScene3();
+            yield break;
+        }
+        ResetScene();
     }
     public void ResetScene3()
     {
@@ -369,6 +397,8 @@ public class PlayerController : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(attackPoint.position, midAirAttackRange);
     }
 }
 

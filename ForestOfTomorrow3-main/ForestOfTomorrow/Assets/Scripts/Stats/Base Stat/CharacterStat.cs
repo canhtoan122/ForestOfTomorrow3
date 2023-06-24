@@ -27,6 +27,10 @@ public class CharacterStat : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        if (PlayerController.isVulnerable)
+        {
+            return;
+        }
         damage -= armor.GetValue();
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
 

@@ -92,7 +92,7 @@ public class MissionManagement : MonoBehaviour
         else if (currentSceneName == "AP_Level 1")
         {
             mission6Complete = true;
-            if (mission5Complete)
+            if (mission6Complete)
             {
                 mission1Object.isActive = false;
                 mission2Object.isActive = false;

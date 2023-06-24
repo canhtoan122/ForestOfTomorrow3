@@ -11,7 +11,6 @@ public class PlayerStats : CharacterStat
     void Awake()
     {
         instance = this;
-
     }
     #endregion
 
@@ -42,7 +41,7 @@ public class PlayerStats : CharacterStat
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == "AP_Level 1")
         {
-            //transform.position = Level1Controller.lastCheckPointPosition;
+            transform.position = Level1Controller.lastCheckPointPosition;
         }
     }
     void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
@@ -100,9 +99,17 @@ public class PlayerStats : CharacterStat
             EquipmentManager.instance.DeleteHealPotion();
         }
     }
+
     public override void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (animator.GetBool("EquipSword"))
+        {
+            animator.SetBool("SwordDead", true);
+        }
+        else
+        {
+            animator.SetBool("IsDead", true);
+        }
     }
     private void Update()
     {

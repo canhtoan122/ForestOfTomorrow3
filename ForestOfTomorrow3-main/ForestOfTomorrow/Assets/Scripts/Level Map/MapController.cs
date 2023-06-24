@@ -71,7 +71,7 @@ public class MapController : MonoBehaviour
     }
     public void DeActivateMap()
     {
-        mapUI.SetActive(true);
+        mapUI.SetActive(false);
         ControllerUI.Instance.ActiveMovementUI(true);
     }
     public void LoadHome()

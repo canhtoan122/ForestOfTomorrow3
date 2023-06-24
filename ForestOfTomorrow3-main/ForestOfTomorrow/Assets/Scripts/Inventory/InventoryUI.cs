@@ -19,15 +19,24 @@ public class InventoryUI : MonoBehaviour
     }
     void UpdateUI()
     {
-        for(int i  = 0; i < slots.Length; i++)
+        for (int i  = 0; i < slots.Length; i++)
         {
             if(i < inventory.items.Count)
             {
                 slots[i].AddItem(inventory.items[i]);
+                if(inventory.items[i].quantity > 0)
+                {
+                    slots[i].ActivateQuantity();
+                }
+                else
+                {
+                    slots[i].DeactivateQuantity();
+                }
             }
             else
             {
                 slots[i].ClearSlot();
+                slots[i].DeactivateQuantity();
             }
         }
     }

@@ -1,14 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class CarpenterAntsController : MonoBehaviour
 {
+    #region Singleton
+    public static CarpenterAntsController instance;
+    void Awake()
+    {
+        instance = this;
+
+    }
+    #endregion
     public float moveSpeed;    // The move speed of the boss
     public float detectionRadius;  // The radius of the detection range
     public float attackRange; // The attack range of the attack point
     public GameObject fireBallAttackPoint;  // Carpenter Ants Attack point
+    public GameObject bossHP;   // When the boss detect player, the boss HP appear
+    public GameObject menuButton;    // And disable the menu panel
+    public TMP_Text bossHPText; // And display boss HP
+    public Image icon;  // And display boss icon
+    public Sprite bossIcon;  // Change the original icon into the current boss icon
     public float rotationSpeed;     // The rotation of the fire ball
     public LayerMask playerLayer;  // The layer that the player is on
     public Transform playerTransform;  // The transform of the detected player
@@ -16,11 +30,14 @@ public class CarpenterAntsController : MonoBehaviour
     private Animator animator;  //  The game object animator
     private bool playerDetected = false;  // Whether the player is detected or not
     private bool nearPlayer = false; // Whether the player is in the attack range or not
+    private CarpenterAntsStat carpenterAntsStat;
+
     public enum MovementState { move, attack }
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        carpenterAntsStat = GetComponent<CarpenterAntsStat>();
     }
     private void Update()
     {
@@ -47,6 +64,7 @@ public class CarpenterAntsController : MonoBehaviour
             // The player has been detected, so do something here (e.g. attack, follow)
             playerTransform = detectedPlayers[0].transform;  // Assume there is only one detected player
 
+            StartBossFight();
         }
         else
         {
@@ -95,6 +113,18 @@ public class CarpenterAntsController : MonoBehaviour
                 nearPlayer = false;
             }
         }
+    }
+    public void StartBossFight()
+    {
+        bossHP.SetActive(true);
+        menuButton.SetActive(false);
+        bossHPText.text = carpenterAntsStat.maxHealth.ToString();
+        icon.sprite = bossIcon;
+    }
+    public void EndBossFight()
+    {
+        bossHP.SetActive(false);
+        menuButton.SetActive(true);
     }
     private void OnDrawGizmosSelected()
     {

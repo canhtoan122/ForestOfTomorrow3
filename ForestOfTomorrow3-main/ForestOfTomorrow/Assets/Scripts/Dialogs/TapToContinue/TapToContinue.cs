@@ -50,8 +50,6 @@ public class TapToContinue : MonoBehaviour
     {
         if (DialogueManagement.dialogEnd == true)
             return;
-        if (Enemy.bossDied == true)
-            return;
         if (Input.GetMouseButtonDown(0))
         {
             if(currentSceneName == "AP_Scene 4")

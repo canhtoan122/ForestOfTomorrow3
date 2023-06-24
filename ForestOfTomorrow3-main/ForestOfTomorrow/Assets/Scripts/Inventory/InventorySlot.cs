@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -23,13 +24,15 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = item.icon;
         icon.gameObject.SetActive(true);
         removeButton.SetActive(true);
-        if(isMoney)
-        {
-            quantityNumber.SetActive(true);
-            isMoney = false;
-        }
     }
-
+    public void ActivateQuantity()
+    {
+        quantityNumber.SetActive(true);
+    }
+    public void DeactivateQuantity()
+    {
+        quantityNumber.SetActive(false);
+    }
     public void ClearSlot()
     {
         item = null;
