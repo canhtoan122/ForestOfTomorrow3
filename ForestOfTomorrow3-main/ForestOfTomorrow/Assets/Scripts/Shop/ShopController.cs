@@ -66,6 +66,7 @@ public class ShopController : MonoBehaviour
     {
         buyUI.SetActive(true);
         optionUI.SetActive(false);
+        ControllerUI.Instance.ActiveMovementUI(false);
     }
     public void GetItemByCategory(string category)
     {
@@ -99,6 +100,7 @@ public class ShopController : MonoBehaviour
         itemDisplay.SetActive(true);
         tempCategory = "Weapon";
         GetItemByCategory(tempCategory);
+        ControllerUI.Instance.ActiveMovementUI(false);
     }
     public void ArmorCategory()
     {
@@ -109,6 +111,7 @@ public class ShopController : MonoBehaviour
         itemDisplay.SetActive(true);
         tempCategory = "Armor";
         GetItemByCategory(tempCategory);
+        ControllerUI.Instance.ActiveMovementUI(false);
     }
     
     public void EnergyCategory()
@@ -120,6 +123,7 @@ public class ShopController : MonoBehaviour
         itemDisplay.SetActive(true);
         tempCategory = "HealPotion";
         GetItemByCategory(tempCategory);
+        ControllerUI.Instance.ActiveMovementUI(false);
     }
 
 }

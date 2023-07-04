@@ -1,3 +1,4 @@
+using GoogleMobileAds.Sample;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float dashDuration;      // The duration that the player after dash
     public int flashCount = 3;  // The number of time enemy get flash when get hit by player
     public float flashDuration = 0.5f;  // When the enemy get hit bu player, the enemy will flash
+    public GameObject diePanel; // When player die, the die panel will appear
+    public RewardedAdController googleAdmobs; // Player have to play advertisement to continue
     public LayerMask groundLayer;   // The layer(s) that represent the ground
     private SpriteRenderer spriteRenderer; //The character image
     private BoxCollider2D coll;     // Player collider
@@ -137,7 +140,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Attack()
     {
-        if(isJumping)
+        if(animator.GetBool("EquipSword") && isJumping)
         {
             StartCoroutine(SpinAttack());
         }
@@ -187,6 +190,38 @@ public class PlayerController : MonoBehaviour
         //Damage them
         foreach (Collider2D enemy in hitEnemies)
         {
+
+            if (enemy.GetComponent<Enemy>() != null)
+            {
+                enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+                yield return new WaitForSeconds(0.5f);
+                animator.SetBool("isAttacking", false);
+                yield break;
+            }
+            else if (enemy.GetComponent<DinoponeraAntsStats>() != null)
+            {
+                enemy.GetComponent<DinoponeraAntsStats>().TakeDamage(attackDamage);
+                enemy.GetComponent<DinoponeraAntsStats>().UpdateHealthBar();
+                yield return new WaitForSeconds(0.5f);
+                animator.SetBool("isAttacking", false);
+                yield break;
+            }
+            else if (enemy.GetComponent<SpittingAntsStats>() != null)
+            {
+                enemy.GetComponent<SpittingAntsStats>().TakeDamage(attackDamage);
+                enemy.GetComponent<SpittingAntsStats>().UpdateHealthBar();
+                yield return new WaitForSeconds(0.5f);
+                animator.SetBool("isAttacking", false);
+                yield break;
+            }
+            else if (enemy.GetComponent<CarpenterAntsStat>() != null)
+            {
+                enemy.GetComponent<CarpenterAntsStat>().TakeDamage(attackDamage);
+                enemy.GetComponent<CarpenterAntsStat>().UpdateHealthBar();
+                yield return new WaitForSeconds(0.5f);
+                animator.SetBool("isAttacking", false);
+                yield break;
+            }
             if (enemy.GetComponent<SpriteRenderer>() != null)
             {
                 for (int i = 0; i < flashCount; i++)
@@ -198,29 +233,6 @@ public class PlayerController : MonoBehaviour
                     yield return StartCoroutine(FlashAlpha(originalColor, spriteRenderer));
                 }
             }
-
-            if (enemy.GetComponent<Enemy>() == null)
-            {
-                if (enemy.GetComponent<DinoponeraAntsStats>() == null)
-                {
-                    if(enemy.GetComponent<SpittingAntsStats>() == null)
-                    {
-                        enemy.GetComponent<CarpenterAntsStat>().TakeDamage(attackDamage);
-                        enemy.GetComponent<CarpenterAntsStat>().UpdateHealthBar();
-                        animator.SetBool("isAttacking", false);
-                        yield break;
-                    }
-                    enemy.GetComponent<SpittingAntsStats>().TakeDamage(attackDamage);
-                    enemy.GetComponent<SpittingAntsStats>().UpdateHealthBar();
-                    animator.SetBool("isAttacking", false);
-                    yield break;
-                }
-                enemy.GetComponent<DinoponeraAntsStats>().TakeDamage(attackDamage);
-                enemy.GetComponent<DinoponeraAntsStats>().UpdateHealthBar();
-                animator.SetBool("isAttacking", false);
-                yield break;
-            }
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
     }
     IEnumerator FlashAlpha(Color originalColor, SpriteRenderer spriteRenderer)
@@ -324,14 +336,18 @@ public class PlayerController : MonoBehaviour
     }
     public void ResetScene3()
     {
+        Time.timeScale = 0f;
         DialogueManagement.dialogEnd = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        diePanel.SetActive(true);
+        googleAdmobs.GetComponent<RewardedAdController>().LoadAd();
         TapToContinue.playerDie = true;
     }
     public void ResetScene()
     {
+        Time.timeScale = 0f;
         DialogueManagement.dialogEnd = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        diePanel.SetActive(true);
+        googleAdmobs.GetComponent<RewardedAdController>().LoadAd();
     }
     public void OnStair()
     {

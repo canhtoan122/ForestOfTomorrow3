@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpittingAntsController : MonoBehaviour
 {
     public float detectionRadius;  // The radius of the detection range
-    public float retreatDistance;
     public Transform playerTransform;  // The transform of the detected player
     public Transform attackPoint;  // Dinoponera Ants Attack
     public float attackRange; // The attack range of the attack point
@@ -80,32 +79,20 @@ public class SpittingAntsController : MonoBehaviour
             // Calculate the distance between enemy and player
             float distance = Vector3.Distance(transform.position, playerTransform.position);
 
-            // Check if the player is within the detection radius
-            if (distance < detectionRadius)
+            if (!nearPlayer)
             {
-                // Check if the player is within the retreat distance
-                if (distance < retreatDistance)
-                {
-                    // Calculate the direction away from the player
-                    Vector3 direction = transform.position - playerTransform.position;
+                //Move toward force
+                Vector2 targetPosition = new Vector2(playerTransform.position.x, transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
-                    // Normalize the direction vector
-                    direction.Normalize();
-
-                    // Move away from the player
-                    transform.position += direction * moveSpeed * Time.deltaTime;
-                }
-                else
-                {
-                    // Calculate the direction towards the player
-                    Vector3 direction = playerTransform.position - transform.position;
-
-                    // Normalize the direction vector
-                    direction.Normalize();
-
-                    // Move towards the player
-                    transform.position += direction * moveSpeed * Time.deltaTime;
-                }
+            }
+            if (distance <= attackRange)
+            {
+                nearPlayer = true;
+            }
+            else
+            {
+                nearPlayer = false;
             }
         }
     }
@@ -131,8 +118,6 @@ public class SpittingAntsController : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, retreatDistance);
         if (attackPoint == null)
             return;
         Gizmos.color = Color.yellow;
@@ -172,7 +157,6 @@ public class SpittingAntsController : MonoBehaviour
             PlayerStats player = hitInfo.transform.GetComponent<PlayerStats>();
             if(player != null)
             {
-                yield return new WaitForSeconds(1f);
                 DamagePlayer();
             }
             lineRenderer.SetPosition(0, attackPoint.position);

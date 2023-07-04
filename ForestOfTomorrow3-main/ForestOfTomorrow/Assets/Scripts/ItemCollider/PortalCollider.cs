@@ -49,5 +49,6 @@ public class PortalCollider : MonoBehaviour
     public void ActivateCheckPoint(Collider2D collision)
     {
         Level1Controller.lastCheckPointPosition = collision.transform.position;
+        PlayerStats.tempPortalName = this.gameObject.name;
     }
 }

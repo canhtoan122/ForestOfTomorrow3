@@ -24,6 +24,8 @@ public class PlayerStats : CharacterStat
     public HealthBar healthBar;
     public RageBar rageBar;
     public GameObject healPotion;
+    public static string tempPortalName;
+
     private Animator animator;
 
 
@@ -38,11 +40,6 @@ public class PlayerStats : CharacterStat
         DefenceText.text = armor.GetValue().ToString();
 
         healthBar.SetMaxHealth(maxHealth);
-        string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName == "AP_Level 1")
-        {
-            transform.position = Level1Controller.lastCheckPointPosition;
-        }
     }
     void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
     {
@@ -99,7 +96,14 @@ public class PlayerStats : CharacterStat
             EquipmentManager.instance.DeleteHealPotion();
         }
     }
-
+    public void Respawnposition()
+    {
+        if(tempPortalName == "Teleport Portal")
+        {
+            transform.position = Level1Controller.lastCheckPointPosition;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
     public override void Die()
     {
         if (animator.GetBool("EquipSword"))
@@ -111,6 +115,7 @@ public class PlayerStats : CharacterStat
             animator.SetBool("IsDead", true);
         }
     }
+    
     private void Update()
     {
         //if (Input.GetKeyDown(KeyCode.Space))

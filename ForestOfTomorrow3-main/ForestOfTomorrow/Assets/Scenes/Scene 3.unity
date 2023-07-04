@@ -422,10 +422,13 @@ MonoBehaviour:
   PlayerDialog: {fileID: 264628770}
   NPCName: {fileID: 441809784}
   NPCDialog: {fileID: 1386798844}
+  HienName: {fileID: 0}
+  HienDialog: {fileID: 0}
   playerDialogueTrigger: {fileID: 1823493811}
   playerEndBossDialogueTrigger: {fileID: 1695078307}
   masterEndBossDialogueTrigger: {fileID: 0}
   NPCDialogueTrigger: {fileID: 753639564}
+  HienDialogueTrigger: {fileID: 0}
   tutorialPanel: {fileID: 1745757173}
   step1: {fileID: 1278582989}
   step6: {fileID: 461804287}
@@ -720,7 +723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 312545386449243896, guid: 5cb10c75cff707c43b0febfe7543ca79, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 312545386449243896, guid: 5cb10c75cff707c43b0febfe7543ca79, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1021,7 +1024,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &509577319 stripped
 GameObject:
@@ -2031,6 +2034,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -114
       objectReference: {fileID: 0}
+    - target: {fileID: 1955038874582631870, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1997978709278177054, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -2352,6 +2359,22 @@ PrefabInstance:
       value: InventorySlot, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3426899081816578607, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469177445076416433, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1631997244}
+    - target: {fileID: 3469177445076416433, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowAd
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469177445076416433, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GoogleMobileAds.Sample.RewardedAdController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469177445076416433, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -3427,6 +3450,10 @@ PrefabInstance:
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 1823493816}
+    - target: {fileID: 6300638587817075434, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6314030165939265736, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -13189,6 +13216,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8156798594120575851, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
   m_PrefabInstance: {fileID: 570032758}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1121259754 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7405570016814737914, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
+  m_PrefabInstance: {fileID: 570032758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1124425990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4990204919158892360, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
@@ -13332,6 +13364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsParent: {fileID: 1133281776}
+  craftInventory: {fileID: 1121259754}
 --- !u!114 &1189349453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13411,7 +13444,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1216792103
 MonoBehaviour:
@@ -13594,7 +13627,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1325888685
 MonoBehaviour:
@@ -13889,6 +13922,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   step6: {fileID: 461804287}
   step7: {fileID: 203652530}
+--- !u!1 &1548687996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4990857808091204309, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
+  m_PrefabInstance: {fileID: 570032758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1572545309 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5826841302046064747, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
@@ -13943,6 +13981,51 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1412487311975447535, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
   m_PrefabInstance: {fileID: 570032758}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1631997243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1631997245}
+  - component: {fileID: 1631997244}
+  m_Layer: 0
+  m_Name: Google Admob
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1631997244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631997243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b914fa3323ca480aacf51740a68ce63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats: {fileID: 1823493812}
+--- !u!4 &1631997245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631997243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1633841912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1540415003728332518, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
@@ -14193,6 +14276,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: b989e0c6dfc38b54981bce890569fb60, type: 3}
     - target: {fileID: 5957760428127058045, guid: f3f27feeff918d94ba893cd275ac9cb4, type: 3}
+      propertyPath: diePanel
+      value: 
+      objectReference: {fileID: 1548687996}
+    - target: {fileID: 5957760428127058045, guid: f3f27feeff918d94ba893cd275ac9cb4, type: 3}
       propertyPath: openDoor
       value: 
       objectReference: {fileID: 0}
@@ -14220,6 +14307,10 @@ PrefabInstance:
       propertyPath: attackDamage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5957760428127058045, guid: f3f27feeff918d94ba893cd275ac9cb4, type: 3}
+      propertyPath: googleAdmobs
+      value: 
+      objectReference: {fileID: 1631997244}
     - target: {fileID: 5957760428127058045, guid: f3f27feeff918d94ba893cd275ac9cb4, type: 3}
       propertyPath: enemyLayers.m_Bits
       value: 256
@@ -14398,7 +14489,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1885111610 stripped
 MonoBehaviour:

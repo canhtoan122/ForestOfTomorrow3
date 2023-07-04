@@ -12,7 +12,7 @@ public class InventorySlot : MonoBehaviour
     public GameObject quantityNumber;
     public Image icon;
 
-    Item item;
+    public Item item;
 
     public static bool isMoney = false;
     public void AddItem(Item newItem)
@@ -24,6 +24,15 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = item.icon;
         icon.gameObject.SetActive(true);
         removeButton.SetActive(true);
+    }
+    public void DragItem()
+    {
+        if (item == null)
+        {
+            return;
+        }
+        CraftController.instance.OnMouseDownItem(item);
+        InventoryManagement.instance.Remove(item);
     }
     public void ActivateQuantity()
     {
