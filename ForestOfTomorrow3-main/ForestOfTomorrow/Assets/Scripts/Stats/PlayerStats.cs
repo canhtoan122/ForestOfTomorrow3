@@ -103,6 +103,8 @@ public class PlayerStats : CharacterStat
             transform.position = Level1Controller.lastCheckPointPosition;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        transform.position = Level1Controller.lastCheckPointPosition;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public override void Die()
     {

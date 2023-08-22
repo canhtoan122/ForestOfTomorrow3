@@ -9,7 +9,7 @@ public class HouseController : MonoBehaviour
     public void NextScene()
     {
         ControllerUI.Instance.ActiveMovementUI(false);
-        SceneLoader.instance.LoadLevel(3);
+        SceneLoader.instance.LoadLevel(4);
         MissionManagement.mission3Complete = true;
     }
 }

@@ -1,4 +1,3 @@
-using GoogleMobileAds.Sample;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,7 +18,6 @@ public class PlayerController : MonoBehaviour
     public int flashCount = 3;  // The number of time enemy get flash when get hit by player
     public float flashDuration = 0.5f;  // When the enemy get hit bu player, the enemy will flash
     public GameObject diePanel; // When player die, the die panel will appear
-    public RewardedAdController googleAdmobs; // Player have to play advertisement to continue
     public LayerMask groundLayer;   // The layer(s) that represent the ground
     private SpriteRenderer spriteRenderer; //The character image
     private BoxCollider2D coll;     // Player collider
@@ -117,6 +115,12 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Jump()
     {
+        if(isMovingLeft || isMovingRight)
+        {
+            // Stop move sound effect loop
+            audioSource.Stop();
+            audioSource.loop = false;
+        }
         // Check if the jump button is pressed and the character is grounded
         if (!isJumping && IsGrounded())
         {
@@ -131,7 +135,7 @@ public class PlayerController : MonoBehaviour
             audioSource.clip = jumpSFX;
             audioSource.Play();
         }
-        yield return null;
+        yield break;
     }
     // Main attacking component
     public void Attacking()
@@ -339,7 +343,6 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0f;
         DialogueManagement.dialogEnd = false;
         diePanel.SetActive(true);
-        googleAdmobs.GetComponent<RewardedAdController>().LoadAd();
         TapToContinue.playerDie = true;
     }
     public void ResetScene()
@@ -347,7 +350,6 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0f;
         DialogueManagement.dialogEnd = false;
         diePanel.SetActive(true);
-        googleAdmobs.GetComponent<RewardedAdController>().LoadAd();
     }
     public void OnStair()
     {

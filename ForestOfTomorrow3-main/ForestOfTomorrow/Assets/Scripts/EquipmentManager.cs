@@ -45,13 +45,13 @@ public class EquipmentManager : MonoBehaviour
     }
     private void Update()
     {
+        if(playerItemData == null ||  inventoryData == null)
+        {
+            return;
+        }
         if (!isUpdated)
         {
-            //string sceneName = SceneManager.GetActiveScene().name;
-            //if (sceneName == "Scene 3" || sceneName == "AP_Scene 4")
-            //{
-            //    UpdateInventory();
-            //}
+            
             UpdateInventory();
             isUpdated = true;
         }

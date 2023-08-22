@@ -230,4 +230,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropForce: 5
+  inventoryData: {fileID: 11400000, guid: 947b533edcb53c449853d98dea98239f, type: 2}
   charcoal: {fileID: 11400000, guid: 5bbaabe58abcdaf4ab4d48fd3b0f8fe9, type: 2}

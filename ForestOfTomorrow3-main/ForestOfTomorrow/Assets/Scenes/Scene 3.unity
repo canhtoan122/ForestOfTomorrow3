@@ -288,6 +288,55 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9123466098674886824, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
   m_PrefabInstance: {fileID: 570032758}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &115815614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 115815616}
+  - component: {fileID: 115815615}
+  m_Layer: 0
+  m_Name: AdsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &115815615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115815614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e16e611ab3c3ab45bfcce678dd52534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameId: 5336158
+  _androidAdUnitId: Interstitial_Android
+  _iOsAdUnitId: Interstitial_iOS
+  playerStats: {fileID: 1823493812}
+  IsTesting: 0
+--- !u!4 &115815616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115815614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &135709143 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6273520542126642550, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
@@ -1024,7 +1073,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &509577319 stripped
 GameObject:
@@ -2365,14 +2414,14 @@ PrefabInstance:
     - target: {fileID: 3469177445076416433, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1631997244}
+      objectReference: {fileID: 115815615}
     - target: {fileID: 3469177445076416433, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowAd
       objectReference: {fileID: 0}
     - target: {fileID: 3469177445076416433, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GoogleMobileAds.Sample.RewardedAdController, Assembly-CSharp
+      value: AdsManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3469177445076416433, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -13444,7 +13493,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1216792103
 MonoBehaviour:
@@ -13627,7 +13676,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1325888685
 MonoBehaviour:
@@ -13981,51 +14030,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1412487311975447535, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
   m_PrefabInstance: {fileID: 570032758}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1631997243
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1631997245}
-  - component: {fileID: 1631997244}
-  m_Layer: 0
-  m_Name: Google Admob
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1631997244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631997243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b914fa3323ca480aacf51740a68ce63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStats: {fileID: 1823493812}
---- !u!4 &1631997245
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631997243}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1633841912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1540415003728332518, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
@@ -14310,7 +14314,7 @@ PrefabInstance:
     - target: {fileID: 5957760428127058045, guid: f3f27feeff918d94ba893cd275ac9cb4, type: 3}
       propertyPath: googleAdmobs
       value: 
-      objectReference: {fileID: 1631997244}
+      objectReference: {fileID: 0}
     - target: {fileID: 5957760428127058045, guid: f3f27feeff918d94ba893cd275ac9cb4, type: 3}
       propertyPath: enemyLayers.m_Bits
       value: 256
@@ -14489,7 +14493,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1885111610 stripped
 MonoBehaviour:

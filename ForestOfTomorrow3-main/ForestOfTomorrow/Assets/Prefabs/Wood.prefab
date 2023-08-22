@@ -254,4 +254,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropForce: 5
+  inventoryData: {fileID: 11400000, guid: 947b533edcb53c449853d98dea98239f, type: 2}
   wood: {fileID: 11400000, guid: df5ff174563d2914b84a4c08d98c5abc, type: 2}

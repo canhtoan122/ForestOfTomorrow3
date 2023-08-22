@@ -71,7 +71,7 @@ public class MainMenuController : MonoBehaviour
     public void StartNewGame()
     {
         data.hasPlayedBefore = true;
-        SceneLoader.instance.LoadLevel(1);
+        SceneLoader.instance.LoadLevel(2);
     }
     public void ContinueGame()
     {

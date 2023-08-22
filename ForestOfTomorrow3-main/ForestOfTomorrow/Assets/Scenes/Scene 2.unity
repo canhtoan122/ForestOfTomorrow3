@@ -1584,6 +1584,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2504722433740101952, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
   m_PrefabInstance: {fileID: 1799100870}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &369987946 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7405570016814737914, guid: 76f932f7682a8224b8f24a16cf6f4c03, type: 3}
+  m_PrefabInstance: {fileID: 1799100870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &404782388
 GameObject:
   m_ObjectHideFlags: 0
@@ -5399,10 +5404,13 @@ MonoBehaviour:
   PlayerDialog: {fileID: 1799100873}
   NPCName: {fileID: 1799100872}
   NPCDialog: {fileID: 1799100871}
+  HienName: {fileID: 0}
+  HienDialog: {fileID: 0}
   playerDialogueTrigger: {fileID: 41740161}
   playerEndBossDialogueTrigger: {fileID: 0}
   masterEndBossDialogueTrigger: {fileID: 0}
   NPCDialogueTrigger: {fileID: 335315785}
+  HienDialogueTrigger: {fileID: 0}
   tutorialPanel: {fileID: 0}
   step1: {fileID: 0}
   step6: {fileID: 0}
@@ -6150,6 +6158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsParent: {fileID: 284015878}
+  craftInventory: {fileID: 369987946}
 --- !u!114 &1113941255
 MonoBehaviour:
   m_ObjectHideFlags: 0

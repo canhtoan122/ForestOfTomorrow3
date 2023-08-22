@@ -28,7 +28,7 @@ public class TapToContinue : MonoBehaviour
         currentSceneName = SceneManager.GetActiveScene().name;
         if (currentSceneName == "AP_Scene 4" && playerDie)
         {
-            DialogueManagement.dialogEnd = true;
+            DialogueManagement.dialogEnd = false;
             dialogueTrigger.TriggerMasterDialogue2();
             ControllerUI.Instance.ActiveMovementUI(false);
             playerDialog.SetActive(false);
@@ -37,6 +37,7 @@ public class TapToContinue : MonoBehaviour
         }
         else if(currentSceneName == "AP_Scene 4")
         {
+            DialogueManagement.dialogEnd = false;
             return;
         }
         dialogueTrigger.TriggerMasterDialogue();

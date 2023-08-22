@@ -13,7 +13,9 @@ public class Level1Controller : MonoBehaviour
     public Sprite openDoorSprite;
     public GameObject keyGameObject;
     public Equipment key;
-    public GameObject behindDoorbG;
+    public GameObject behindDoorBG;
+    public GameObject behindDoorBG2;
+    public GameObject behindDoorBG3;
     public GameObject player;
     public GameObject mapUI;
     public GameObject homeButton;
@@ -86,7 +88,9 @@ public class Level1Controller : MonoBehaviour
             InventoryManagement.instance.CheckKey();
             if (haveKey)
             {
-                behindDoorbG.SetActive(false);
+                behindDoorBG.SetActive(false);
+                behindDoorBG2.SetActive(false);
+                behindDoorBG3.SetActive(false);
                 door.GetComponent<BoxCollider2D>().enabled = false;
                 door.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
                 door.GetComponent<Transform>().position = new Vector2(48.93f, 1.63f);

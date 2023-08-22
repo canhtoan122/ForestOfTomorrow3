@@ -6,6 +6,7 @@ public class SeedCollider : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float dropForce = 5;
+    public InventoryData inventoryData;
     public Equipment seed;
 
     private void Start()
@@ -19,7 +20,7 @@ public class SeedCollider : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Destroy(this.gameObject);
-            InventoryManagement.instance.Add(seed);
+            inventoryData.AddEquipment(seed);
         }
     }
 }

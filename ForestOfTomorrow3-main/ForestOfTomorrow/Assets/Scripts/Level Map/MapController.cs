@@ -79,7 +79,7 @@ public class MapController : MonoBehaviour
         TapToContinue.playerDie = false;
         ControllerUI.Instance.ActiveAttackButton(true);
         ControllerUI.Instance.ActiveInteractButton(false);
-        SceneManager.LoadScene("AP_Scene 4");
+        SceneLoader.instance.LoadLevel(5);
     }
     public void Level1()
     {
@@ -92,6 +92,7 @@ public class MapController : MonoBehaviour
     {
         ControllerUI.Instance.ActiveAttackButton(true);
         ControllerUI.Instance.ActiveInteractButton(false);
-        SceneManager.LoadScene("AP_Level 1");
+        ControllerUI.Instance.ActiveMovementUI(false);
+        SceneLoader.instance.LoadLevel(6);
     }
 }

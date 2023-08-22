@@ -273,4 +273,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropForce: 5
+  inventoryData: {fileID: 11400000, guid: 947b533edcb53c449853d98dea98239f, type: 2}
   seed: {fileID: 11400000, guid: d097a0d2bbe6c484d9f398a85eea0814, type: 2}

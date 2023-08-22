@@ -6,6 +6,7 @@ public class MonsterBloodCollider : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float dropForce = 5;
+    public InventoryData inventoryData;
     public Equipment monsterBlood;
 
     private void Start()
@@ -19,7 +20,8 @@ public class MonsterBloodCollider : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Destroy(this.gameObject);
-            InventoryManagement.instance.Add(monsterBlood);
+            inventoryData.AddEquipment(monsterBlood);
+
         }
     }
 }

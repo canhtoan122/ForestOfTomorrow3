@@ -17,6 +17,14 @@ public class SceneLoader : MonoBehaviour
 
     public GameObject loadingScreen;
     public Slider slider;
+    private void Start()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        if(sceneName == "Loading Scene")
+        {
+            LoadLevel(1);
+        }
+    }
     public void LoadLevel(int sceneIndex)
     {
         StartCoroutine(LoadAsynchronously(sceneIndex));

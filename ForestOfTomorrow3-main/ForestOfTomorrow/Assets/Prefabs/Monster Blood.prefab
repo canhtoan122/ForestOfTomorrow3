@@ -246,4 +246,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropForce: 5
+  inventoryData: {fileID: 11400000, guid: 947b533edcb53c449853d98dea98239f, type: 2}
   monsterBlood: {fileID: 11400000, guid: 3eb20a8c4ff528145a47b8d6d34e4e80, type: 2}

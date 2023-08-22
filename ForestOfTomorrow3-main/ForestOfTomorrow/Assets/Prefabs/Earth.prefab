@@ -233,4 +233,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropForce: 5
+  inventoryData: {fileID: 11400000, guid: 947b533edcb53c449853d98dea98239f, type: 2}
   earth: {fileID: 11400000, guid: 1fb0930e364614749ba467c67b072b47, type: 2}
